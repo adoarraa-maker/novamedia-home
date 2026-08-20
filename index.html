@@ -1,0 +1,2944 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovaMedia Home — Décorations de Noël</title>
+<meta name="description" content="NovaMedia Home — Guirlande LED Intelligente Connectée RGB™ & Pack Féerie de Noël™. Contrôle Bluetooth, télécommande, livraison DDP offerte. Paiement sécurisé TWINT & cartes.">
+<style>
+/* ============================ TOKENS ============================ */
+:root{
+  --sapin:#0F3B2E;
+  --sapin-clair:#1B5B47;
+  --nuit:#08221B;
+  --or:#C9A227;
+  --or-clair:#E3C86B;
+  --airelle:#9E2B2B;
+  --creme:#FBF7F0;
+  --creme-2:#F3ECE0;
+  --encre:#1C1C18;
+  --gris:#6E6A62;
+  --ligne:#E2D9CA;
+  --blanc:#fff;
+  --r-s:8px; --r-m:14px; --r-l:22px;
+  --ombre:0 1px 2px rgba(28,28,24,.05), 0 8px 24px rgba(28,28,24,.07);
+  --ombre-f:0 12px 40px rgba(15,59,46,.18);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--creme);color:var(--encre);
+  font-family:var(--sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;letter-spacing:-.01em;margin:0}
+h1{font-size:clamp(2.4rem,5.5vw,4rem)}
+h2{font-size:clamp(1.7rem,3.2vw,2.5rem)}
+h3{font-size:1.1rem}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:700;color:var(--or);margin-bottom:14px;
+}
+.lead{color:var(--gris);font-size:1.05rem;max-width:56ch}
+:focus-visible{outline:2px solid var(--or);outline-offset:3px;border-radius:4px}
+
+/* ============================ BOUTONS ============================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 24px;border-radius:999px;font-weight:600;font-size:.94rem;
+  transition:transform .15s ease,box-shadow .2s ease,background .2s ease,color .2s ease;
+  white-space:nowrap;text-decoration:none;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn--or{background:var(--or);color:var(--nuit);box-shadow:0 4px 14px rgba(201,162,39,.35)}
+.btn--or:hover{background:var(--or-clair)}
+.btn--sapin{background:var(--sapin);color:var(--creme)}
+.btn--sapin:hover{background:var(--sapin-clair)}
+.btn--ghost{border:1.5px solid var(--ligne);background:var(--blanc)}
+.btn--ghost:hover{border-color:var(--sapin);background:var(--creme-2)}
+.btn--light{border:1.5px solid rgba(251,247,240,.35);color:var(--creme)}
+.btn--light:hover{background:rgba(251,247,240,.12)}
+.btn--full{width:100%}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+
+/* ============================ ENTÊTE ============================ */
+.topbar{
+  background:var(--sapin);color:var(--creme-2);text-align:center;
+  font-size:.8rem;padding:9px 16px;letter-spacing:.03em;
+}
+.topbar b{color:var(--or-clair)}
+header.hdr{
+  position:sticky;top:0;z-index:60;background:rgba(251,247,240,.9);
+  backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--ligne);
+}
+.hdr__in{display:flex;align-items:center;gap:20px;height:70px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.logo__mark{width:34px;height:34px;flex:none}
+.logo__txt{font-family:var(--serif);font-size:1.18rem;letter-spacing:.02em;font-weight:600;white-space:nowrap}
+.logo__txt small{display:block;font-family:var(--sans);font-size:.56rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--gris);font-weight:600;margin-top:-2px}
+nav.main{display:flex;gap:26px}
+nav.main a{
+  text-decoration:none;font-size:.92rem;font-weight:500;padding:6px 0;
+  border-bottom:2px solid transparent;transition:border-color .2s,color .2s;
+}
+nav.main a:hover{border-color:var(--or)}
+.hdr__act{display:flex;align-items:center;gap:10px}
+.hdr__order{
+  padding:9px 16px;font-size:.88rem;flex:none;
+}
+#offres-phare{scroll-margin-top:108px}
+.lang{display:flex;border:1px solid var(--ligne);border-radius:999px;overflow:hidden;background:var(--blanc)}
+.lang button{padding:6px 12px;font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--gris)}
+.lang button[aria-pressed="true"]{background:var(--sapin);color:var(--creme)}
+.burger{display:none;padding:8px}
+
+/* ============================ HÉRO ============================ */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(120% 90% at 78% 10%, #1B5B47 0%, transparent 55%),
+  radial-gradient(90% 80% at 12% 90%, #123F31 0%, transparent 60%),
+  linear-gradient(170deg,#0B2C22 0%,#08221B 100%);
+  color:var(--creme);
+}
+.hero__in{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+  padding:84px 24px 96px;max-width:var(--max);margin:0 auto;position:relative;z-index:2}
+.hero h1{color:var(--creme)}
+.hero h1 em{font-style:italic;color:var(--or-clair)}
+.hero p{color:rgba(251,247,240,.78);margin:22px 0 32px;font-size:1.08rem;max-width:48ch}
+.hero__cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero__pts{display:flex;gap:26px;flex-wrap:wrap;margin-top:38px;
+  padding-top:26px;border-top:1px solid rgba(251,247,240,.16)}
+.hero__pt{font-size:.82rem;color:rgba(251,247,240,.72);display:flex;align-items:center;gap:7px}
+.hero__pt svg{flex:none;color:var(--or-clair)}
+.hero__art{position:relative;display:grid;place-items:center}
+.hero__art svg{width:100%;max-width:420px;filter:drop-shadow(0 24px 48px rgba(0,0,0,.45))}
+.snow{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.flake{position:absolute;top:-12px;color:#fff;opacity:.5;animation:fall linear infinite}
+@keyframes fall{
+  0%{transform:translate3d(0,-20px,0) rotate(0);opacity:0}
+  10%{opacity:.6}
+  100%{transform:translate3d(24px,105vh,0) rotate(360deg);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){.flake{display:none}}
+
+/* ============================ BANDEAU CONFIANCE ============================ */
+.trust{background:var(--creme-2);border-bottom:1px solid var(--ligne)}
+.trust__in{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:26px 24px}
+.trust__i{display:flex;gap:12px;align-items:flex-start}
+.trust__i svg{flex:none;color:var(--sapin);margin-top:2px}
+.trust__i b{display:block;font-size:.9rem}
+.trust__i span{font-size:.8rem;color:var(--gris)}
+
+/* ============================ SECTIONS ============================ */
+section{padding:84px 0}
+.sec__hd{margin-bottom:44px;max-width:60ch}
+.sec__hd--c{margin-left:auto;margin-right:auto;text-align:center}
+
+/* Catégories */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.cat{
+  position:relative;border-radius:var(--r-l);overflow:hidden;border:1px solid var(--ligne);
+  background:var(--blanc);padding:26px 22px 22px;text-align:left;
+  transition:transform .2s ease,box-shadow .25s ease,border-color .2s;
+}
+.cat:hover{transform:translateY(-4px);box-shadow:var(--ombre-f);border-color:transparent}
+.cat__ic{width:52px;height:52px;margin-bottom:16px;color:var(--sapin)}
+.cat h3{margin-bottom:5px}
+.cat p{font-size:.84rem;color:var(--gris)}
+.cat__go{margin-top:14px;font-size:.8rem;font-weight:700;color:var(--or);letter-spacing:.04em}
+
+/* Filtres */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.chip{
+  padding:9px 18px;border-radius:999px;border:1.5px solid var(--ligne);background:var(--blanc);
+  font-size:.85rem;font-weight:600;color:var(--gris);transition:all .18s;
+}
+.chip:hover{border-color:var(--sapin);color:var(--encre)}
+.chip[aria-pressed="true"]{background:var(--sapin);border-color:var(--sapin);color:var(--creme)}
+
+/* Grille produits */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:stretch}
+.card{
+  background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--r-l);
+  overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;
+  height:100%;transition:transform .2s ease,box-shadow .25s ease;
+}
+.card:hover{transform:translateY(-5px);box-shadow:var(--ombre-f)}
+.card__img{position:relative;aspect-ratio:1/1;background:linear-gradient(160deg,#F7F1E6,#EFE6D6);
+  display:grid;place-items:center;padding:22px;cursor:pointer;flex:none;overflow:hidden}
+.card__img svg{width:100%;height:100%}
+.card__tag{
+  position:absolute;top:12px;left:12px;background:var(--airelle);color:#fff;
+  font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 10px;border-radius:999px;
+}
+.card__tag--or{background:var(--or);color:var(--nuit)}
+.card__tags{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;z-index:1}
+.card__tags .card__tag{position:static}
+.card__b{padding:18px 18px 20px;display:flex;flex-direction:column;justify-content:space-between;flex:1;gap:8px;min-height:0}
+.card__cat{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or);font-weight:700}
+.card__t{font-size:1rem;font-family:var(--serif);font-weight:600;cursor:pointer}
+.card__t:hover{text-decoration:underline;text-underline-offset:3px}
+.card__d{font-size:.82rem;color:var(--gris);flex:1}
+.card__f{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;flex-shrink:0}
+.price{font-size:1.12rem;font-weight:700;font-family:var(--serif);line-height:1.15;white-space:nowrap}
+.price s{display:block;font-size:.78rem;color:var(--gris);font-weight:400;margin-bottom:1px}
+.modal__b .price s{display:inline;font-size:1rem;margin-right:10px}
+.add{padding:9px 18px;white-space:nowrap;border-radius:999px;background:var(--sapin);color:var(--creme);
+  font-size:.82rem;font-weight:600;transition:background .2s}
+.add:hover{background:var(--or);color:var(--nuit)}
+.card__f--col{flex-direction:column;align-items:stretch}
+.card__f--col .price{
+  display:flex;align-items:baseline;gap:12px;white-space:normal;
+}
+.card__f--col .price s{display:inline;margin:0;font-size:.9rem}
+.card__btns{display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0}
+.card__btns .buy{flex:1;text-align:center;text-decoration:none;min-height:44px}
+.buy{
+  padding:12px 20px;white-space:nowrap;border-radius:999px;background:var(--or);color:var(--nuit);
+  font-size:.92rem;font-weight:700;transition:background .2s;display:inline-flex;align-items:center;
+  justify-content:center;text-decoration:none;box-shadow:0 4px 14px rgba(201,162,39,.28);
+}
+.buy:hover{background:var(--or-clair)}
+.card--wide{grid-column:span 2}
+.card--wide .card__img{aspect-ratio:1/1}
+.card.is-oos{opacity:.55;filter:grayscale(.35)}
+.card.is-oos:hover{transform:none}
+.card__tag--oos{background:#6E6A62;color:#fff}
+.buy--oos,.buy[disabled],.buy[aria-disabled="true"]{
+  opacity:.5;pointer-events:none;cursor:not-allowed;box-shadow:none;
+  background:#6E6A62;color:#fff;
+}
+.buy--oos:hover,.buy[disabled]:hover{background:#6E6A62;color:#fff}
+.offer.is-oos{opacity:.5}
+.offer.is-oos .offer__mark--oos,.size.is-oos,.pack.is-oos{opacity:.85}
+.badge--oos{background:#6E6A62;color:#fff}
+.offer__mark--oos{background:#6E6A62;color:#fff}
+.feat.is-oos{opacity:.78}
+.feat__buybar--oos .buy{width:100%}
+.size.is-oos,.pack.is-oos{opacity:.5}
+.card__tag--ip{background:var(--sapin);color:var(--creme)}
+.swatches{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 6px}
+.swatch{
+  display:flex;flex-direction:column;align-items:flex-start;gap:1px;
+  flex:1;min-width:128px;padding:8px 12px;border:1.5px solid var(--ligne);
+  border-radius:12px;background:var(--blanc);text-align:left;
+  transition:border-color .18s,background .18s,transform .15s;
+}
+.swatch:hover{border-color:var(--sapin);transform:translateY(-1px)}
+.swatch.is-on{border-color:var(--sapin);background:var(--creme)}
+.swatch__dot{width:14px;height:14px;border-radius:50%;margin-bottom:4px}
+.swatch--chaud .swatch__dot{background:#E3C86B;box-shadow:0 0 0 2px #f4e6b5}
+.swatch--froid .swatch__dot{background:#F4F8FC;border:1px solid #b8c6d4;box-shadow:0 0 0 2px #d9e3ee}
+.swatch--multi .swatch__dot{
+  background:conic-gradient(#e53935,#f6c445,#43a047,#1e88e5,#8e24aa,#e53935);
+  box-shadow:0 0 0 2px #f0d9a8;
+}
+.swatch__txt{font-size:.78rem;font-weight:700;color:var(--encre)}
+.swatch__hint{font-size:.68rem;color:var(--gris)}
+.packs--mini{margin:8px 0;padding-top:10px;gap:8px}
+.pack--mini{cursor:pointer;padding:10px 12px;margin:0}
+.pack--mini .pack__name{font-size:.8rem;line-height:1.3}
+.pack--mini .pack__price{font-size:.95rem}
+.card__trust{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.card__ddp{font-size:.74rem;font-weight:600;color:var(--nuit)}
+.card__paylbl{font-size:.7rem;color:var(--gris)}
+.pay--mini{gap:5px}
+.pay--mini .pay__logo{height:26px;min-width:0;padding:3px 6px;border-radius:5px}
+.pay--mini .pay__logo svg{height:13px}
+
+/* Photos produit (galerie interactive) */
+.card__img--photo,.feat__visual--photo,.modal__img--photo,.line__img--photo{
+  padding:0;overflow:hidden;background:#0b0f14;
+}
+.card__img--photo img,.feat__visual--photo img,.modal__img--photo > img,.line__img--photo img{
+  width:100%;height:100%;object-fit:cover;object-position:center;border-radius:var(--r-m);
+  transition:transform .45s cubic-bezier(.25,.8,.25,1),filter .35s ease;
+}
+.card__img--photo img{
+  border-radius:calc(var(--r-l) - 1px) calc(var(--r-l) - 1px) 0 0;
+  width:100%;height:100%;object-fit:cover;object-position:center;aspect-ratio:1/1;
+}
+.card:hover .card__img--photo img{transform:scale(1.07);filter:brightness(1.08)}
+.feat__visual--photo{min-height:340px;border-radius:var(--r-l)}
+.feat:hover .feat__visual--photo img{transform:scale(1.03)}
+.modal__img--photo{
+  display:grid;grid-template-columns:78px 1fr;grid-template-rows:minmax(280px,1fr);
+  padding:0;align-items:stretch;
+}
+.modal__stage{
+  grid-column:2;grid-row:1;position:relative;min-height:320px;cursor:zoom-in;
+  overflow:hidden;background:#0b0f14;border:0;padding:0;width:100%;height:100%;
+  display:block;border-radius:0;
+}
+.modal__stage img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:opacity .28s ease,transform .4s ease;opacity:1;
+}
+.modal__stage img.is-fading{opacity:0;transform:scale(1.04)}
+.modal__img--photo .gallery{
+  grid-column:1;grid-row:1;flex-direction:column;flex-wrap:nowrap;
+  overflow-y:auto;padding:10px 8px;background:rgba(8,34,27,.12);gap:8px;
+}
+.zoom-hint{
+  position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;
+  background:rgba(251,247,240,.94);color:var(--nuit);display:grid;place-items:center;
+  pointer-events:none;box-shadow:0 4px 14px rgba(0,0,0,.2);z-index:2;
+}
+.card__img--photo,.feat__visual--photo{cursor:zoom-in}
+.feat__visual--photo{position:relative}
+.line__img--photo img{border-radius:var(--r-m)}
+
+.sizes{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 2px}
+.sizes:empty{display:none}
+.size{
+  padding:7px 13px;border-radius:999px;border:1.5px solid var(--ligne);
+  background:var(--blanc);font-size:.76rem;font-weight:700;color:var(--gris);
+  transition:background .18s,border-color .18s,color .18s,transform .15s;
+}
+.size:hover{border-color:var(--sapin);color:var(--encre);transform:translateY(-1px)}
+.size.is-on{background:var(--sapin);border-color:var(--sapin);color:var(--creme)}
+.size-hint{font-size:.75rem;color:var(--gris);line-height:1.35;margin-top:2px;flex:1 0 100%}
+.gallery{display:flex;gap:8px;flex-wrap:wrap;padding:10px 12px;background:rgba(8,34,27,.55)}
+.gallery button{
+  width:58px;height:58px;padding:0;border-radius:10px;overflow:hidden;
+  border:2px solid transparent;opacity:.72;flex:none;
+  transition:border-color .2s,opacity .2s,transform .2s,box-shadow .2s;
+}
+.gallery button img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.gallery button.is-on,.gallery button:hover{
+  border-color:var(--or-clair);opacity:1;transform:translateY(-1px);
+  box-shadow:0 0 0 2px rgba(227,200,107,.35);
+}
+.feat--solaire{margin:8px 0 36px;align-items:stretch}
+.feat--solaire > .feat__col{
+  display:flex;flex-direction:column;gap:12px;min-height:100%;height:100%;
+}
+.feat--solaire .feat__visual.feat__visual--photo{
+  flex:1 1 auto;min-height:280px;height:auto;background:#F6F1E8;
+}
+.feat--solaire .feat__visual.feat__visual--photo img{
+  object-fit:contain;object-position:center;background:#F6F1E8;min-height:280px;
+}
+.feat--solaire .feat__ambiance{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:none;
+}
+.feat--solaire .feat__ambiance button{
+  position:relative;aspect-ratio:16/10;padding:0;overflow:hidden;
+  border-radius:12px;border:2px solid transparent;background:#0b0f14;cursor:pointer;
+  transition:border-color .2s,transform .2s,box-shadow .2s;
+}
+.feat--solaire .feat__ambiance button img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.feat--solaire .feat__ambiance button:hover,
+.feat--solaire .feat__ambiance button.is-on{
+  border-color:var(--or-clair);transform:translateY(-1px);
+  box-shadow:0 0 0 2px rgba(227,200,107,.35);
+}
+.feat--solaire .swatches{gap:12px;margin:18px 0 6px}
+.feat--solaire .swatch{
+  padding:14px 16px;min-width:170px;border-radius:14px;
+}
+.feat--solaire .swatch__dot{width:18px;height:18px;margin-bottom:6px}
+.feat--solaire .swatch__txt{font-size:.92rem}
+.feat--solaire .swatch__hint{font-size:.8rem;line-height:1.35}
+.feat--solaire .packs{margin-top:14px}
+.feat--solaire .pack{padding:16px 18px}
+.feat--solaire .pack__name{font-size:1rem}
+.feat--parachute{margin:0}
+.feat--parachute .swatches{gap:12px;margin:18px 0 6px}
+.feat--parachute .swatch{
+  padding:14px 16px;min-width:170px;border-radius:14px;
+}
+.feat--parachute .swatch__dot{width:18px;height:18px;margin-bottom:6px}
+.feat--parachute .swatch__txt{font-size:.92rem}
+.feat--parachute .swatch__hint{font-size:.8rem;line-height:1.35}
+.feat--parachute .packs{margin-top:14px}
+.feat--parachute .pack{padding:16px 18px}
+.feat--parachute .pack__name{font-size:1rem}
+.feat--ruban{margin:0}
+.feat--ruban .feat__visual.feat__visual--photo,
+.feat--ruban .feat__visual.feat__visual--photo img{
+  background:#F6F1E8;object-fit:contain;object-position:center;
+}
+.feat--ruban .packs{margin-top:16px}
+.feat--ruban .pack{padding:16px 18px;cursor:pointer;font:inherit;color:inherit;width:100%}
+.feat--ruban .sizes{gap:10px;margin:14px 0 2px}
+.feat--ruban .size{padding:10px 20px;font-size:.88rem}
+.feat--ruban .pack__name{font-size:1rem}
+.feat--ruban .specs{margin:16px 0 4px}
+.feat__buybar{
+  display:flex;flex-direction:column;align-items:stretch;gap:12px;
+  margin-top:8px;padding:16px 16px 14px;border:1.5px solid var(--ligne);border-radius:var(--r-m);
+  background:var(--creme);
+}
+.feat__buybar .price{font-size:1.55rem;text-align:center}
+.feat__buybar .price s{display:inline;margin-right:10px;font-size:1rem}
+.feat__buybar .buy{width:100%;min-height:52px;font-size:1.05rem}
+.feat__note{
+  font-size:.82rem;font-weight:600;color:var(--sapin);margin-top:4px;
+}
+.featured .feat{
+  align-items:start;overflow:visible;
+  grid-template-columns:.92fr 1.08fr;gap:28px;
+}
+.feat__sticky{
+  position:sticky;top:88px;display:flex;flex-direction:column;gap:12px;
+}
+.featured .feat .feat__media{min-height:0;align-items:start}
+.featured .feat .feat__media .gallery{max-height:360px}
+.featured .feat .feat__visual.feat__visual--photo{
+  min-height:0;height:auto;align-self:stretch;background:#F6F1E8;
+}
+.featured .feat .feat__visual.feat__visual--photo img{
+  min-height:0;height:auto;max-height:360px;object-fit:contain;object-position:center;
+  background:#F6F1E8;
+}
+.featured .feat .specs{margin:12px 0 2px;gap:7px;font-size:.84rem}
+.featured .feat .feat__lead{font-size:.9rem}
+.featured .feat .swatches{margin:12px 0 4px;gap:8px}
+.featured .feat .swatch{min-width:0;flex:1;padding:10px 12px}
+.feat__tech{
+  padding:14px 16px;background:var(--creme);border:1px solid var(--ligne);
+  border-radius:var(--r-m);font-size:.82rem;
+}
+.feat__tech h3{
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--or);font-weight:700;margin:0 0 10px;
+}
+.feat__tech ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.feat__tech li{display:flex;gap:8px;align-items:flex-start;color:var(--gris);line-height:1.4}
+.feat__tech svg{flex:none;color:var(--sapin);margin-top:2px}
+.offers{display:grid;grid-template-columns:repeat(var(--offer-n, 3), minmax(0, 1fr));gap:8px;margin:14px 0 10px}
+.offer{
+  position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;
+  padding:12px 12px 11px;border:1.5px solid var(--ligne);border-radius:14px;
+  background:var(--blanc);text-align:left;width:100%;font:inherit;color:inherit;
+  cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s,transform .15s;
+}
+.offer:hover{border-color:var(--sapin);transform:translateY(-1px)}
+.offer.is-on{border-color:var(--sapin);background:var(--creme);box-shadow:0 0 0 1px var(--sapin)}
+.offer--best{border-color:var(--or);background:linear-gradient(180deg,#FFFBF0,#FBF7F0)}
+.offer--best.is-on{box-shadow:0 0 0 1px var(--or)}
+.offer__mark{
+  position:absolute;top:-8px;left:10px;background:var(--or);color:var(--nuit);
+  font-size:.58rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  padding:2px 7px;border-radius:999px;
+}
+.offer__name{font-family:var(--serif);font-weight:600;font-size:.92rem;line-height:1.25}
+.offer__price{font-family:var(--serif);font-weight:700;font-size:1.02rem;margin-top:4px}
+.offer__price s{display:block;font-size:.7rem;color:var(--gris);font-weight:400}
+.offer__desc{font-size:.68rem;color:var(--gris);line-height:1.3;margin-top:2px}
+.feat__buybar{margin-top:4px}
+.feat__foot{
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--ligne);
+  text-align:center;
+}
+.featured .feat .feat__pay{
+  margin-top:0;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+}
+.featured .feat .feat__pay .pay--logos{justify-content:center}
+.featured .feat .feat__trust{
+  margin-top:12px;padding-top:0;border-top:0;justify-content:center;text-align:left;
+}
+.featured .feat .feat__ship{margin-top:10px;justify-content:center;text-align:center}
+.feat__media{
+  display:grid;grid-template-columns:72px 1fr;grid-template-areas:"thumbs visual";
+  gap:10px;align-items:stretch;min-height:100%;
+}
+.feat__media .gallery{grid-area:thumbs}
+.feat__media .feat__visual{grid-area:visual}
+.feat__media .feat__visual.feat__visual--photo{
+  min-height:420px;height:100%;cursor:zoom-in;
+}
+.feat__media .gallery{
+  flex-direction:column;flex-wrap:nowrap;overflow-y:auto;overflow-x:hidden;
+  padding:0;background:transparent;gap:8px;max-height:520px;
+}
+.feat__media .gallery button{width:68px;height:68px;background:var(--creme-2)}
+.featured .feat .feat__media .feat__visual.feat__visual--photo{
+  min-height:0;height:auto;max-height:none;
+}
+.feat__ship{
+  display:flex;align-items:center;justify-content:center;gap:8px;margin:16px 0 0;padding:11px 14px;
+  background:linear-gradient(180deg,#FFFBF0,#FBF7F0);
+  border:1px solid rgba(201,162,39,.45);border-radius:var(--r-m);
+  font-size:.88rem;font-weight:600;color:var(--nuit);line-height:1.4;text-align:center;
+}
+.feat__certs{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.feat__certs span{
+  border:1px solid var(--ligne);border-radius:6px;padding:4px 8px;
+  font-size:.66rem;font-weight:700;letter-spacing:.06em;color:var(--gris);background:var(--creme);
+}
+
+/* ============================ PACK FÉERIE ============================ */
+.featured{padding:56px 0 8px}
+.feat{
+  display:grid;grid-template-columns:.92fr 1.08fr;gap:28px;align-items:start;
+  background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--r-l);
+  padding:36px;box-shadow:var(--ombre);position:relative;overflow:visible;
+}
+.feat::before{
+  content:"";position:absolute;inset:auto -40px -60px auto;width:220px;height:220px;
+  background:radial-gradient(circle,rgba(201,162,39,.22),transparent 70%);pointer-events:none;
+}
+.feat__visual{
+  background:linear-gradient(165deg,#0F3B2E 0%,#123F31 55%,#1B5B47 100%);
+  border-radius:var(--r-l);padding:28px;display:grid;place-items:center;min-height:280px;
+  overflow:hidden;
+}
+.feat__visual svg{width:100%;max-width:340px;filter:drop-shadow(0 16px 28px rgba(0,0,0,.35))}
+.feat__visual.feat__visual--photo{
+  padding:0;min-height:100%;height:100%;align-self:stretch;
+}
+.feat__visual.feat__visual--photo img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  border-radius:inherit;min-height:420px;display:block;
+  transition:transform .45s cubic-bezier(.25,.8,.25,1),filter .35s ease,opacity .28s ease;
+}
+#featHero.is-fading,#solaireHero.is-fading,#parachuteHero.is-fading,#rubanHero.is-fading,#bougiesHero.is-fading{opacity:0;transform:scale(1.04)}
+.feat__badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.badge{
+  display:inline-flex;align-items:center;font-size:.66rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:6px 11px;border-radius:999px;
+}
+.badge--best{background:var(--or);color:var(--nuit)}
+.badge--sapin{background:var(--sapin);color:var(--creme)}
+.badge--nuit{background:var(--nuit);color:var(--or-clair)}
+.badge--hot{background:var(--rouge, #9B2C2C);color:var(--creme)}
+.feat h2{font-size:clamp(1.55rem,2.6vw,2.15rem);margin-bottom:8px}
+.feat h2 small{display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--or);font-weight:700;margin-bottom:8px}
+.feat__lead{color:var(--gris);font-size:.95rem;max-width:52ch}
+.packs{display:grid;gap:12px;margin:22px 0 8px;padding-top:10px}
+.pack{
+  display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:center;
+  border:1.5px solid var(--ligne);border-radius:var(--r-m);padding:14px 16px;
+  background:var(--creme);text-align:left;width:100%;transition:border-color .2s,box-shadow .2s,background .2s;
+}
+.pack:hover,.pack.is-on{border-color:var(--sapin);background:var(--blanc)}
+.pack--best{
+  border-color:var(--or);background:linear-gradient(180deg,#FFFBF0,#FBF7F0);
+  box-shadow:0 4px 18px rgba(201,162,39,.18);position:relative;
+}
+.pack--best .pack__mark{
+  position:absolute;top:-9px;left:14px;background:var(--or);color:var(--nuit);
+  font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;
+}
+.pack__name{font-family:var(--serif);font-weight:600;font-size:1.02rem}
+.pack__desc{font-size:.8rem;color:var(--gris);grid-column:1/-1}
+.pack__price{font-family:var(--serif);font-weight:700;font-size:1.18rem;white-space:nowrap;text-align:right}
+.pack__price s{display:block;font-size:.75rem;color:var(--gris);font-weight:400}
+.pack__cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;grid-column:1/-1}
+.pack__cta .btn,.pack__cta .add,.pack__cta .buy{flex:1;min-width:132px}
+.feat__pay{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;font-size:.75rem;color:var(--gris)}
+.pay--logos{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.pay__logo{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:34px;min-width:54px;padding:5px 9px;
+  background:#fff;border:1px solid var(--ligne);border-radius:7px;
+  box-shadow:0 1px 2px rgba(28,28,24,.05);
+}
+.pay__logo svg{height:18px;width:auto;display:block}
+.feat__pay .pay span{
+  border:1px solid var(--ligne);color:var(--encre);background:var(--creme);
+}
+.feat__pay .pay--logos .pay__logo,
+.foot__bot .pay--logos .pay__logo{
+  border:1px solid var(--ligne);background:#fff;color:inherit;
+  letter-spacing:0;font-weight:inherit;padding:5px 9px;
+}
+.feat__trust{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;padding-top:16px;
+  border-top:1px solid var(--ligne);font-size:.78rem;color:var(--gris);justify-content:center}
+.feat__trust span{display:inline-flex;align-items:center;gap:6px}
+.feat__trust svg{flex:none;color:var(--sapin)}
+
+/* Comment ça marche */
+.how{background:var(--sapin);color:var(--creme)}
+.how h2{color:var(--creme)}
+.how .lead{color:rgba(251,247,240,.75)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.step{border-top:2px solid rgba(201,162,39,.5);padding-top:22px}
+.step__n{font-family:var(--serif);font-size:2.6rem;color:var(--or-clair);line-height:1;margin-bottom:12px}
+.step h3{color:var(--creme);margin-bottom:8px}
+.step p{font-size:.9rem;color:rgba(251,247,240,.72)}
+
+/* Avis */
+.avis{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.avis__c{background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--r-l);padding:26px}
+.stars{color:var(--or);letter-spacing:3px;font-size:.9rem;margin-bottom:12px}
+.avis__c p{font-size:.94rem;margin-bottom:16px}
+.avis__w{font-size:.82rem;color:var(--gris);font-weight:600}
+
+/* Newsletter */
+.nl{background:var(--creme-2);border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne)}
+.nl__in{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.nl form{display:flex;gap:10px;flex-wrap:wrap}
+.nl input{
+  flex:1;min-width:220px;padding:14px 18px;border-radius:999px;border:1.5px solid var(--ligne);
+  background:var(--blanc);font-size:.94rem;
+}
+.nl input:focus{outline:none;border-color:var(--sapin)}
+.nl small{display:block;margin-top:12px;font-size:.76rem;color:var(--gris)}
+
+/* Contact */
+.contact{padding:72px 0 64px;background:var(--creme)}
+.contact__in{display:grid;grid-template-columns:1fr 1.05fr;gap:36px;align-items:start;margin-top:32px}
+.contact__cards{display:grid;gap:12px}
+.contact__card{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--r-m);
+  padding:18px 20px;box-shadow:var(--ombre);
+}
+.contact__ic{
+  width:42px;height:42px;border-radius:12px;flex:none;
+  display:grid;place-items:center;background:var(--sapin);color:var(--or-clair);
+}
+.contact__card h3{font-size:.92rem;margin:0 0 4px;font-family:var(--serif)}
+.contact__card p,.contact__card a{margin:0;font-size:.88rem;color:var(--gris);line-height:1.45}
+.contact__card a{color:var(--sapin);font-weight:600;text-decoration:none}
+.contact__card a:hover{color:var(--or)}
+.contact__support{
+  display:flex;align-items:center;gap:10px;margin-top:4px;padding:12px 16px;
+  background:linear-gradient(180deg,#FFFBF0,#FBF7F0);
+  border:1px solid rgba(201,162,39,.45);border-radius:var(--r-m);
+  font-size:.88rem;font-weight:600;color:var(--nuit);
+}
+.contact__support::before{
+  content:"";width:8px;height:8px;border-radius:50%;flex:none;
+  background:var(--or);box-shadow:0 0 0 4px rgba(201,162,39,.18);
+}
+#contact,#suivi,#parachute,#ruban,#guirlande,#offre{scroll-margin-top:96px}
+.contact__form{
+  background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--r-l);
+  padding:28px;box-shadow:var(--ombre);
+}
+.contact__form h3{margin:0 0 16px;font-size:1.15rem}
+.contact__form input,.contact__form textarea{
+  width:100%;padding:12px 14px;margin-bottom:12px;border:1.5px solid var(--ligne);
+  border-radius:12px;background:var(--creme);font:inherit;color:var(--encre);
+}
+.contact__form input:focus,.contact__form textarea:focus{outline:none;border-color:var(--sapin);background:var(--blanc)}
+.contact__form textarea{min-height:120px;resize:vertical}
+.contact__form .btn{width:100%}
+.contact__form small{display:block;margin-top:10px;font-size:.76rem;color:var(--gris)}
+
+.legal{
+  position:fixed;inset:0;z-index:95;background:rgba(8,34,27,.55);backdrop-filter:blur(3px);
+  display:none;place-items:center;padding:24px;
+}
+.legal.on{display:grid}
+.legal__c{
+  width:min(720px,100%);max-height:min(86vh,820px);overflow:auto;
+  background:var(--creme);border-radius:var(--r-l);padding:32px 32px 28px;
+  box-shadow:var(--ombre-f);position:relative;color:var(--encre);
+}
+.legal__c h2{margin-bottom:16px;padding-right:36px}
+.legal__c h3{font-size:1rem;margin:18px 0 8px}
+.legal__c p,.legal__c li{font-size:.9rem;color:var(--gris);line-height:1.55}
+.legal__c ul{margin:0 0 12px;padding-left:18px}
+.legal__c a{color:var(--sapin);font-weight:600;text-decoration:none}
+.legal__c a:hover{color:var(--or)}
+.legal__x{position:absolute;top:16px;right:16px}
+
+/* Pied de page */
+footer{background:var(--nuit);color:rgba(251,247,240,.7);padding:64px 0 28px;font-size:.88rem}
+.foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
+.foot h4{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or-clair);
+  margin:0 0 16px;font-weight:700}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.foot a{color:rgba(251,247,240,.72);text-decoration:none;transition:color .2s}
+.foot a:hover{color:var(--or-clair)}
+.foot__logo{display:flex;align-items:center;gap:10px;color:var(--creme);margin-bottom:14px}
+.foot__logo .logo__txt small{color:rgba(251,247,240,.5)}
+.foot__meta{display:grid;gap:8px;margin-top:16px;font-size:.85rem;line-height:1.45}
+.foot__meta a{color:var(--or-clair);text-decoration:none;font-weight:600}
+.foot__meta a:hover{color:var(--or)}
+.foot__support{
+  margin-top:14px;padding:10px 12px 10px 14px;border-radius:10px;
+  background:rgba(201,162,39,.12);color:var(--or-clair);
+  font-size:.8rem;font-weight:600;line-height:1.4;
+  display:flex;align-items:flex-start;gap:10px;
+}
+.foot__support::before{
+  content:"";width:7px;height:7px;border-radius:50%;flex:none;margin-top:6px;
+  background:var(--or);box-shadow:0 0 0 3px rgba(201,162,39,.2);
+}
+.foot__bot{margin-top:48px;padding-top:22px;border-top:1px solid rgba(251,247,240,.12);
+  display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:.78rem}
+.pay{display:flex;gap:8px;align-items:center}
+.pay{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pay span{border:1px solid rgba(251,247,240,.2);border-radius:5px;padding:3px 8px;font-size:.68rem;
+  letter-spacing:.06em;font-weight:600}
+
+.x{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:1.3rem;
+  color:var(--gris);transition:background .2s}
+.x:hover{background:var(--creme-2);color:var(--encre)}
+.qty{display:flex;align-items:center;border:1px solid var(--ligne);border-radius:999px;background:var(--blanc)}
+.qty button{width:30px;height:30px;display:grid;place-items:center;color:var(--gris);font-size:1rem}
+.qty button:hover{color:var(--encre)}
+.qty span{min-width:24px;text-align:center;font-size:.86rem;font-weight:600}
+
+/* ============================ MODALE PRODUIT ============================ */
+.modal{
+  position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:24px;
+  background:rgba(8,34,27,.55);backdrop-filter:blur(3px);
+  opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;
+}
+.modal.on{opacity:1;visibility:visible}
+.modal__c{
+  background:var(--creme);border-radius:var(--r-l);max-width:840px;width:100%;
+  max-height:88vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;
+  transform:translateY(14px) scale(.98);transition:transform .28s cubic-bezier(.34,1.4,.64,1);
+  box-shadow:0 30px 80px rgba(0,0,0,.35);position:relative;
+}
+.modal.on .modal__c{transform:none}
+.modal__img{background:linear-gradient(160deg,#F7F1E6,#EFE6D6);display:grid;place-items:center;padding:44px}
+.modal__img.modal__img--photo{
+  padding:0;place-items:stretch;align-items:stretch;
+  grid-template-columns:78px 1fr;background:#0b0f14;
+}
+.modal__b{padding:38px 34px}
+.modal__b h2{font-size:1.7rem;margin:8px 0 12px}
+.modal__b .price{font-size:1.6rem;display:block;margin:18px 0}
+.modal__x{position:absolute;top:14px;right:14px;background:var(--blanc);box-shadow:var(--ombre)}
+.specs{list-style:none;margin:20px 0 24px;padding:0;display:grid;gap:9px;font-size:.86rem}
+.specs li{display:flex;gap:9px;align-items:flex-start;color:var(--gris)}
+.specs svg{flex:none;color:var(--sapin);margin-top:3px}
+.modal__act{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.modal__act .buy{flex:1;width:100%;min-height:50px;padding:14px 18px;font-size:.98rem}
+.modal__reassure{margin-top:16px;text-align:center}
+.modal__reassure .pay--logos{justify-content:center}
+
+/* ============================ TOAST ============================ */
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,120%);
+  background:var(--sapin);color:var(--creme);padding:14px 22px;border-radius:999px;
+  font-size:.88rem;font-weight:600;z-index:200;box-shadow:var(--ombre-f);
+  display:flex;align-items:center;gap:9px;transition:transform .34s cubic-bezier(.34,1.4,.64,1);
+  pointer-events:none;max-width:min(92vw,420px);text-align:center;
+}
+.toast.on{transform:translate(-50%,0)}
+.toast svg{color:var(--or-clair)}
+
+/* ============================ LIGHTBOX ============================ */
+.lightbox{
+  position:fixed;inset:0;z-index:120;background:rgba(4,12,10,.92);
+  backdrop-filter:blur(8px);display:grid;place-items:center;
+  opacity:0;visibility:hidden;transition:opacity .28s,visibility .28s;
+  padding:72px 72px 88px;
+}
+.lightbox.on{opacity:1;visibility:visible}
+.lightbox__frame{
+  display:grid;place-items:center;max-width:100%;max-height:100%;
+}
+.lightbox__frame img{
+  max-width:min(92vw,1180px);max-height:72vh;width:auto;height:auto;
+  object-fit:contain;border-radius:14px;
+  box-shadow:0 24px 80px rgba(0,0,0,.5);
+  opacity:0;transform:scale(.97);
+  transition:opacity .3s ease,transform .3s ease;
+}
+.lightbox__frame img.is-in{opacity:1;transform:scale(1)}
+.lightbox__x,.lightbox__nav{
+  position:absolute;display:grid;place-items:center;
+  background:rgba(251,247,240,.95);color:var(--nuit);
+  border-radius:50%;z-index:2;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 8px 24px rgba(0,0,0,.28);
+}
+.lightbox__x:hover,.lightbox__nav:hover{background:var(--or-clair)}
+.lightbox__x:hover{transform:scale(1.06)}
+.lightbox__x{
+  top:18px;right:18px;width:48px;height:48px;font-size:1.35rem;font-weight:600;line-height:1;
+}
+.lightbox__nav{
+  top:50%;transform:translateY(-50%);width:54px;height:54px;
+  font-size:2rem;line-height:1;font-weight:500;
+}
+.lightbox__nav--prev{left:18px}
+.lightbox__nav--next{right:18px}
+.lightbox__nav:hover{transform:translateY(-50%) scale(1.06)}
+.lightbox__count{
+  position:absolute;top:26px;left:50%;transform:translateX(-50%);
+  color:var(--creme);font-size:.86rem;letter-spacing:.12em;font-weight:700;
+}
+.lightbox__thumbs{
+  position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+  display:flex;gap:8px;max-width:90vw;overflow-x:auto;padding:4px;
+}
+.lightbox__thumbs button{
+  width:56px;height:56px;padding:0;border-radius:10px;overflow:hidden;flex:none;
+  border:2px solid transparent;opacity:.65;
+  transition:border-color .2s,opacity .2s,transform .2s;
+}
+.lightbox__thumbs button img{width:100%;height:100%;object-fit:cover}
+.lightbox__thumbs button.is-on,.lightbox__thumbs button:hover{
+  border-color:var(--or-clair);opacity:1;transform:translateY(-2px);
+}
+@media (prefers-reduced-motion:reduce){
+  .modal__stage img,.lightbox__frame img,#featHero,#solaireHero,#parachuteHero,#rubanHero,#bougiesHero{transition:none}
+}
+@media (max-width:1000px){
+  .grid,.cats,.trust__in{grid-template-columns:repeat(2,1fr)}
+  .feat{grid-template-columns:1fr;padding:24px;gap:22px}
+  .feat__sticky{position:static}
+  .featured .feat .feat__visual.feat__visual--photo img{max-height:280px}
+  .feat__media{
+    grid-template-columns:1fr;grid-template-areas:"visual" "thumbs";
+  }
+  .feat__media .gallery{
+    flex-direction:row;overflow-x:auto;overflow-y:hidden;max-height:none;
+  }
+  .feat__media .feat__visual.feat__visual--photo{min-height:280px}
+  .featured .feat .feat__media .feat__visual.feat__visual--photo{min-height:0}
+  .feat--solaire .feat__ambiance{grid-template-columns:repeat(3,1fr)}
+  .feat--solaire .feat__visual.feat__visual--photo,
+  .feat--solaire .feat__visual.feat__visual--photo img{min-height:220px}
+  .hero__in{grid-template-columns:1fr;gap:38px;padding:60px 24px 72px}
+  .hero__art{order:-1}
+  .hero__art svg{max-width:280px}
+  .foot{grid-template-columns:1fr 1fr}
+  .nl__in,.modal__c,.contact__in{grid-template-columns:1fr}
+  .modal__img{padding:30px}
+  .modal__img.modal__img--photo{
+    grid-template-columns:1fr;grid-template-rows:auto auto;padding:0;
+  }
+  .modal__stage{grid-column:1;grid-row:1;min-height:220px;border-radius:var(--r-l) var(--r-l) 0 0}
+  .modal__stage img{border-radius:var(--r-l) var(--r-l) 0 0;min-height:220px}
+  .modal__img--photo .gallery{
+    grid-column:1;grid-row:2;flex-direction:row;overflow-x:auto;overflow-y:hidden;
+  }
+  .lightbox{padding:64px 16px 96px}
+  .lightbox__nav--prev{left:8px}
+  .lightbox__nav--next{right:8px}
+  .lightbox__x{top:12px;right:12px}
+  .steps,.avis{grid-template-columns:1fr}
+  nav.main{display:none}
+  nav.main.on{
+    display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;
+    background:var(--creme);border-bottom:1px solid var(--ligne);padding:18px 24px;gap:4px;
+  }
+  nav.main.on a{padding:10px 0;border:0;border-bottom:1px solid var(--ligne)}
+  .burger{display:grid;place-items:center}
+  section{padding:60px 0}
+}
+@media (max-width:560px){
+  .grid,.cats,.trust__in{grid-template-columns:1fr}
+  .card--wide{grid-column:auto}
+  .card--wide .card__img{aspect-ratio:1}
+  .pack{grid-template-columns:1fr}
+  .pack__price{text-align:left}
+  .feat__buybar{flex-direction:column;align-items:stretch}
+  .offers{grid-template-columns:1fr}
+  .logo__txt{font-size:1.1rem}
+  .hdr__in .logo__txt small{display:none}
+  .hdr__order{padding:8px 12px;font-size:.8rem}
+  .foot{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ====================== BANDEAU HAUT ====================== -->
+<div class="topbar">
+  <span data-i18n="topbar"></span>
+</div>
+
+<!-- ====================== ENTÊTE ====================== -->
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a href="#accueil" class="logo">
+      <svg class="logo__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <circle cx="20" cy="20" r="19" fill="#0F3B2E"/>
+        <path d="M20 8l2.6 6.3L29 15l-4.7 4.4L25.5 26 20 22.7 14.5 26l1.2-6.6L11 15l6.4-.7L20 8z" fill="#C9A227"/>
+        <circle cx="20" cy="20" r="19" stroke="#C9A227" stroke-width="1.2" opacity=".5"/>
+      </svg>
+      <span class="logo__txt">NovaMedia Home<small data-i18n="tagline_small"></small></span>
+    </a>
+
+    <nav class="main" id="nav">
+      <a href="#offres-phare" data-order-scroll data-i18n="see_offers"></a>
+      <a href="#offre" data-i18n="nav_offer"></a>
+      <a href="#guirlande" data-i18n="nav_sapin"></a>
+      <a href="#ruban" data-i18n="nav_ruban"></a>
+      <a href="#boutique" data-i18n="nav_shop"></a>
+      <a href="#categories" data-i18n="nav_cats"></a>
+      <a href="#comment" data-i18n="nav_how"></a>
+      <a href="#avis" data-i18n="nav_reviews"></a>
+      <a href="#contact" data-i18n="nav_contact"></a>
+    </nav>
+
+    <div class="hdr__act">
+      <div class="lang" role="group" aria-label="Langue / Language">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a href="#offres-phare" class="btn btn--or hdr__order" id="hdrOrder" data-order-scroll data-i18n="see_offers"></a>
+      <button class="burger" id="burger" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ====================== HÉRO ====================== -->
+<div class="hero" id="accueil">
+  <div class="snow" id="snow" aria-hidden="true"></div>
+  <div class="hero__in">
+    <div>
+      <div class="eyebrow" data-i18n="hero_eyebrow"></div>
+      <h1 data-i18n-html="hero_title"></h1>
+      <p data-i18n="hero_sub"></p>
+      <div class="hero__cta">
+        <a href="#offre" class="btn btn--or" data-i18n="hero_cta1"></a>
+        <a href="#comment" class="btn btn--light" data-i18n="hero_cta2"></a>
+      </div>
+      <div class="hero__pts">
+        <div class="hero__pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="hero_p1"></span></div>
+        <div class="hero__pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="hero_p2"></span></div>
+        <div class="hero__pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="hero_p3"></span></div>
+      </div>
+    </div>
+    <div class="hero__art">
+      <svg viewBox="0 0 300 320" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E3C86B"/><stop offset="1" stop-color="#B8901E"/>
+          </linearGradient>
+          <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#E3C86B" stop-opacity=".55"/>
+            <stop offset="1" stop-color="#E3C86B" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="150" cy="170" r="140" fill="url(#glow)"/>
+        <path d="M150 30l30 62-22-4 34 66-26-5 42 74H72l42-74-26 5 34-66-22 4 30-62z" fill="#1B5B47"/>
+        <path d="M150 30l30 62-22-4 34 66-26-5 42 74h-58V30z" fill="#154A3A"/>
+        <rect x="138" y="223" width="24" height="34" rx="4" fill="#6B4A2A"/>
+        <path d="M150 8l5.6 13.6L170 24l-11 10.2L161.6 49 150 41.6 138.4 49 141 34.2 130 24l14.4-2.4L150 8z" fill="url(#hg)"/>
+        <circle cx="128" cy="120" r="6.5" fill="#C9A227"/>
+        <circle cx="176" cy="150" r="6.5" fill="#9E2B2B"/>
+        <circle cx="120" cy="182" r="6.5" fill="#9E2B2B"/>
+        <circle cx="184" cy="196" r="6.5" fill="#C9A227"/>
+        <circle cx="150" cy="208" r="6.5" fill="#E3C86B"/>
+        <circle cx="106" cy="212" r="5" fill="#C9A227" opacity=".85"/>
+        <ellipse cx="150" cy="262" rx="96" ry="13" fill="#0B2C22" opacity=".55"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== CONFIANCE ====================== -->
+<div class="trust">
+  <div class="wrap trust__in">
+    <div class="trust__i">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      <div><b data-i18n="t1_t"></b><span data-i18n="t1_s"></span></div>
+    </div>
+    <div class="trust__i">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <div><b data-i18n="t2_t"></b><span data-i18n="t2_s"></span></div>
+    </div>
+    <div class="trust__i">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+      <div><b data-i18n="t3_t"></b><span data-i18n="t3_s"></span></div>
+    </div>
+    <div class="trust__i">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div><b data-i18n="t4_t"></b><span data-i18n="t4_s"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== PACK FÉERIE / BOUGIES LED (offre phare) ====================== -->
+<section id="offre" class="featured">
+  <div class="wrap">
+    <article class="feat feat--bougies" id="bougiesFeat"></article>
+  </div>
+</section>
+
+<!-- ====================== GUIRLANDE LED SMART RGB (produit phare) ====================== -->
+<section id="guirlande" class="featured" style="padding-top:8px">
+  <div class="wrap">
+    <article class="feat feat--flagship" id="flagshipFeat"></article>
+  </div>
+</section>
+
+<!-- ====================== PÈRE NOËL PARACHUTISTE ====================== -->
+<section id="parachute" class="featured" style="padding-top:8px">
+  <div class="wrap">
+    <article class="feat feat--parachute" id="parachuteFeat"></article>
+  </div>
+</section>
+
+<!-- ====================== KIT RUBAN LED RVB ====================== -->
+<section id="ruban" class="featured" style="padding-top:8px">
+  <div class="wrap">
+    <article class="feat feat--ruban" id="rubanFeat"></article>
+  </div>
+</section>
+
+<!-- ====================== CATÉGORIES ====================== -->
+<section id="categories">
+  <div class="wrap">
+    <div class="sec__hd sec__hd--c">
+      <div class="eyebrow" data-i18n="cat_eyebrow"></div>
+      <h2 data-i18n="cat_title"></h2>
+      <p class="lead" style="margin:14px auto 0" data-i18n="cat_sub"></p>
+    </div>
+    <div class="cats" id="cats"></div>
+  </div>
+</section>
+
+<!-- ====================== BOUTIQUE ====================== -->
+<section id="boutique" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec__hd">
+      <div class="eyebrow" data-i18n="shop_eyebrow"></div>
+      <h2 data-i18n="shop_title"></h2>
+      <p class="lead" style="margin-top:14px" data-i18n="shop_sub"></p>
+    </div>
+    <div class="filters" id="filters"></div>
+    <article class="feat feat--solaire" id="solaireFeat" hidden></article>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- ====================== COMMENT ÇA MARCHE ====================== -->
+<section class="how" id="comment">
+  <div class="wrap">
+    <div class="sec__hd">
+      <div class="eyebrow" data-i18n="how_eyebrow"></div>
+      <h2 data-i18n="how_title"></h2>
+      <p class="lead" style="margin-top:14px" data-i18n="how_sub"></p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step__n">01</div><h3 data-i18n="s1_t"></h3><p data-i18n="s1_d"></p></div>
+      <div class="step"><div class="step__n">02</div><h3 data-i18n="s2_t"></h3><p data-i18n="s2_d"></p></div>
+      <div class="step"><div class="step__n">03</div><h3 data-i18n="s3_t"></h3><p data-i18n="s3_d"></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== AVIS ====================== -->
+<section id="avis">
+  <div class="wrap">
+    <div class="sec__hd sec__hd--c">
+      <div class="eyebrow" data-i18n="rev_eyebrow"></div>
+      <h2 data-i18n="rev_title"></h2>
+    </div>
+    <div class="avis">
+      <div class="avis__c"><div class="stars">★★★★★</div><p data-i18n="r1_q"></p><div class="avis__w" data-i18n="r1_w"></div></div>
+      <div class="avis__c"><div class="stars">★★★★★</div><p data-i18n="r2_q"></p><div class="avis__w" data-i18n="r2_w"></div></div>
+      <div class="avis__c"><div class="stars">★★★★☆</div><p data-i18n="r3_q"></p><div class="avis__w" data-i18n="r3_w"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== NEWSLETTER ====================== -->
+<section class="nl">
+  <div class="wrap nl__in">
+    <div>
+      <div class="eyebrow" data-i18n="nl_eyebrow"></div>
+      <h2 data-i18n="nl_title"></h2>
+    </div>
+    <div>
+      <form id="nlForm">
+        <input type="email" required data-i18n-ph="nl_ph" aria-label="Email">
+        <button type="submit" class="btn btn--sapin" data-i18n="nl_btn"></button>
+      </form>
+      <small data-i18n="nl_note"></small>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CONTACT ====================== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sec__hd">
+      <div class="eyebrow" data-i18n="contact_eyebrow"></div>
+      <h2 data-i18n="contact_title"></h2>
+      <p class="lead" style="margin-top:14px" data-i18n="contact_lead"></p>
+    </div>
+    <div class="contact__in">
+      <div>
+        <div class="contact__cards">
+          <div class="contact__card">
+            <div class="contact__ic" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg>
+            </div>
+            <div>
+              <h3 data-i18n="contact_email"></h3>
+              <p><a href="mailto:adoarraa@gmail.com">adoarraa@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="contact__card">
+            <div class="contact__ic" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6.3 6.3l1.2-1.2a2 2 0 0 1 2.1-.4c.8.2 1.7.4 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+            </div>
+            <div>
+              <h3 data-i18n="contact_phone"></h3>
+              <p><a href="tel:+41765761672">076 576 16 72</a></p>
+            </div>
+          </div>
+          <div class="contact__card">
+            <div class="contact__ic" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+            </div>
+            <div>
+              <h3 data-i18n="contact_address"></h3>
+              <p>NovaMedia Home — Derra Aboudou<br>Rue de la Golette 15G<br>1217 Meyrin, Genève</p>
+            </div>
+          </div>
+          <div class="contact__card" id="suivi">
+            <div class="contact__ic" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg>
+            </div>
+            <div>
+              <h3 data-i18n="track_title"></h3>
+              <p data-i18n="track_text"></p>
+              <p style="margin-top:6px"><a href="mailto:adoarraa@gmail.com?subject=Suivi%20de%20commande">adoarraa@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="contact__support" data-i18n="contact_support"></div>
+      </div>
+      <form class="contact__form" id="contactForm">
+        <h3 data-i18n="contact_form_title"></h3>
+        <input type="text" name="name" required data-i18n-ph="contact_name" autocomplete="name">
+        <input type="email" name="email" required autocomplete="email" data-i18n-ph="contact_email_ph">
+        <textarea name="message" required data-i18n-ph="contact_msg"></textarea>
+        <button type="submit" class="btn btn--sapin" data-i18n="contact_send"></button>
+        <small data-i18n="contact_form_note"></small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PIED DE PAGE ====================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="foot__logo">
+          <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="19" fill="#123F31"/>
+            <path d="M20 8l2.6 6.3L29 15l-4.7 4.4L25.5 26 20 22.7 14.5 26l1.2-6.6L11 15l6.4-.7L20 8z" fill="#C9A227"/>
+          </svg>
+          <span class="logo__txt">NovaMedia Home<small data-i18n="tagline_small"></small></span>
+        </div>
+        <p style="max-width:38ch;font-size:.85rem" data-i18n="foot_about"></p>
+        <div class="foot__meta">
+          <span>Derra Aboudou · Rue de la Golette 15G<br>1217 Meyrin, Genève</span>
+          <a href="mailto:adoarraa@gmail.com">adoarraa@gmail.com</a>
+          <a href="tel:+41765761672">076 576 16 72</a>
+        </div>
+        <div class="foot__support" data-i18n="contact_support"></div>
+      </div>
+      <div>
+        <h4 data-i18n="foot_shop"></h4>
+        <ul>
+          <li><a href="#boutique" data-i18n="f_c1"></a></li>
+          <li><a href="#ruban" data-i18n="nav_ruban"></a></li>
+          <li><a href="#boutique" data-i18n="f_c2"></a></li>
+          <li><a href="#boutique" data-i18n="f_c3"></a></li>
+          <li><a href="#boutique" data-i18n="f_c4"></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_help"></h4>
+        <ul>
+          <li><a href="#comment" data-i18n="f_h1"></a></li>
+          <li><a href="#comment" data-i18n="f_h2"></a></li>
+          <li><a href="#suivi" data-i18n="f_h3"></a></li>
+          <li><a href="#contact" data-i18n="f_h4"></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_legal"></h4>
+        <ul>
+          <li><a href="#mentions" data-legal="mentions" data-i18n="f_l3"></a></li>
+          <li><a href="#confidentialite" data-legal="privacy" data-i18n="f_l2"></a></li>
+          <li><a href="#cgv" data-legal="cgv" data-i18n="f_l1"></a></li>
+          <li><a href="#suivi" data-i18n="f_h3"></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bot">
+      <span>© 2026 NovaMedia Home · <span data-i18n="foot_rights"></span></span>
+      <div class="pay pay--logos" data-pay-logos></div>
+    </div>
+  </div>
+</footer>
+
+<div class="legal" id="legal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="legal__c">
+    <button type="button" class="x legal__x" id="closeLegal" aria-label="Fermer">&times;</button>
+    <h2 id="legalTitle"></h2>
+    <div id="legalBody"></div>
+  </div>
+</div>
+
+<!-- ====================== MODALE PRODUIT ====================== -->
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal__c">
+    <button class="x modal__x" id="closeModal" aria-label="Fermer">&times;</button>
+    <div class="modal__img" id="mImg"></div>
+    <div class="modal__b">
+      <div class="card__cat" id="mCat"></div>
+      <h2 id="mTitle"></h2>
+      <p class="lead" id="mDesc" style="font-size:.94rem"></p>
+      <span class="price" id="mPrice"></span>
+      <div class="sizes" id="mSizes"></div>
+      <ul class="specs" id="mSpecs"></ul>
+      <div class="modal__act">
+        <a class="buy" id="mBuy" hidden target="_blank" rel="noopener noreferrer"></a>
+      </div>
+      <div class="modal__reassure">
+        <div class="pay pay--logos" data-pay-logos></div>
+        <div class="feat__trust">
+          <span>🚚 <span data-i18n="feat_trust_ship"></span></span>
+          <span data-i18n="t2_t"></span>
+          <span data-i18n="t3_t"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== TOAST ====================== -->
+<div class="toast" id="toast">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toastMsg"></span>
+</div>
+
+<!-- ====================== LIGHTBOX GALERIE ====================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <span class="lightbox__count" id="lbCount"></span>
+  <button type="button" class="lightbox__x" id="lbClose" aria-label="Fermer">✕</button>
+  <button type="button" class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Photo précédente">‹</button>
+  <div class="lightbox__frame">
+    <img id="lbImg" alt="">
+  </div>
+  <button type="button" class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Photo suivante">›</button>
+  <div class="lightbox__thumbs" id="lbThumbs"></div>
+</div>
+
+<script>
+/* =====================================================================
+   NOVAMEDIA HOME — boutique de décorations de Noël
+   Site statique autonome. Achat direct Stripe en 1 clic par variante (Payment Links).
+   ===================================================================== */
+
+/* ------------------------- 1. TRADUCTIONS ------------------------- */
+const I18N = {
+  fr: {
+    topbar:'Livraison suivie offerte · Commandez avant le 15 décembre pour Noël',
+    tagline_small:'Maison de Noël',
+    nav_shop:'Boutique', nav_cats:'Catégories', nav_how:'Comment ça marche', nav_reviews:'Avis',
+    nav_offer:'Pack Féerie', nav_sapin:'Guirlande LED', nav_ruban:'Ruban LED RVB', nav_contact:'Contact',
+    see_offers:'Voir les offres',
+    hero_eyebrow:'Collection Hiver 2026',
+    hero_title:'Que votre maison<br><em>brille</em> cet hiver.',
+    hero_sub:"Illuminations, ornements soufflés à la main et couronnes naturelles, sélectionnés chez nos ateliers partenaires et livrés directement chez vous.",
+    hero_cta1:'Découvrir la collection', hero_cta2:'Comment ça marche',
+    hero_p1:'Livraison rapide avant Noël', hero_p2:'Retours 30 jours', hero_p3:'Paiement sécurisé · TWINT & cartes',
+    t1_t:'Livraison rapide avant Noël', t1_s:'Suivi jusqu\'à votre domicile',
+    t2_t:'Paiement sécurisé', t2_s:'TWINT, Cartes · Stripe',
+    t3_t:'Retours 30 jours', t3_s:'Sans justification',
+    t4_t:'Commande en direct', t4_s:'Sans intermédiaire',
+    badge_best:'Best-Seller', badge_special:'Offre Spéciale Noël',
+    feat_kicker:'Pack Féerie de Noël™',
+    feat_title:'Bougies LED en cire véritable avec télécommande 10 touches',
+    feat_lead:'Flamme oscillante 3D réaliste, véritable cire de paraffine et télécommande multifonction (minuterie 2H/4H/6H/8H, variateur d’intensité et mode scintillement).',
+    feat_bougies_t1:'Livraison suivie avant Noël',
+    feat_bougies_tech:'Caractéristiques techniques',
+    feat_bougies_dim:'Dimensions : 10 cm, 12,5 cm, 15 cm (diamètre 7,5 cm)',
+    feat_bougies_batt:'Alimentation : 2 piles AA par bougie (non incluses)',
+    feat_bougies_gar:'Garantie : 2 ans & Satisfait ou remboursé 30 jours',
+    feat_bougies_opt3:'3 pièces',
+    feat_bougies_opt5:'5 pièces',
+    feat_bougies_optp:'Grand Pack',
+    feat_tech:'Caractéristiques techniques',
+    feat_ship_ch:'🚚 Livraison Suivie Offerte en Suisse',
+    feat_trust_ship:'Livraison suivie',
+    feat_flag_t1:'Contrôle Bluetooth & Télécommande',
+    feat_flag_t2:'Alimentation USB sécurisée 5V',
+    feat_flag_t3:'Garantie 2 ans & Retours 30 jours',
+    feat_ruban_t1:'Télécommande infrarouge 24 touches',
+    feat_ruban_t2:'Alimentation secteur 12V (prise EU)',
+    feat_ruban_t3:'Garantie 2 ans & Retours 30 jours',
+    feat_para_t1:'Télécommande 8 modes + USB',
+    feat_para_t2:'Étanche IP65 — intérieur et extérieur',
+    feat_para_t3:'Garantie 2 ans & Retours 30 jours',
+    feat_solaire_t1:'100 % solaire — allumage automatique',
+    feat_solaire_t2:'Étanche IP65 — jardin, balcon, terrasse',
+    feat_solaire_t3:'Garantie 2 ans & Retours 30 jours',
+    pay_with:'Payer avec',
+    best_offer:'Meilleure Offre',
+    order_now:'Commander maintenant',
+    add_short:'Ajouter',
+    cat_eyebrow:'Parcourir', cat_title:'Quatre univers pour habiller vos fêtes',
+    cat_sub:"Des guirlandes du salon à la table du réveillon — tout ce qu'il faut pour un intérieur de fête, sans courir les magasins.",
+    shop_eyebrow:'Notre sélection', shop_title:'Décorations de Noël',
+    shop_sub:'Une sélection resserrée, testée et renouvelée chaque saison. Prix en francs suisses, TVA incluse.',
+    how_eyebrow:'Transparence & processus', how_title:'De notre catalogue à votre salon',
+    how_sub:"Trois étapes claires, de la commande en direct jusqu’à votre domicile. Pas de stock dormant, pas d'invendus.",
+    s1_t:'Vous commandez en direct et en toute sécurité', s1_d:"Choisissez votre pack ou vos décorations et payez en toute sécurité (TWINT, cartes via Stripe). Vous recevez une confirmation immédiate avec le détail de la commande.",
+    s2_t:'Préparation soignée de votre commande', s2_d:"Chaque commande est préparée avec soin par notre atelier partenaire. Contrôle, emballage et étiquetage sous 24–48 h ouvrées.",
+    s3_t:'Expédition rapide avec suivi jusqu\'à votre domicile', s3_d:"Votre colis part rapidement, avec un numéro de suivi jusqu’à votre domicile en Suisse. Un lien vous est envoyé dès l’expédition.",
+    rev_eyebrow:'Ils ont décoré avec nous', rev_title:'Ce que disent nos clients',
+    r1_q:'"Les boules en verre soufflé sont magnifiques, bien plus belles que sur les photos. Colis arrivé en 6 jours à Lausanne."',
+    r1_w:'Sophie M. · Lausanne',
+    r2_q:'"J\'ai commandé le rideau lumineux pour le balcon. Simple à poser, lumière très chaude. Je recommande."',
+    r2_w:'Marc D. · Genève',
+    r3_q:'"Service client réactif quand j\'ai voulu changer une taille. Délai un peu long mais produit conforme."',
+    r3_w:'Anna R. · Fribourg',
+    nl_eyebrow:'Lettre de Noël', nl_title:'Les nouveautés et les offres, une fois par mois.',
+    nl_ph:'votre@email.ch', nl_btn:"S'inscrire",
+    nl_note:'Un email par mois maximum. Désinscription en un clic.',
+    contact_eyebrow:'Nous écrire', contact_title:'Contact & support',
+    contact_lead:'Une question sur une commande, un produit ou la livraison ? Notre équipe vous répond sous 24 h, 7 jours sur 7.',
+    contact_email:'E-mail', contact_phone:'Téléphone', contact_address:'Adresse',
+    contact_support:'Support client réactif 7j/7 - Réponse sous 24h',
+    contact_form_title:'Envoyer un message',
+    contact_name:'Votre nom', contact_email_ph:'Votre e-mail', contact_msg:'Votre message',
+    contact_send:'Envoyer',
+    contact_form_note:'Le message s’ouvre dans votre application e-mail vers adoarraa@gmail.com.',
+    contact_ok:'Merci. Votre application e-mail va s’ouvrir.',
+    track_title:'Suivi de commande',
+    track_text:'Indiquez votre numéro de commande par e-mail : nous vous renvoyons le suivi sous 24 h.',
+    foot_about:"NovaMedia Home — boutique en ligne de décorations de Noël, basée à Meyrin (Genève).",
+    foot_shop:'Boutique', foot_help:'Aide', foot_legal:'Liens utiles',
+    f_c1:'Illuminations', f_c2:'Ornements', f_c3:'Sapins & Illuminations', f_c4:'Table & ambiance',
+    f_h1:'Livraison & délais', f_h2:'Retours & échanges', f_h3:'Suivi de commande', f_h4:'Nous contacter',
+    f_l1:'Conditions Générales de Vente (CGV)', f_l2:'Politique de Confidentialité', f_l3:'Mentions Légales',
+    legal_mentions_title:'Mentions Légales',
+    legal_privacy_title:'Politique de Confidentialité',
+    legal_cgv_title:'Conditions Générales de Vente',
+    legal_mentions_html:'<p><b>NovaMedia Home</b> — Derra Aboudou<br>Rue de la Golette 15G<br>1217 Meyrin, Genève, Suisse</p><p>E-mail : <a href="mailto:adoarraa@gmail.com">adoarraa@gmail.com</a><br>Téléphone : <a href="tel:+41765761672">076 576 16 72</a></p><h3>Activité</h3><p>Vente en ligne de décorations et illuminations. Les prix sont indiqués en francs suisses (CHF), TVA comprise le cas échéant.</p><h3>Hébergement</h3><p>Site statique opéré par NovaMedia Home. Pour toute question : adoarraa@gmail.com.</p><h3>Propriété intellectuelle</h3><p>Textes, visuels et marques présentés sur ce site sont protégés. Toute reproduction non autorisée est interdite.</p>',
+    legal_privacy_html:'<p>NovaMedia Home (Derra Aboudou, Rue de la Golette 15G, 1217 Meyrin, Genève) traite vos données pour traiter les commandes, le support client et, si vous y consentez, l’envoi d’informations commerciales.</p><h3>Données collectées</h3><ul><li>Identité et coordonnées (nom, e-mail, adresse de livraison, téléphone)</li><li>Données de commande et de paiement (via Stripe / TWINT / PayPal — nous ne stockons pas vos numéros de carte)</li><li>Échanges avec le support</li></ul><h3>Finalités</h3><p>Exécution du contrat de vente, suivi de livraison, service client, obligations légales comptables.</p><h3>Durée et droits</h3><p>Les données sont conservées le temps nécessaire aux commandes et aux obligations légales. Vous pouvez demander l’accès, la rectification ou la suppression : <a href="mailto:adoarraa@gmail.com">adoarraa@gmail.com</a>.</p><h3>Partage</h3><p>Prestataires de paiement (Stripe, PayPal, TWINT) et transporteurs, uniquement pour exécuter votre commande.</p>',
+    legal_cgv_html:'<p>Les présentes CGV régissent les ventes conclues sur le site NovaMedia Home. En passant commande, vous les acceptez.</p><h3>Prix et paiement</h3><p>Prix en CHF. Paiement sécurisé par TWINT, cartes (Visa, Mastercard via Stripe) ou PayPal. La commande est confirmée après paiement.</p><h3>Livraison</h3><p>Livraison suivie DDP offerte à domicile (délai indicatif 8 à 15 jours). Un numéro de suivi est envoyé dès l’expédition.</p><h3>Droit de rétractation / retours</h3><p>Retour sous 30 jours, produit non utilisé et dans son emballage d’origine. Contactez <a href="mailto:adoarraa@gmail.com">adoarraa@gmail.com</a> pour obtenir la procédure.</p><h3>Garanties</h3><p>Produits conformes à la description. En cas de défaut, contactez le support sous 24 h ouvrées de réception.</p><h3>Droit applicable</h3><p>Droit suisse. For juridique : Genève, sous réserve des dispositions impératives de protection des consommateurs.</p><p>NovaMedia Home — Derra Aboudou, Rue de la Golette 15G, 1217 Meyrin, Genève · 076 576 16 72 · adoarraa@gmail.com</p>',
+    foot_rights:'Tous droits réservés.',
+    cart_title:'Votre panier',
+    free_ship_left:'Plus que <b>CHF {x}</b> pour la livraison offerte',
+    free_ship_ok:'🚚 Livraison suivie offerte sur toutes les commandes',
+    empty_cart:'Votre panier est vide', empty_cta:'Voir la collection',
+    subtotal:'Sous-total', shipping:'Livraison', total:'Total', free:'GRATUITE',
+    checkout:'Passer la commande',
+    checkout_multi:'Panier mixte : paiement de l’offre principale « {name} ». Redirection…',
+    checkout_missing:'Lien de paiement indisponible pour cet article. Utilisez Commander sur la fiche, ou contactez-nous.',
+    checkout_redirect:'Ouverture du paiement sécurisé Stripe…',
+    cart_note:'Paiement sécurisé (TWINT, cartes) · Retours 30 jours · Livraison rapide avant Noël',
+    add_to_cart:'Ajouter au panier', add_short:'Ajouter',
+    order_now:'Commander maintenant',
+    added:'Ajouté au panier',
+    remove:'Retirer',
+    all:'Tout',
+    demo:'Collez vos Payment Links Stripe dans STRIPE_LINKS pour activer le paiement réel.',
+    nl_ok:'Merci ! Vous êtes inscrit·e à la lettre de Noël.',
+    spec_ship:'Expédié sous 24–48 h · livraison 5–9 jours',
+    spec_ret:'Retour gratuit sous 30 jours',
+    spec_stock:'En stock chez notre atelier partenaire',
+    oos_badge:'Épuisé',
+    oos_temp:'Rupture temporaire',
+    oos_btn:'Victime de son succès — Épuisé',
+    choose_size:'Choisir la taille',
+    choose_pack:'Choisir le lot',
+    choose_color:'Choisir la couleur',
+    ddp_badge:'Livraison Suivie Offerte (DDP)',
+    pay_secure_short:'Paiements sécurisés TWINT / Stripe / PayPal',
+    feat_flagship_kicker:'Nouveau produit phare',
+    feat_solaire_kicker:'Éclairage solaire extérieur',
+    feat_para_kicker:'Décoration de Noël',
+    feat_para_edition:'Édition Noël 2026',
+    feat_para_usb:'USB + Télécommande',
+    feat_para_ship:'🚚 Livraison Suivie Offerte en Suisse (DDP)',
+    feat_para_c1:'IP65 Étanche',
+    feat_para_c2:'8 Modes d’éclairage',
+    feat_para_c3:'Télécommande incluse',
+    feat_para_c4:'Alimentation USB',
+    feat_flagship_ship:'🚚 Livraison Suivie DDP Offerte à Domicile (8 à 15 jours)',
+    feat_ruban_kicker:'Éclairage & Décoration d’ambiance',
+    feat_ruban_ship:'🚚 Livraison offerte',
+    feat_ruban_save:'Économisez 10 CHF — Livraison offerte',
+    feat_ruban_c1:'12V Secteur EU',
+    feat_ruban_c2:'Télécommande 24 touches',
+    feat_ruban_c3:'16 couleurs + modes',
+    feat_ruban_c4:'Flexible & sécable',
+    lb_close:'Fermer',
+    lb_prev:'Photo précédente',
+    lb_next:'Photo suivante',
+    lb_zoom:'Agrandir la photo',
+    lb_gallery:'Galerie photos'
+  },
+  en: {
+    topbar:'Free tracked shipping · Order before December 15 for Christmas',
+    tagline_small:'Christmas House',
+    nav_shop:'Shop', nav_cats:'Categories', nav_how:'How it works', nav_reviews:'Reviews',
+    nav_offer:'Féerie Pack', nav_sapin:'Smart LED Garland', nav_ruban:'RGB LED Strip', nav_contact:'Contact',
+    see_offers:'See the offers',
+    hero_eyebrow:'Winter Collection 2026',
+    hero_title:'Let your home<br><em>glow</em> this winter.',
+    hero_sub:'Lights, hand-blown ornaments and natural wreaths, curated from our partner workshops and delivered straight to your door.',
+    hero_cta1:'Shop the collection', hero_cta2:'How it works',
+    hero_p1:'Fast delivery before Christmas', hero_p2:'30-day returns', hero_p3:'Secure payment · TWINT & cards',
+    t1_t:'Fast delivery before Christmas', t1_s:'Tracked to your door',
+    t2_t:'Secure payment', t2_s:'TWINT, Cards · Stripe',
+    t3_t:'30-day returns', t3_s:'No questions asked',
+    t4_t:'Direct checkout', t4_s:'No middleman',
+    badge_best:'Best-Seller', badge_special:'Christmas Special Offer',
+    feat_kicker:'Pack Féerie de Noël™',
+    feat_title:'Real-wax LED candles with 10-key remote',
+    feat_lead:'Realistic oscillating 3D flame, genuine paraffin wax and a multifunction remote (2H/4H/6H/8H timer, dimmer and flicker mode).',
+    feat_bougies_t1:'Tracked delivery before Christmas',
+    feat_bougies_tech:'Technical details',
+    feat_bougies_dim:'Sizes: 10 cm, 12.5 cm, 15 cm (diameter 7.5 cm)',
+    feat_bougies_batt:'Power: 2 AA batteries per candle (not included)',
+    feat_bougies_gar:'Warranty: 2 years & 30-day money-back',
+    feat_bougies_opt3:'3 pieces',
+    feat_bougies_opt5:'5 pieces',
+    feat_bougies_optp:'Grand Pack',
+    feat_tech:'Technical details',
+    feat_ship_ch:'🚚 Tracked delivery included in Switzerland',
+    feat_trust_ship:'Tracked delivery',
+    feat_flag_t1:'Bluetooth control & remote',
+    feat_flag_t2:'Safe USB 5V power',
+    feat_flag_t3:'2-year warranty & 30-day returns',
+    feat_ruban_t1:'24-key infrared remote',
+    feat_ruban_t2:'12V mains power (EU plug)',
+    feat_ruban_t3:'2-year warranty & 30-day returns',
+    feat_para_t1:'8 lighting modes + USB remote',
+    feat_para_t2:'IP65 waterproof — indoor and outdoor',
+    feat_para_t3:'2-year warranty & 30-day returns',
+    feat_solaire_t1:'100% solar — automatic dusk-to-dawn',
+    feat_solaire_t2:'IP65 waterproof — garden, balcony, terrace',
+    feat_solaire_t3:'2-year warranty & 30-day returns',
+    pay_with:'Pay with',
+    best_offer:'Best offer',
+    order_now:'Order now',
+    add_short:'Add',
+    cat_eyebrow:'Browse', cat_title:'Four worlds to dress up your holidays',
+    cat_sub:'From the garlands in your living room to the Christmas Eve table — everything you need, without queueing in stores.',
+    shop_eyebrow:'Our selection', shop_title:'Christmas decorations',
+    shop_sub:'A tight, tested selection, renewed every season. Prices in Swiss francs, VAT included.',
+    how_eyebrow:'Transparency & process', how_title:'From our catalogue to your living room',
+    how_sub:'Three clear steps, from direct checkout to your door. No dead stock, no leftovers.',
+    s1_t:'You order direct and securely', s1_d:'Choose your pack or decorations and pay securely (TWINT, cards via Stripe). You get an instant confirmation with the full order details.',
+    s2_t:'Careful preparation of your order', s2_d:'Every order is carefully prepared by our partner workshop. Check, packing and labelling within 24–48 working hours.',
+    s3_t:'Fast shipping with tracking to your door', s3_d:'Your parcel leaves promptly, with tracking all the way to your home in Switzerland. A link is sent as soon as it ships.',
+    rev_eyebrow:'They decorated with us', rev_title:'What our customers say',
+    r1_q:'"The blown-glass baubles are gorgeous, far nicer than in the photos. Parcel arrived in 6 days in Lausanne."',
+    r1_w:'Sophie M. · Lausanne',
+    r2_q:'"I ordered the light curtain for the balcony. Easy to hang, very warm light. Recommended."',
+    r2_w:'Marc D. · Geneva',
+    r3_q:'"Responsive support when I wanted to change a size. Delivery a bit slow but the product matched."',
+    r3_w:'Anna R. · Fribourg',
+    nl_eyebrow:'Christmas letter', nl_title:'New arrivals and offers, once a month.',
+    nl_ph:'your@email.com', nl_btn:'Subscribe',
+    nl_note:'One email a month at most. Unsubscribe in one click.',
+    contact_eyebrow:'Get in touch', contact_title:'Contact & support',
+    contact_lead:'A question about an order, a product or delivery? Our team replies within 24 hours, 7 days a week.',
+    contact_email:'Email', contact_phone:'Phone', contact_address:'Address',
+    contact_support:'Responsive customer support 7 days a week — reply within 24 hours',
+    contact_form_title:'Send a message',
+    contact_name:'Your name', contact_email_ph:'Your email', contact_msg:'Your message',
+    contact_send:'Send',
+    contact_form_note:'This opens your email app to adoarraa@gmail.com.',
+    contact_ok:'Thank you. Your email app will open.',
+    track_title:'Order tracking',
+    track_text:'Email us your order number and we will send the tracking link within 24 hours.',
+    foot_about:'NovaMedia Home — online Christmas decorations shop, based in Meyrin (Geneva).',
+    foot_shop:'Shop', foot_help:'Help', foot_legal:'Useful links',
+    f_c1:'Lights', f_c2:'Ornaments', f_c3:'Trees & Lights', f_c4:'Table & mood',
+    f_h1:'Shipping & delays', f_h2:'Returns & exchanges', f_h3:'Order tracking', f_h4:'Contact us',
+    f_l1:'Terms & Conditions (T&Cs)', f_l2:'Privacy Policy', f_l3:'Legal notice',
+    legal_mentions_title:'Legal notice',
+    legal_privacy_title:'Privacy Policy',
+    legal_cgv_title:'Terms & Conditions of Sale',
+    legal_mentions_html:'<p><b>NovaMedia Home</b> — Derra Aboudou<br>Rue de la Golette 15G<br>1217 Meyrin, Geneva, Switzerland</p><p>Email: <a href="mailto:adoarraa@gmail.com">adoarraa@gmail.com</a><br>Phone: <a href="tel:+41765761672">076 576 16 72</a></p><h3>Activity</h3><p>Online sale of decorations and lighting. Prices are shown in Swiss francs (CHF), VAT included where applicable.</p><h3>Hosting</h3><p>Static site operated by NovaMedia Home. For any query: adoarraa@gmail.com.</p><h3>Intellectual property</h3><p>Texts, visuals and brands on this site are protected. Unauthorised reproduction is prohibited.</p>',
+    legal_privacy_html:'<p>NovaMedia Home (Derra Aboudou, Rue de la Golette 15G, 1217 Meyrin, Geneva) processes your data to fulfil orders, provide support and, if you opt in, send commercial information.</p><h3>Data collected</h3><ul><li>Identity and contact details (name, email, delivery address, phone)</li><li>Order and payment data (via Stripe / TWINT / PayPal — we do not store card numbers)</li><li>Support correspondence</li></ul><h3>Purposes</h3><p>Performance of the sales contract, delivery tracking, customer service, legal accounting duties.</p><h3>Retention and rights</h3><p>Data is kept as long as needed for orders and legal obligations. You may request access, correction or deletion: <a href="mailto:adoarraa@gmail.com">adoarraa@gmail.com</a>.</p><h3>Sharing</h3><p>Payment providers (Stripe, PayPal, TWINT) and carriers, solely to fulfil your order.</p>',
+    legal_cgv_html:'<p>These terms govern sales on the NovaMedia Home website. By ordering, you accept them.</p><h3>Prices and payment</h3><p>Prices in CHF. Secure payment by TWINT, cards (Visa, Mastercard via Stripe) or PayPal. The order is confirmed after payment.</p><h3>Delivery</h3><p>Tracked DDP home delivery included (indicative delay 8 to 15 days). A tracking number is sent when the parcel ships.</p><h3>Returns</h3><p>Return within 30 days, unused and in original packaging. Email <a href="mailto:adoarraa@gmail.com">adoarraa@gmail.com</a> for the procedure.</p><h3>Warranties</h3><p>Products match their description. In case of defect, contact support within 24 working hours of receipt.</p><h3>Governing law</h3><p>Swiss law. Jurisdiction: Geneva, without prejudice to mandatory consumer-protection rules.</p><p>NovaMedia Home — Derra Aboudou, Rue de la Golette 15G, 1217 Meyrin, Geneva · 076 576 16 72 · adoarraa@gmail.com</p>',
+    foot_rights:'All rights reserved.',
+    cart_title:'Your cart',
+    free_ship_left:'Only <b>CHF {x}</b> away from free shipping',
+    free_ship_ok:'🚚 Tracked shipping included on all orders',
+    empty_cart:'Your cart is empty', empty_cta:'Browse the collection',
+    subtotal:'Subtotal', shipping:'Shipping', total:'Total', free:'FREE',
+    checkout:'Checkout',
+    checkout_multi:'Mixed cart: paying for the main offer “{name}”. Redirecting…',
+    checkout_missing:'No payment link for this item. Use Order on the product page, or contact us.',
+    checkout_redirect:'Opening secure Stripe checkout…',
+    cart_note:'Secure payment (TWINT, cards) · 30-day returns · Fast delivery before Christmas',
+    add_to_cart:'Add to cart', add_short:'Add',
+    order_now:'Order now',
+    added:'Added to cart',
+    remove:'Remove',
+    all:'All',
+    demo:'Paste your Stripe Payment Links into STRIPE_LINKS to enable real checkout.',
+    nl_ok:'Thank you! You are subscribed to the Christmas letter.',
+    spec_ship:'Ships in 24–48 h · delivery 5–9 days',
+    spec_ret:'Free return within 30 days',
+    spec_stock:'In stock at our partner workshop',
+    oos_badge:'Sold out',
+    oos_temp:'Temporarily out of stock',
+    oos_btn:'Victim of its success — Sold out',
+    choose_size:'Choose size',
+    choose_pack:'Choose the set',
+    choose_color:'Choose colour',
+    ddp_badge:'Tracked delivery included (DDP)',
+    pay_secure_short:'Secure payments TWINT / Stripe / PayPal',
+    feat_flagship_kicker:'New flagship product',
+    feat_solaire_kicker:'Outdoor solar lighting',
+    feat_para_kicker:'Christmas decoration',
+    feat_para_edition:'Christmas Edition 2026',
+    feat_para_usb:'USB + Remote',
+    feat_para_ship:'🚚 Tracked delivery included in Switzerland (DDP)',
+    feat_para_c1:'IP65 Waterproof',
+    feat_para_c2:'8 lighting modes',
+    feat_para_c3:'Remote included',
+    feat_para_c4:'USB powered',
+    feat_flagship_ship:'🚚 Tracked DDP home delivery included (8 to 15 days)',
+    feat_ruban_kicker:'Lighting & mood décor',
+    feat_ruban_ship:'🚚 Free delivery',
+    feat_ruban_save:'Save CHF 10 — Free delivery',
+    feat_ruban_c1:'12V EU mains',
+    feat_ruban_c2:'24-key remote',
+    feat_ruban_c3:'16 colours + modes',
+    feat_ruban_c4:'Flexible & cuttable',
+    lb_close:'Close',
+    lb_prev:'Previous photo',
+    lb_next:'Next photo',
+    lb_zoom:'Enlarge photo',
+    lb_gallery:'Photo gallery'
+  }
+};
+
+/* ------------------------- 2. VISUELS PRODUITS ------------------------- */
+/* Illustrations SVG générées — aucun fichier image externe requis. */
+const ART = {
+  bauble:`<svg viewBox="0 0 200 200"><defs><linearGradient id="b1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C43C3C"/><stop offset="1" stop-color="#7E1E1E"/></linearGradient></defs><rect x="92" y="34" width="16" height="16" rx="3" fill="#C9A227"/><path d="M94 36a10 10 0 0 1 12 0" stroke="#C9A227" stroke-width="3" fill="none"/><circle cx="100" cy="118" r="62" fill="url(#b1)"/><ellipse cx="78" cy="96" rx="17" ry="24" fill="#fff" opacity=".2" transform="rotate(-25 78 96)"/><path d="M38 118h124" stroke="#C9A227" stroke-width="4" opacity=".8"/><circle cx="100" cy="118" r="20" fill="none" stroke="#E3C86B" stroke-width="3" opacity=".85"/></svg>`,
+  lights:`<svg viewBox="0 0 200 200"><path d="M12 62q44 42 88 0t88 0" stroke="#1B5B47" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M12 132q44 42 88 0t88 0" stroke="#1B5B47" stroke-width="5" fill="none" stroke-linecap="round"/><g><circle cx="45" cy="84" r="11" fill="#E3C86B"/><circle cx="100" cy="94" r="11" fill="#C43C3C"/><circle cx="155" cy="84" r="11" fill="#E3C86B"/><circle cx="45" cy="154" r="11" fill="#C43C3C"/><circle cx="100" cy="164" r="11" fill="#E3C86B"/><circle cx="155" cy="154" r="11" fill="#C43C3C"/></g><g opacity=".35"><circle cx="45" cy="84" r="20" fill="#E3C86B"/><circle cx="100" cy="164" r="20" fill="#E3C86B"/><circle cx="155" cy="84" r="20" fill="#E3C86B"/></g></svg>`,
+  wreath:`<svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="62" fill="none" stroke="#1B5B47" stroke-width="30"/><circle cx="100" cy="100" r="62" fill="none" stroke="#154A3A" stroke-width="30" stroke-dasharray="14 22"/><circle cx="100" cy="38" r="7" fill="#C43C3C"/><circle cx="152" cy="126" r="7" fill="#C43C3C"/><circle cx="52" cy="130" r="7" fill="#C43C3C"/><circle cx="140" cy="58" r="6" fill="#E3C86B"/><circle cx="60" cy="62" r="6" fill="#E3C86B"/><path d="M100 160c-14 0-24 10-24 18 0 6 6 8 12 4l12-10 12 10c6 4 12 2 12-4 0-8-10-18-24-18z" fill="#C43C3C"/></svg>`,
+  star:`<svg viewBox="0 0 200 200"><defs><linearGradient id="s1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3C86B"/><stop offset="1" stop-color="#B8901E"/></linearGradient><radialGradient id="s2" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#E3C86B" stop-opacity=".5"/><stop offset="1" stop-color="#E3C86B" stop-opacity="0"/></radialGradient></defs><circle cx="100" cy="100" r="86" fill="url(#s2)"/><path d="M100 20l19 52 55 3-43 35 15 53-46-31-46 31 15-53-43-35 55-3 19-52z" fill="url(#s1)"/><path d="M100 44l13 36 38 2-30 24 11 37-32-22V44z" fill="#fff" opacity=".18"/></svg>`,
+  tree:`<svg viewBox="0 0 200 200"><path d="M100 18l24 46-18-3 28 50-22-4 34 58H54l34-58-22 4 28-50-18 3 24-46z" fill="#1B5B47"/><path d="M100 18l24 46-18-3 28 50-22-4 34 58h-46V18z" fill="#154A3A"/><rect x="90" y="165" width="20" height="20" rx="3" fill="#6B4A2A"/><circle cx="84" cy="96" r="5" fill="#C9A227"/><circle cx="116" cy="126" r="5" fill="#C43C3C"/><circle cx="80" cy="146" r="5" fill="#C43C3C"/><circle cx="122" cy="156" r="5" fill="#C9A227"/></svg>`,
+  candles:`<svg viewBox="0 0 200 200"><ellipse cx="100" cy="172" rx="66" ry="10" fill="#E2D9CA"/><g fill="#C9A227"><rect x="46" y="112" width="26" height="56" rx="3"/><rect x="86" y="92" width="26" height="76" rx="3"/><rect x="128" y="122" width="26" height="46" rx="3"/></g><g fill="#B8901E"><rect x="42" y="106" width="34" height="10" rx="4"/><rect x="82" y="86" width="34" height="10" rx="4"/><rect x="124" y="116" width="34" height="10" rx="4"/></g><g fill="#E3C86B"><ellipse cx="59" cy="88" rx="8" ry="16"/><ellipse cx="99" cy="68" rx="8" ry="16"/><ellipse cx="141" cy="98" rx="8" ry="16"/></g><g fill="#fff" opacity=".55"><ellipse cx="59" cy="92" rx="3.5" ry="7"/><ellipse cx="99" cy="72" rx="3.5" ry="7"/><ellipse cx="141" cy="102" rx="3.5" ry="7"/></g></svg>`,
+  calendar:`<svg viewBox="0 0 200 200"><rect x="24" y="34" width="152" height="132" rx="10" fill="#B8862F"/><rect x="32" y="42" width="136" height="116" rx="7" fill="#D9A85A"/><g fill="#0F3B2E" opacity=".82">${(()=>{let o='';for(let r=0;r<4;r++)for(let c=0;c<6;c++)o+=`<rect x="${40+c*21}" y="${50+r*28}" width="16" height="22" rx="3"/>`;return o;})()}</g><path d="M100 34V16" stroke="#9E2B2B" stroke-width="6" stroke-linecap="round"/><circle cx="100" cy="14" r="8" fill="#9E2B2B"/></svg>`,
+  snowflake:`<svg viewBox="0 0 200 200"><defs><linearGradient id="f1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF4FF"/><stop offset="1" stop-color="#9BC4E8"/></linearGradient></defs><g stroke="url(#f1)" stroke-width="7" stroke-linecap="round" fill="none"><path d="M100 24v152M35 62l130 76M165 62L35 138"/><path d="M100 52l-16-16M100 52l16-16M100 148l-16 16M100 148l16 16"/><path d="M62 76l-22-2M62 76l-4-22M138 124l22 2M138 124l4 22"/><path d="M138 76l22-2M138 76l4-22M62 124l-22 2M62 124l-4 22"/></g><circle cx="100" cy="100" r="12" fill="#EAF4FF"/></svg>`,
+  runner:`<svg viewBox="0 0 200 200"><rect x="16" y="62" width="168" height="76" rx="6" fill="#0F3B2E"/><rect x="16" y="74" width="168" height="4" fill="#C9A227" opacity=".85"/><rect x="16" y="122" width="168" height="4" fill="#C9A227" opacity=".85"/><g fill="#E3C86B">${(()=>{let o='';for(let i=0;i<6;i++){const x=32+i*26;o+=`<path d="M${x} 88l4 9 10 1-7 7 2 10-9-5-9 5 2-10-7-7 10-1 4-9z"/>`;}return o;})()}</g><path d="M16 138h168v8a6 6 0 0 1-6 6H22a6 6 0 0 1-6-6v-8z" fill="#0B2C22"/></svg>`,
+  village:`<svg viewBox="0 0 200 200"><ellipse cx="100" cy="168" rx="80" ry="14" fill="#EAF4FF"/><g><path d="M30 168V116l26-20 26 20v52z" fill="#9E2B2B"/><path d="M52 96l-26 22h52z" fill="#F4F7FA"/><rect x="44" y="132" width="14" height="16" fill="#E3C86B"/></g><g><path d="M84 168V100l30-24 30 24v68z" fill="#154A3A"/><path d="M114 74l-34 28h68z" fill="#F4F7FA"/><rect x="98" y="120" width="16" height="18" fill="#E3C86B"/><rect x="122" y="120" width="16" height="18" fill="#E3C86B"/><rect x="106" y="146" width="18" height="22" fill="#6B4A2A"/></g><g><path d="M148 168v-40l20-16 20 16v40z" fill="#B8862F"/><path d="M168 110l-22 18h44z" fill="#F4F7FA"/><rect x="160" y="140" width="14" height="14" fill="#E3C86B"/></g></svg>`,
+  curtain:`<svg viewBox="0 0 200 200"><path d="M14 34h172" stroke="#1B5B47" stroke-width="6" stroke-linecap="round"/><g stroke="#C9DCE8" stroke-width="2" opacity=".7" fill="none">${(()=>{let o='';for(let i=0;i<7;i++){const x=26+i*25;o+=`<path d="M${x} 34v140"/>`;}return o;})()}</g><g fill="#E3C86B">${(()=>{let o='';for(let i=0;i<7;i++){const x=26+i*25;for(let j=0;j<5;j++){const y=58+j*28+(i%2?9:0);if(y<174)o+=`<circle cx="${x}" cy="${y}" r="5.5"/>`;}}return o;})()}</g><g fill="#E3C86B" opacity=".28">${(()=>{let o='';for(let i=0;i<7;i++){const x=26+i*25;for(let j=0;j<5;j++){const y=58+j*28+(i%2?9:0);if(y<174)o+=`<circle cx="${x}" cy="${y}" r="12"/>`;}}return o;})()}</g></svg>`,
+  baubleset:`<svg viewBox="0 0 200 200"><g><circle cx="62" cy="72" r="34" fill="#9E2B2B"/><ellipse cx="50" cy="58" rx="9" ry="13" fill="#fff" opacity=".22" transform="rotate(-25 50 58)"/><rect x="56" y="32" width="12" height="10" rx="2" fill="#C9A227"/></g><g><circle cx="136" cy="90" r="30" fill="#C9A227"/><ellipse cx="126" cy="78" rx="8" ry="11" fill="#fff" opacity=".28" transform="rotate(-25 126 78)"/><rect x="130" y="54" width="12" height="10" rx="2" fill="#B8901E"/></g><g><circle cx="88" cy="146" r="32" fill="#1B5B47"/><ellipse cx="77" cy="133" rx="8" ry="12" fill="#fff" opacity=".2" transform="rotate(-25 77 133)"/><rect x="82" y="108" width="12" height="10" rx="2" fill="#C9A227"/></g><g><circle cx="152" cy="152" r="22" fill="#EAF4FF"/><rect x="147" y="126" width="10" height="8" rx="2" fill="#C9A227"/></g></svg>`,
+  pack:`<svg viewBox="0 0 200 200"><path d="M10 48q40 36 80 0t80 0" stroke="#E3C86B" stroke-width="4" fill="none" stroke-linecap="round"/><g><circle cx="40" cy="66" r="8" fill="#E3C86B"/><circle cx="90" cy="76" r="8" fill="#C43C3C"/><circle cx="140" cy="66" r="8" fill="#E3C86B"/><circle cx="70" cy="54" r="7" fill="#C43C3C"/></g><g opacity=".35"><circle cx="40" cy="66" r="16" fill="#E3C86B"/><circle cx="140" cy="66" r="16" fill="#E3C86B"/></g><ellipse cx="100" cy="178" rx="70" ry="10" fill="#0B2C22" opacity=".35"/><g fill="#F4E7C3"><rect x="48" y="118" width="22" height="52" rx="4"/><rect x="88" y="98" width="24" height="72" rx="4"/><rect x="130" y="128" width="22" height="42" rx="4"/></g><g fill="#E3C86B"><ellipse cx="59" cy="98" rx="7" ry="14"/><ellipse cx="100" cy="78" rx="8" ry="16"/><ellipse cx="141" cy="110" rx="7" ry="13"/></g><g fill="#fff" opacity=".5"><ellipse cx="59" cy="102" rx="3" ry="6"/><ellipse cx="100" cy="82" rx="3.5" ry="7"/><ellipse cx="141" cy="114" rx="3" ry="6"/></g></svg>`,
+  packFamille:`<svg viewBox="0 0 200 200"><path d="M8 40q36 30 72 0t72 0" stroke="#E3C86B" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M20 62q36 28 72 0t72 0" stroke="#C9A227" stroke-width="3.5" fill="none" stroke-linecap="round"/><g fill="#E3C86B"><circle cx="36" cy="54" r="6"/><circle cx="80" cy="64" r="6"/><circle cx="124" cy="54" r="6"/><circle cx="48" cy="76" r="6"/><circle cx="92" cy="86" r="6"/><circle cx="148" cy="76" r="6"/></g><g fill="#C43C3C"><circle cx="58" cy="48" r="5"/><circle cx="110" cy="70" r="5"/></g><g fill="#F4E7C3"><rect x="38" y="124" width="18" height="42" rx="3"/><rect x="70" y="108" width="20" height="58" rx="3"/><rect x="104" y="118" width="18" height="48" rx="3"/><rect x="136" y="130" width="18" height="36" rx="3"/></g><g fill="#E3C86B"><ellipse cx="47" cy="108" rx="6" ry="12"/><ellipse cx="80" cy="90" rx="7" ry="14"/><ellipse cx="113" cy="102" rx="6" ry="12"/><ellipse cx="145" cy="116" rx="5.5" ry="11"/></g></svg>`,
+  featPack:`<svg viewBox="0 0 360 300" fill="none"><defs><radialGradient id="pg" cx=".5" cy=".45" r=".55"><stop offset="0" stop-color="#E3C86B" stop-opacity=".35"/><stop offset="1" stop-color="#E3C86B" stop-opacity="0"/></radialGradient></defs><circle cx="180" cy="150" r="140" fill="url(#pg)"/><path d="M20 70q70 58 140 0t140 0" stroke="#E3C86B" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M40 110q60 48 120 0t120 0" stroke="#C9A227" stroke-width="4" fill="none" stroke-linecap="round" opacity=".85"/><g><circle cx="70" cy="92" r="10" fill="#E3C86B"/><circle cx="150" cy="108" r="10" fill="#C43C3C"/><circle cx="230" cy="92" r="10" fill="#E3C86B"/><circle cx="110" cy="128" r="9" fill="#C43C3C"/><circle cx="190" cy="128" r="9" fill="#E3C86B"/><circle cx="270" cy="118" r="9" fill="#C43C3C"/></g><g opacity=".3"><circle cx="70" cy="92" r="20" fill="#E3C86B"/><circle cx="230" cy="92" r="20" fill="#E3C86B"/><circle cx="190" cy="128" r="18" fill="#E3C86B"/></g><ellipse cx="180" cy="268" rx="120" ry="14" fill="#08221B" opacity=".45"/><g fill="#F4E7C3"><rect x="88" y="168" width="32" height="86" rx="6"/><rect x="164" y="142" width="36" height="112" rx="6"/><rect x="244" y="182" width="32" height="72" rx="6"/></g><g fill="#C9A227"><rect x="82" y="160" width="44" height="12" rx="5"/><rect x="158" y="134" width="48" height="12" rx="5"/><rect x="238" y="174" width="44" height="12" rx="5"/></g><g fill="#E3C86B"><ellipse cx="104" cy="138" rx="11" ry="22"/><ellipse cx="182" cy="110" rx="12" ry="24"/><ellipse cx="260" cy="152" rx="10" ry="20"/></g><g fill="#fff" opacity=".5"><ellipse cx="104" cy="144" rx="4.5" ry="10"/><ellipse cx="182" cy="116" rx="5" ry="11"/><ellipse cx="260" cy="157" rx="4" ry="9"/></g></svg>`
+};
+
+/* ------------------------- 3. CATÉGORIES ------------------------- */
+const CATS = [
+   {id:'lumieres', fr:'Illuminations', en:'Lights',
+   dfr:'Guirlandes, rubans LED RVB, rideaux et projecteurs pour intérieur et balcon.',
+   den:'Garlands, RGB LED strips, curtains and projectors for indoors and balconies.',
+   ic:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 14q10 10 20 0t20 0"/><circle cx="14" cy="21" r="4" fill="currentColor" stroke="none"/><circle cx="24" cy="24" r="4" fill="currentColor" stroke="none"/><circle cx="34" cy="21" r="4" fill="currentColor" stroke="none"/><path d="M4 34q10 10 20 0t20 0"/></svg>`},
+  {id:'ornements', fr:'Ornements', en:'Ornaments',
+   dfr:'Boules en verre soufflé, étoiles, flocons et suspensions.',
+   den:'Blown-glass baubles, stars, snowflakes and hanging pieces.',
+   ic:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="24" cy="29" r="14"/><path d="M21 11a5 5 0 0 1 6 0"/><rect x="21" y="11" width="6" height="5" rx="1"/><path d="M10 29h28"/></svg>`},
+  {id:'sapins', fr:'Sapins & Illuminations', en:'Trees & Lights',
+   dfr:'Sapins lumineux connectés, sapins artificiels et couronnes.',
+   den:'Connected luminous trees, artificial trees and wreaths.',
+   ic:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M24 6l7 12h-5l8 13h-6l8 12H12l8-12h-6l8-13h-5l7-12z"/><path d="M21 43h6"/></svg>`},
+  {id:'table', fr:'Table & ambiance', en:'Table & mood',
+   dfr:'Bougies LED en cire véritable, bougeoirs, chemins de table et villages lumineux.',
+   den:'Real-wax LED candles, candle holders, table runners and lit villages.',
+   ic:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="18" y="20" width="12" height="20" rx="2"/><path d="M24 20c0-5 4-5 4-9 0-3-4-5-4-5s-4 2-4 5c0 4 4 4 4 9z"/><path d="M8 40h32"/></svg>`}
+];
+
+/* ------------------------- 4. CATALOGUE ------------------------- */
+/* Photos : assets/images/guirlande-led-smart-*.jpg, guirlande-solaire-*.jpg, pere-noel-parachute-*.jpg et ruban-led-rvb-*.png */
+const PRODUCTS = [
+  {id:23, cat:'lumieres', photo:'assets/images/guirlande-led-smart-1.jpg',
+   gallery:[
+     'assets/images/guirlande-led-smart-1.jpg',
+     'assets/images/guirlande-led-smart-2.jpg',
+     'assets/images/guirlande-led-smart-3.jpg',
+     'assets/images/guirlande-led-smart-4.jpg',
+     'assets/images/guirlande-led-smart-5.jpg',
+     'assets/images/guirlande-led-smart-6.jpg',
+     'assets/images/guirlande-led-smart-7.jpg',
+     'assets/images/guirlande-led-smart-8.jpg'
+   ],
+   price:34.90, old:59.90, tag:'best', tags:['best','new'], featured:true, hideGrid:true,
+   defaultVariant:'10',
+   variants:[
+     {id:'5', label:'5 mètres', fr:'5 mètres', en:'5 metres', price:29.90, old:49.90, stripe:'guirlande5',
+      hint:{
+        fr:'Guirlande féerique connectée 5 m – USB & Télécommande (Livraison incluse)',
+        en:'Smart connected fairy lights 5 m – USB & Remote (Delivery included)'
+      }},
+     {id:'10', label:'10 mètres', fr:'10 mètres', en:'10 metres', price:34.90, old:59.90, stripe:'guirlande10', best:true,
+      hint:{
+        fr:'Guirlande féerique connectée 10 m – USB & Télécommande (Livraison incluse)',
+        en:'Smart connected fairy lights 10 m – USB & Remote (Delivery included)'
+      }},
+     {id:'20', label:'20 mètres', fr:'20 mètres', en:'20 metres', price:39.90, old:69.90, stripe:'guirlande20',
+      hint:{
+        fr:'Guirlande féerique connectée 20 m – USB & Télécommande (Livraison incluse)',
+        en:'Smart connected fairy lights 20 m – USB & Remote (Delivery included)'
+      }}
+   ],
+   specs:{
+     fr:[
+       'Guirlande féerique RGB haute densité',
+       'Contrôle complet via application smartphone (Bluetooth) + télécommande infrarouge',
+       'Synchronisation musicale en temps réel et minuteur programmable',
+       'Alimentation USB universelle 5V',
+       'Certifié CE, FCC, RoHS'
+     ],
+     en:[
+       'High-density RGB fairy lights',
+       'Full control via smartphone app (Bluetooth) + infrared remote',
+       'Real-time music sync and programmable timer',
+       'Universal USB 5V power',
+       'CE, FCC, RoHS certified'
+     ]
+   },
+   fr:{n:'Guirlande LED Intelligente Connectée RGB™', d:'Guirlande féerique multicolore haute densité avec contrôle complet via Application Smartphone (Bluetooth) + Télécommande infrarouge multifonction. Synchronisation musicale en temps réel, minuteur programmable et alimentation USB universelle. Convient pour sapin, chambre, salon et décorations festives intérieures.'},
+   en:{n:'Smart Connected RGB LED Fairy Lights™', d:'High-density multicolour fairy lights with full control via smartphone app (Bluetooth) + multifunction infrared remote. Real-time music sync, programmable timer and universal USB power. Suitable for Christmas trees, bedrooms, living rooms and indoor festive décor.'}},
+  {id:26, cat:'lumieres', photo:'assets/images/guirlande-solaire-1.jpg',
+   gallery:[
+     'assets/images/guirlande-solaire-1.jpg',
+     'assets/images/guirlande-solaire-2.jpg',
+     'assets/images/guirlande-solaire-ambiance-1.jpg',
+     'assets/images/guirlande-solaire-ambiance-2.jpg',
+     'assets/images/guirlande-solaire-ambiance-3.jpg'
+   ],
+   ambiance:[
+     'assets/images/guirlande-solaire-ambiance-1.jpg',
+     'assets/images/guirlande-solaire-ambiance-2.jpg',
+     'assets/images/guirlande-solaire-ambiance-3.jpg'
+   ],
+   price:24.90, old:39.90, tags:['solar','ip65'], featured:true, trustBar:true, hideGrid:true,
+   variantType:'pack', defaultColor:'chaud', defaultPack:'2', defaultVariant:'chaud-2',
+   colors:[
+     {id:'chaud', fr:'Blanc Chaud', en:'Warm White',
+      hint:{fr:'Ambiance chaleureuse', en:'Warm ambience'},
+      photo:'assets/images/guirlande-solaire-1.jpg'},
+     {id:'froid', fr:'Blanc Froid', en:'Cool White',
+      hint:{fr:'Éclat moderne', en:'Modern sparkle'},
+      photo:'assets/images/guirlande-solaire-2.jpg'}
+   ],
+   variants:[
+     {id:'1', fr:'1 Guirlande Solaire (10m - 100 LED)', en:'1 Solar Garland (10m - 100 LED)',
+      short:{fr:'1× 10 m', en:'1× 10 m'},
+      price:24.90, old:39.90, stripe:'solaire1'},
+     {id:'2', fr:'Pack Duo 2x Guirlandes Solaires (20m - 200 LED)', en:'Duo Pack 2x Solar Garlands (20m - 200 LED)',
+      short:{fr:'Pack Duo', en:'Duo Pack'},
+      price:39.90, old:59.90, stripe:'solaire2', best:true}
+   ],
+   specs:{
+     fr:[
+       '100 % solaire — aucun branchement électrique',
+       'Panneau photovoltaïque orientable, allumage automatique à la tombée de la nuit',
+       'Câble en fil de cuivre haute résistance',
+       'Étanche IP65 — jardin, balcon et terrasse',
+       'Blanc Chaud (ambiance chaleureuse) ou Blanc Froid (éclat moderne)'
+     ],
+     en:[
+       '100% solar — no electrical hook-up',
+       'Adjustable photovoltaic panel, automatic dusk-to-dawn lighting',
+       'High-strength copper wire',
+       'IP65 waterproof — garden, balcony and terrace',
+       'Warm White (cosy glow) or Cool White (modern sparkle)'
+     ]
+   },
+   fr:{n:'Guirlande Solaire Extérieure Féerique 100 LED (10m)', d:'Illuminez votre jardin, balcon et terrasse sans aucun branchement électrique ! Se recharge automatiquement au soleil grâce à son panneau photovoltaïque orientable et s\'illumine dès la tombée de la nuit. Câble en fil de cuivre haute résistance et étanche IP65.'},
+   en:{n:'Outdoor Solar Fairy Lights 100 LED (10m)', d:'Light up your garden, balcony and terrace with no electrical hook-up! Charges automatically in the sun via its adjustable photovoltaic panel and turns on at dusk. High-strength copper wire, IP65 waterproof.'}},
+  {id:27, cat:'lumieres', photo:'assets/images/pere-noel-parachute-main.jpg',
+   gallery:[
+     'assets/images/pere-noel-parachute-main.jpg',
+     'assets/images/pere-noel-parachute-1.jpg',
+     'assets/images/pere-noel-parachute-2.jpg',
+     'assets/images/pere-noel-parachute-3.jpg',
+     'assets/images/pere-noel-parachute-4.jpg',
+     'assets/images/pere-noel-parachute-5.jpg'
+   ],
+   price:34.90, old:49.90, tags:['new','ip65'], featured:true, hideGrid:true,
+   variantType:'pack', defaultColor:'chaud', defaultPack:'1', defaultVariant:'chaud-1',
+   colors:[
+     {id:'chaud', fr:'Blanc Chaud', en:'Warm White',
+      hint:{fr:'USB + Télécommande', en:'USB + Remote'},
+      photo:'assets/images/pere-noel-parachute-main.jpg'},
+     {id:'multi', fr:'Multicolore', en:'Multicolour',
+      hint:{fr:'USB + Télécommande', en:'USB + Remote'},
+      photo:'assets/images/pere-noel-parachute-1.jpg'}
+   ],
+   variants:[
+     {id:'1', fr:'1× Guirlande Père Noël Parachute', en:'1× Parachuting Santa Garland',
+      short:{fr:'1× Guirlande', en:'1× Garland'},
+      price:34.90, old:49.90, stripe:'parachute1'},
+     {id:'2', fr:'Pack Duo (2× Guirlandes)', en:'Duo Pack (2× Garlands)',
+      short:{fr:'Pack Duo', en:'Duo Pack'},
+      price:59.90, old:79.90, stripe:'parachute2', best:true}
+   ],
+   specs:{
+     fr:[
+       'Père Noël suspendu à un parachute LED, posable (fil de fer intérieur)',
+       'Télécommande multifonction — 8 modes lumineux, minuterie et intensité',
+       'Alimentation USB universelle',
+       'Étanche IP65 — balcon, fenêtre et intérieur',
+       'Blanc Chaud ou Multicolore'
+     ],
+     en:[
+       'Santa suspended from an LED parachute, posable (internal wire)',
+       'Multifunction remote — 8 lighting modes, timer and brightness',
+       'Universal USB power',
+       'IP65 waterproof — balcony, window and indoor use',
+       'Warm White or Multicolour'
+     ]
+   },
+   fr:{n:'Guirlande Lumineuse LED Père Noël Parachutiste', d:'Faites briller votre maison pour les fêtes ! Ce Père Noël suspendu à son parachute illuminé crée une ambiance magique sur vos balcons, fenêtres ou intérieurs. Fourni avec télécommande multifonction (8 modes lumineux) et alimentation USB universelle.'},
+   en:{n:'Parachuting Santa LED Light Garland', d:'Make your home shine for the holidays! This Santa hanging from his illuminated parachute creates a magical glow on balconies, windows or indoors. Comes with a multifunction remote (8 lighting modes) and universal USB power.'}},
+  {id:28, cat:'lumieres', photo:'assets/images/ruban-led-rvb-1.png',
+   gallery:[
+     'assets/images/ruban-led-rvb-1.png',
+     'assets/images/ruban-led-rvb-2.png',
+     'assets/images/ruban-led-rvb-3.png',
+     'assets/images/ruban-led-rvb-4.png',
+     'assets/images/ruban-led-rvb-5.png',
+     'assets/images/ruban-led-rvb-6.png'
+   ],
+   alts:{
+     'assets/images/ruban-led-rvb-1.png':{
+       fr:'Kit ruban LED RVB allumé sur bobine, avec télécommande 24 touches, boîtier contrôleur et alimentation secteur',
+       en:'RGB LED strip kit lit on its reel, with 24-key remote, controller box and mains power adapter'
+     },
+     'assets/images/ruban-led-rvb-2.png':{
+       fr:'Bobine de ruban LED RVB éclairée — LED 2835, flexible, économique, longue durée de vie',
+       en:'Illuminated RGB LED strip reel — 2835 LEDs, flexible, cost-effective, long lifespan'
+     },
+     'assets/images/ruban-led-rvb-3.png':{
+       fr:'Pack Double 10 mètres : deux kits ruban LED RVB 5 m en blister, télécommande et prise EU',
+       en:'10-metre Double Pack: two 5 m RGB LED strip kits in blister packs, remote and EU plug'
+     },
+     'assets/images/ruban-led-rvb-4.png':{
+       fr:'Contenu du kit : bobine de ruban, télécommande infrarouge 24 touches, contrôleur et adaptateur secteur EU',
+       en:'Kit contents: LED reel, 24-key infrared remote, controller and EU mains adapter'
+     },
+     'assets/images/ruban-led-rvb-5.png':{
+       fr:'Branchement flèche contre flèche, prise DC du contrôleur, et prises secteur EU, US, AU, UK',
+       en:'Arrow-to-arrow connection, controller DC jack, and EU, US, AU and UK plug options'
+     },
+     'assets/images/ruban-led-rvb-6.png':{
+       fr:'Schéma de connexion : ruban LED, contrôleur RVB, adaptateur secteur et télécommande infrarouge',
+       en:'Connection diagram: LED strip, RGB controller, mains adapter and infrared remote'
+     }
+   },
+   price:29.90, old:39.90, tag:'new', tags:['new'], featured:true, hideGrid:true,
+   variantType:'pack', defaultVariant:'5',
+   variants:[
+     {id:'5', label:'5 mètres', fr:'Kit Standard 5 mètres', en:'Standard Kit 5 metres',
+      short:{fr:'5 mètres', en:'5 metres'},
+      price:29.90, old:39.90, stripe:'ruban5', photo:'assets/images/ruban-led-rvb-1.png',
+      hint:{fr:'Livraison offerte', en:'Free delivery'}},
+     {id:'10', label:'10 mètres', fr:'Pack Double 10 mètres (2× 5m)', en:'Double Pack 10 metres (2× 5m)',
+      short:{fr:'10 mètres', en:'10 metres'},
+      price:49.90, old:59.90, stripe:'ruban10', photo:'assets/images/ruban-led-rvb-3.png', best:true,
+      hint:{fr:'Économisez 10 CHF — Livraison offerte', en:'Save CHF 10 — Free delivery'}}
+   ],
+   specs:{
+     fr:[
+       '16 couleurs interchangeables + modes dynamiques (flash, fondu, stroboscope)',
+       'Télécommande infrarouge 24 touches incluse pour un contrôle facile à distance',
+       'Prise européenne (EU) incluse, branchement direct sur secteur 12V',
+       'Bande flexible et sécable avec bande adhésive haute fixation au dos'
+     ],
+     en:[
+       '16 interchangeable colours + dynamic modes (flash, fade, strobe)',
+       '24-key infrared remote included for easy control at a distance',
+       'European (EU) plug included, plugs straight into 12V mains',
+       'Flexible, cuttable strip with high-hold adhesive backing'
+     ]
+   },
+   fr:{n:'Kit Ruban LED RVB 5m Flexible – Télécommande 24 Touches & Alimentation Secteur', d:'Transformez votre intérieur avec ce kit ruban LED multicolore prêt à l’emploi. Idéal pour rétroéclairage TV, gaming, chambre, salon ou décorations de fête.'},
+   en:{n:'Flexible RGB LED Strip Kit 5m – 24-Key Remote & Mains Power', d:'Transform your interior with this ready-to-use multicolour LED strip kit. Ideal for TV backlighting, gaming, bedrooms, living rooms or party décor.'}},
+  {id:24, cat:'table', photo:'assets/images/bougies-led-1.png',
+   gallery:[
+     'assets/images/bougies-led-1.png',
+     'assets/images/bougies-led-2.png',
+     'assets/images/bougies-led-3.png',
+     'assets/images/bougies-led-4.png',
+     'assets/images/bougies-led-5.png'
+   ],
+   alts:{
+     'assets/images/bougies-led-1.png':{
+       fr:'Set de 3 bougies LED en cire véritable avec télécommande 10 touches (ON/OFF, minuterie, mode et intensité)',
+       en:'Set of 3 real-wax LED candles with 10-key remote (ON/OFF, timer, mode and brightness)'
+     },
+     'assets/images/bougies-led-2.png':{
+       fr:'Trois bougies LED flamme 3D et télécommande, vue studio du Set Essentiel',
+       en:'Three 3D-flame LED candles and remote, studio view of the Essential set'
+     },
+     'assets/images/bougies-led-3.png':{
+       fr:'Set Bougies Essentiel avec télécommande et boîte d’emballage kraft',
+       en:'Essential candle set with remote and kraft packaging box'
+     },
+     'assets/images/bougies-led-4.png':{
+       fr:'Bougies LED en cire véritable en ambiance salon, flamme chaude oscillante',
+       en:'Real-wax LED candles in a living-room setting, warm oscillating flame'
+     },
+     'assets/images/bougies-led-5.png':{
+       fr:'Trio de bougies LED à flamme dansante 3D, lueur dorée sur bois sombre',
+       en:'Trio of dancing 3D-flame LED candles, golden glow on dark wood'
+     }
+   },
+   price:59.90, old:79.90, tag:'best', tags:['best','special'], hideGrid:true,
+   variantType:'pack', defaultVariant:'3',
+   variants:[
+     {id:'3', price:59.90, old:79.90, stripe:'bougies3', photo:'assets/images/bougies-led-1.png',
+      fr:'Set Bougies Essentiel (3 pièces + télécommande)', en:'Essential Candle Set (3 pieces + remote)',
+      hint:{fr:'Livraison Suivie Offerte en Suisse', en:'Tracked delivery included in Switzerland'}},
+     {id:'5', price:79.90, old:119.00, stripe:'bougies5', photo:'assets/images/bougies-led-2.png', best:true,
+      fr:'Set Bougies Complet (5 pièces + télécommande)', en:'Complete Candle Set (5 pieces + remote)',
+      hint:{fr:'Économisez 40 CHF — Livraison Suivie Offerte', en:'Save CHF 40 — Tracked delivery included'}}
+   ],
+   specs:{
+     fr:[
+       'Effet flamme dansante 3D sans danger (zéro fumée, zéro risque d’incendie)',
+       'Télécommande 10 touches avec fonction minuterie automatique',
+       'Finition soignée en cire naturelle pour une ambiance féerique et chaleureuse',
+       'Idéal pour décorer la table de fête, salon, cheminée ou rebord de fenêtre'
+     ],
+     en:[
+       'Safe dancing 3D flame effect (no smoke, no fire risk)',
+       '10-key remote with automatic timer',
+       'Carefully finished natural wax for a warm, festive glow',
+       'Ideal for the holiday table, living room, fireplace or windowsill'
+     ]
+   },
+   fr:{n:'Bougies LED en cire véritable avec télécommande 10 touches', d:'Flamme oscillante 3D réaliste, véritable cire de paraffine et télécommande multifonction (minuterie 2H/4H/6H/8H, variateur d’intensité et mode scintillement).'},
+   en:{n:'Real-wax LED candles with 10-key remote', d:'Realistic oscillating 3D flame, genuine paraffin wax and a multifunction remote (2H/4H/6H/8H timer, dimmer and flicker mode).'}},
+  {id:25, cat:'lumieres', photo:'assets/images/bougies-led-3.png', price:99.90, old:149.00, tag:'special', stripe:'packFeerie', hideGrid:true,
+   fr:{n:'Grand Pack Féerie (Bougies 5 pièces + Guirlande LED)', d:'Pack Ambiance Totale — Livraison Suivie Offerte'},
+   en:{n:'Féerie Grand Pack (5-piece candles + LED garland)', d:'Full ambience pack — Tracked delivery included'}},
+  {id:21, cat:'lumieres', art:'pack', price:49.90, old:69.80, tag:'special', featured:true, stripe:'packDuo',
+   fr:{n:'Pack Féerie Duo™', d:'Guirlande LED Intelligente + Lot de Bougies LED Flamme Réelle. Meilleure offre de la saison.'},
+   en:{n:'Féerie Duo Pack™', d:'Smart LED Garland + Realistic Flame LED Candles. Best offer of the season.'}},
+  {id:20, cat:'lumieres', art:'lights', price:34.90, old:null, tag:null, stripe:'guirlande',
+   fr:{n:'Guirlande LED Intelligente', d:'20 m, blanc chaud, application & télécommande, 8 modes, minuterie. Intérieur et extérieur (IP44).'},
+   en:{n:'Smart LED Garland', d:'20 m, warm white, app & remote, 8 modes, timer. Indoor and outdoor (IP44).'}},
+  {id:22, cat:'lumieres', art:'packFamille', price:79.90, old:104.70, tag:'best', stripe:'packFamille',
+   fr:{n:'Grand Pack Famille', d:'2 Guirlandes LED Intelligentes + 2 lots de Bougies LED Flamme Réelle. Pour toute la maison.'},
+   en:{n:'Family Grand Pack', d:'2 Smart LED Garlands + 2 Realistic Flame LED Candle sets. For the whole home.'}},
+  {id:1, cat:'ornements', art:'bauble', price:12.90, old:null, tag:null,
+   fr:{n:'Boule en verre soufflé « Rubis »', d:'Verre soufflé bouche, finition laquée et liseré doré. Ø 8 cm.'},
+   en:{n:'"Ruby" blown-glass bauble', d:'Mouth-blown glass, lacquered finish and gold trim. Ø 8 cm.'}},
+  {id:3, cat:'sapins', art:'wreath', price:49.00, old:null, tag:null,
+   fr:{n:'Couronne de sapin naturelle', d:'Sapin Nordmann frais, baies rouges et nœud velours. Ø 35 cm.'},
+   en:{n:'Natural fir wreath', d:'Fresh Nordmann fir, red berries and velvet bow. Ø 35 cm.'}},
+  {id:4, cat:'ornements', art:'star', price:19.90, old:null, tag:null,
+   fr:{n:'Étoile de faîte dorée', d:'Métal doré brossé, éclairage LED intégré à piles. Hauteur 22 cm.'},
+   en:{n:'Golden treetop star', d:'Brushed gold metal, built-in battery LED. Height 22 cm.'}},
+  {id:5, cat:'sapins', art:'tree', price:149.00, old:189.00, tag:'promo',
+   fr:{n:'Sapin artificiel 180 cm', d:'1 200 branches PE/PVC, pied métal, aspect naturel. Montage en 10 min.'},
+   en:{n:'180 cm artificial tree', d:'1,200 PE/PVC branches, metal stand, natural look. 10-minute assembly.'}},
+  {id:6, cat:'table', art:'candles', price:39.90, old:null, tag:null,
+   fr:{n:'Bougeoirs en laiton (set de 3)', d:'Laiton massif poli, trois hauteurs. Compatibles bougies Ø 2,2 cm.'},
+   en:{n:'Brass candle holders (set of 3)', d:'Polished solid brass, three heights. Fits Ø 2.2 cm candles.'}},
+  {id:7, cat:'table', art:'calendar', price:44.90, old:null, tag:'new',
+   fr:{n:"Calendrier de l'Avent en bois", d:'Bois de hêtre, 24 tiroirs à remplir, réutilisable chaque année.'},
+   en:{n:'Wooden Advent calendar', d:'Beech wood, 24 fillable drawers, reusable every year.'}},
+  {id:8, cat:'ornements', art:'snowflake', price:8.90, old:null, tag:null,
+   fr:{n:'Suspension flocon cristal', d:'Acrylique effet cristal, reflets irisés. Ø 12 cm, fil transparent inclus.'},
+   en:{n:'Crystal snowflake ornament', d:'Crystal-effect acrylic, iridescent shimmer. Ø 12 cm, clear thread included.'}},
+  {id:9, cat:'table', art:'runner', price:29.90, old:null, tag:null,
+   fr:{n:'Chemin de table brodé', d:'Coton vert sapin, étoiles brodées fil doré. 180 × 40 cm, lavable.'},
+   en:{n:'Embroidered table runner', d:'Fir-green cotton, gold-thread embroidered stars. 180 × 40 cm, washable.'}},
+  {id:10, cat:'table', art:'village', price:59.00, old:null, tag:null,
+   fr:{n:'Village lumineux miniature', d:'Trois maisons en céramique peinte à la main, LED chaudes à piles.'},
+   en:{n:'Miniature lit village', d:'Three hand-painted ceramic houses, warm battery LEDs.'}},
+  {id:11, cat:'lumieres', art:'curtain', price:27.90, old:null, tag:null,
+   fr:{n:'Rideau lumineux 3 m', d:'300 LED, 8 jeux de lumière, télécommande. Fenêtre, balcon ou tête de lit.'},
+   en:{n:'3 m light curtain', d:'300 LEDs, 8 light modes, remote control. Window, balcony or headboard.'}},
+  {id:12, cat:'ornements', art:'baubleset', price:42.00, old:52.00, tag:'promo',
+   fr:{n:'Set de 24 boules assorties', d:'Rouge, or, vert sapin et blanc nacré. Incassables, Ø 6 à 8 cm.'},
+   en:{n:'Set of 24 assorted baubles', d:'Red, gold, fir green and pearl white. Shatterproof, Ø 6 to 8 cm.'}}
+];
+
+const TAGS = {
+  promo:{fr:'Promo',en:'Sale',cls:''},
+  best:{fr:'Best-Seller',en:'Best-Seller',cls:'card__tag--or'},
+  new:{fr:'Nouveau',en:'New',cls:'card__tag--or'},
+  special:{fr:'Best-Seller / Offre Spéciale',en:'Best-Seller / Special Offer',cls:'card__tag--or'},
+  solar:{fr:'100% Solaire',en:'100% Solar',cls:'card__tag--or'},
+  ip65:{fr:'Étanche IP65',en:'IP65 Waterproof',cls:'card__tag--ip'}
+};
+
+/* Payment Links Stripe — Dashboard Stripe → Produits → Payment links */
+/* Produits / variantes en stock (Payment Links validés). Les autres = rupture. */
+const IN_STOCK = {
+  23: ['5', '10', '20'],
+  24: ['3', '5'],
+  25: true,
+  26: ['1', '2'],
+  28: ['5', '10']
+};
+
+const STRIPE_LINKS = {
+  guirlande: '',
+  packDuo: '',
+  packFamille: '',
+  guirlande5: 'https://buy.stripe.com/7sY28s4AFfvG6071sfcAo0q',   // 5 m — 29.90 CHF
+  guirlande10: 'https://buy.stripe.com/8x2bJ2d7b0AMfAH5IvcAo0l',  // 10 m — 34.90 CHF
+  guirlande20: 'https://buy.stripe.com/7sY4gAffjerCcov5IvcAo0m',  // 20 m — 39.90 CHF
+  solaire1: 'https://buy.stripe.com/bJe8wQ7MR97i0FN1sfcAo0u',     // 1× 10 m — 24.90 CHF
+  solaire2: 'https://buy.stripe.com/4gMdRa1otgzKbkr8UHcAo0v',     // Pack Duo 2× 10 m — 39.90 CHF
+  parachute1: '',
+  parachute2: '',
+  ruban5: 'https://buy.stripe.com/aFafZiebf83efAH6MzcAo0s',       // 5 m — 29.90 CHF
+  ruban10: 'https://buy.stripe.com/6oU5kE5EJdny0FN9YLcAo0t',      // Pack Double 10 m — 49.90 CHF
+  bougies3: 'https://buy.stripe.com/5kQ3cwebf5V64W32wjcAo0n',     // 3 pces — 59.90 CHF
+  bougies5: 'https://buy.stripe.com/9B6eVe5EJ5V6ewD6MzcAo0o',     // 5 pces — 79.90 CHF
+  packFeerie: 'https://buy.stripe.com/4gMfZi6INerCagnc6TcAo0p'    // Grand Pack Féerie — 99.90 CHF
+};
+
+/* ------------------------- 5. ÉTAT ------------------------- */
+let lang = 'fr';
+let filter = 'all';
+let selectedVariant = {}; // { [productId]: variantId }
+let modalProduct = null, modalPhoto = null;
+let featPhoto = null;
+let bougiesPhoto = null;
+let bougiesOffer = '3';
+let solairePhoto = null;
+let parachutePhoto = null;
+let rubanPhoto = null;
+let lbProduct = null, lbIndex = 0;
+
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const t = k => (I18N[lang][k] ?? k);
+const chf = n => 'CHF ' + n.toFixed(2).replace('.', '.');
+const byId = id => PRODUCTS.find(p => p.id === id);
+
+function variantOf(p, vid){
+  if (!p || !p.variants) return null;
+  if (p.colors){
+    const {pack} = parseVid(p, vid);
+    return p.variants.find(v => v.id === pack) || p.variants[0];
+  }
+  return p.variants.find(v => v.id === vid) || p.variants[0];
+}
+function parseVid(p, vid){
+  if (!p || !p.colors) return {color:null, pack:vid};
+  const colorIds = p.colors.map(c => c.id);
+  const packIds = (p.variants || []).map(v => v.id);
+  const fallbackC = p.defaultColor || colorIds[0];
+  const fallbackP = p.defaultPack || packIds[0];
+  const raw = String(vid || selectedVariant[p.id] || p.defaultVariant || '');
+  const parts = raw.split('-');
+  if (parts.length >= 2 && colorIds.includes(parts[0])){
+    const pack = parts.slice(1).join('-');
+    return {color: parts[0], pack: packIds.includes(pack) ? pack : fallbackP};
+  }
+  if (colorIds.includes(raw)) return {color: raw, pack: fallbackP};
+  if (packIds.includes(raw)){
+    const fromSel = String(selectedVariant[p.id] || '').split('-')[0];
+    return {color: colorIds.includes(fromSel) ? fromSel : fallbackC, pack: raw};
+  }
+  return {color: fallbackC, pack: fallbackP};
+}
+function currentColor(p){
+  if (!p || !p.colors) return null;
+  const {color} = parseVid(p, selectedVariant[p.id]);
+  return p.colors.find(c => c.id === color) || p.colors[0];
+}
+function currentVid(p){
+  if (!p || !p.variants) return null;
+  if (p.colors){
+    const {color, pack} = parseVid(p, selectedVariant[p.id]);
+    return `${color}-${pack}`;
+  }
+  return selectedVariant[p.id] || p.defaultVariant || p.variants[0].id;
+}
+function currentVariant(p){
+  if (!p || !p.variants) return null;
+  return variantOf(p, currentVid(p));
+}
+function productPhoto(p, vid){
+  if (!p) return '';
+  if (p.colors){
+    const {color} = parseVid(p, vid);
+    const c = p.colors.find(x => x.id === color);
+    if (c && c.photo) return c.photo;
+  }
+  const v = vid !== undefined && vid !== null && vid !== ''
+    ? variantOf(p, vid)
+    : currentVariant(p);
+  if (v && v.photo) return v.photo;
+  return p.photo || '';
+}
+function photoAlt(p, src){
+  if (!p) return '';
+  const a = p.alts && src && p.alts[src];
+  if (a) return a[lang] || a.fr || p[lang].n;
+  return p[lang].n;
+}
+function setProductOption(pid, {color, pack}){
+  const p = byId(pid);
+  if (!p) return;
+  if (p.colors){
+    const cur = parseVid(p, selectedVariant[pid]);
+    selectedVariant[pid] = `${color || cur.color}-${pack || cur.pack}`;
+  } else if (pack){
+    selectedVariant[pid] = pack;
+  }
+}
+function displayPrice(p, vid){
+  const v = vid ? variantOf(p, vid) : currentVariant(p);
+  if (v) return {price: v.price, old: v.old};
+  return {price: p.price, old: p.old};
+}
+function stripeKey(p, vid){
+  const v = vid ? variantOf(p, vid) : currentVariant(p);
+  return (v && v.stripe) || (p && p.stripe) || '';
+}
+function stripeUrl(p, vid){
+  if (!p) return '';
+  const key = stripeKey(p, vid);
+  if (!key) return '';
+  const u = STRIPE_LINKS[key];
+  return (typeof u === 'string' && /^https:\/\//i.test(u.trim())) ? u.trim() : '';
+}
+function packIdOf(p, vid){
+  if (!p) return '';
+  if (!p.variants) return '';
+  const v = variantOf(p, vid);
+  return v ? String(v.id) : '';
+}
+function isInStock(p, vid){
+  if (!p) return false;
+  const spec = IN_STOCK[p.id];
+  if (spec == null) return false;
+  if (spec === true) return true;
+  const pack = packIdOf(p, vid);
+  return spec.includes(pack);
+}
+function productHasStock(p){
+  if (!p) return false;
+  const spec = IN_STOCK[p.id];
+  if (spec === true) return true;
+  return Array.isArray(spec) && spec.length > 0;
+}
+function oosBadgeHtml(cls){
+  return `<span class="${cls || 'badge badge--oos'}">${t('oos_badge')}</span>`;
+}
+function goStripe(url){
+  if (!url) return false;
+  const abs = String(url).trim();
+  const w = window.open(abs, '_blank', 'noopener,noreferrer');
+  if (!w) window.location.href = abs;
+  return true;
+}
+function orderLabel(p, vid){
+  return `${t('order_now')} - ${chf(displayPrice(p, vid).price)}`;
+}
+function selectionId(p, vid){
+  if (!p) return vid || '';
+  if (p.colors) return vid || currentVid(p);
+  const v = vid ? variantOf(p, vid) : currentVariant(p);
+  return v ? v.id : (vid || '');
+}
+function variantAttr(p, vid){
+  const id = selectionId(p, vid);
+  return id ? ` data-variant="${id}"` : '';
+}
+function buyHtml(p, vid){
+  const useId = selectionId(p, vid);
+  const ok = isInStock(p, useId) && stripeUrl(p, useId);
+  const url = ok ? stripeUrl(p, useId) : '';
+  const label = ok ? orderLabel(p, useId) : t('oos_btn');
+  const vAttr = variantAttr(p, useId);
+  if (url) return `<a class="buy" href="${url}" target="_blank" rel="noopener noreferrer" data-buy="${p.id}"${vAttr} data-stripe="${url}">${label}</a>`;
+  return `<button type="button" class="buy buy--oos" disabled aria-disabled="true">${label}</button>`;
+}
+function goBuy(id, variant){
+  const p = byId(id);
+  if (!isInStock(p, variant)){ toast(t('oos_btn')); return; }
+  const url = stripeUrl(p, variant);
+  if (goStripe(url)) return;
+  toast(t('checkout_missing'));
+}
+function scrollToFlagshipOffers(e){
+  if (e) e.preventDefault();
+  const nav = $('#nav');
+  if (nav) nav.classList.remove('on');
+  const el = $('#offres-phare') || $('#offres-guirlande') || $('#offre');
+  if (!el) return;
+  const header = document.querySelector('header.hdr');
+  const topbar = document.querySelector('.topbar');
+  const offset = (header ? header.getBoundingClientRect().height : 0)
+    + (topbar ? topbar.getBoundingClientRect().height : 0) + 10;
+  const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+}
+function tagsHtml(p){
+  const keys = p.tags || (p.tag ? [p.tag] : []);
+  const oos = productHasStock(p) ? '' : `<span class="card__tag card__tag--oos">${t('oos_badge')}</span>`;
+  if (!keys.length && !oos) return '';
+  const inner = oos + keys.map(k => `<span class="card__tag ${TAGS[k].cls}">${TAGS[k][lang]}</span>`).join('');
+  return `<div class="card__tags">${inner}</div>`;
+}
+function variantHintHtml(p){
+  const v = currentVariant(p);
+  const h = v && v.hint && v.hint[lang];
+  return h ? `<div class="size-hint">${h}</div>` : '';
+}
+function sizesHtml(p){
+  if (!p.variants) return '';
+  const cur = currentVariant(p).id;
+  if (p.colors){
+    const col = currentColor(p);
+    return `${colorsHtml(p)}${packsMiniHtml(p)}`;
+  }
+  const aria = p.variantType === 'pack' ? t('choose_pack') : t('choose_size');
+  return `<div class="sizes" role="group" aria-label="${aria}">
+    ${p.variants.map(v => {
+      const oos = !isInStock(p, v.id);
+      return `<button type="button" class="size${v.id === cur ? ' is-on' : ''}${oos ? ' is-oos' : ''}" data-size-pick="${p.id}" data-vid="${v.id}">${v[lang] || v.label}${oos ? ` · ${t('oos_badge')}` : ''}</button>`;
+    }).join('')}
+  </div>`;
+}
+function colorsHtml(p){
+  if (!p.colors) return '';
+  const cur = currentColor(p);
+  return `<div class="swatches" role="group" aria-label="${t('choose_color')}">
+    ${p.colors.map(c => `<button type="button" class="swatch swatch--${c.id}${c.id === cur.id ? ' is-on' : ''}" data-color-pick="${p.id}" data-cid="${c.id}">
+      <span class="swatch__dot" aria-hidden="true"></span>
+      <span class="swatch__txt">${c[lang]}</span>
+      ${c.hint && c.hint[lang] ? `<span class="swatch__hint">${c.hint[lang]}</span>` : ''}
+    </button>`).join('')}
+  </div>`;
+}
+function packsMiniHtml(p){
+  const cur = currentVariant(p);
+  return `<div class="packs packs--mini" role="group" aria-label="${t('choose_pack')}">
+    ${p.variants.map(v => {
+      const oos = !isInStock(p, v.id);
+      return `<button type="button" class="pack pack--mini${v.best ? ' pack--best' : ''}${v.id === cur.id ? ' is-on' : ''}${oos ? ' is-oos' : ''}" data-size-pick="${p.id}" data-vid="${v.id}">
+      ${oos ? `<span class="pack__mark" style="background:#6E6A62;color:#fff">${t('oos_badge')}</span>` : (v.best ? `<span class="pack__mark">${t('best_offer')}</span>` : '')}
+      <span class="pack__name">${v[lang] || v.label}</span>
+      <span class="pack__price">${v.old ? `<s>${chf(v.old)}</s>` : ''}${chf(v.price)}</span>
+    </button>`;
+    }).join('')}
+  </div>`;
+}
+function cardTrustHtml(p){
+  if (!p.trustBar) return '';
+  return `<div class="card__trust">
+    <span class="card__ddp">🚚 ${t('ddp_badge')}</span>
+    <span class="card__paylbl">${t('pay_secure_short')}</span>
+    <div class="pay pay--logos pay--mini">${payLogoItems(['TWINT','Stripe','PayPal'])}</div>
+  </div>`;
+}
+function mediaHtml(p, extra=''){
+  const src = productPhoto(p);
+  if (src) return `<img src="${src}" alt="${photoAlt(p, src)}" loading="lazy"${extra}>`;
+  return ART[p.art] || '';
+}
+function galleryOf(p){
+  if (!p) return [];
+  const g = (p.gallery && p.gallery.length) ? p.gallery.slice() : (p.photo ? [p.photo] : []);
+  if (p.ambiance){
+    p.ambiance.forEach(src => { if (!g.includes(src)) g.push(src); });
+  }
+  return g;
+}
+const ZOOM_HINT = `<span class="zoom-hint" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>`;
+function thumbsHtml(p, current, sources){
+  const g = sources || galleryOf(p);
+  if (g.length < 2) return '';
+  return `<div class="gallery" role="tablist" aria-label="${t('lb_gallery')}">${g.map((src, i) =>
+    `<button type="button" class="${src === current ? 'is-on' : ''}" data-gallery="${src}" aria-label="${photoAlt(p, src)}">
+      <img src="${src}" alt="${photoAlt(p, src)}">
+    </button>`).join('')}</div>`;
+}
+function ambianceHtml(p, current){
+  if (!p.ambiance || !p.ambiance.length) return '';
+  return `<div class="feat__ambiance" role="tablist" aria-label="${t('lb_gallery')}">${p.ambiance.map((src, i) =>
+    `<button type="button" class="${src === current ? 'is-on' : ''}" data-gallery="${src}" aria-label="${t('lb_gallery')} ${i + 1}">
+      <img src="${src}" alt="">
+    </button>`).join('')}</div>`;
+}
+function payLogoItems(only){
+  const logo = (name, svg) =>
+    `<span class="pay__logo" role="img" aria-label="${name}" title="${name}">${svg}</span>`;
+  const items = [
+    {name:'TWINT', svg:`<svg viewBox="0 0 62 20" aria-hidden="true"><rect width="62" height="20" rx="3.5" fill="#111"/><text x="31" y="14.2" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="9.5" font-weight="800" letter-spacing="1.15">TWINT</text></svg>`},
+    {name:'Visa', svg:`<svg viewBox="0 0 48 16" aria-hidden="true"><text x="1" y="13.5" fill="#1A1F71" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="800" font-style="italic" letter-spacing="-0.4">VISA</text></svg>`},
+    {name:'Mastercard', svg:`<svg viewBox="0 0 36 22" aria-hidden="true"><circle cx="13.5" cy="11" r="7.5" fill="#EB001B"/><circle cx="22.5" cy="11" r="7.5" fill="#F79E1B"/><path d="M18 5.2a7.5 7.5 0 0 1 0 11.6 7.5 7.5 0 0 1 0-11.6z" fill="#FF5F00"/></svg>`},
+    {name:'Stripe', svg:`<svg viewBox="0 0 52 16" aria-hidden="true"><text x="0" y="13" fill="#635BFF" font-family="Georgia,'Times New Roman',serif" font-size="14" font-weight="700">stripe</text></svg>`},
+    {name:'PayPal', svg:`<svg viewBox="0 0 68 18" aria-hidden="true"><text x="0" y="14" fill="#003087" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700">Pay</text><text x="27.5" y="14" fill="#009CDE" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700">Pal</text></svg>`}
+  ];
+  return items.filter(i => !only || only.includes(i.name)).map(i => logo(i.name, i.svg)).join('');
+}
+function payLogosHtml(){
+  return `<div class="pay pay--logos" role="list" aria-label="${t('pay_with')}">${payLogoItems()}</div>`;
+}
+function fillPayLogos(){
+  $$('[data-pay-logos]').forEach(el => {
+    el.setAttribute('role', 'list');
+    el.setAttribute('aria-label', t('pay_with'));
+    el.innerHTML = payLogoItems();
+  });
+}
+
+const FEAT_TICK = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+const FEAT_CHECK = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+function variantShort(v){
+  if (!v) return '';
+  if (v.short) return v.short[lang] || v.short.fr || v.label || '';
+  return v[lang] || v.label || '';
+}
+function techBoxHtml(keys){
+  const items = (keys || []).map(k => t(k));
+  if (!items.length) return '';
+  return `<div class="feat__tech">
+    <h3>${t('feat_tech')}</h3>
+    <ul>${items.map(s => `<li>${FEAT_TICK}<span>${s}</span></li>`).join('')}</ul>
+  </div>`;
+}
+function specsListHtml(p, max){
+  const items = (p.specs && p.specs[lang] ? p.specs[lang] : []).slice(0, max || 4);
+  if (!items.length) return '';
+  return `<ul class="specs">${items.map(s => `<li>${FEAT_TICK}<span>${s}</span></li>`).join('')}</ul>`;
+}
+function offerCardsHtml(p, selectedId, vidFor, offersId){
+  const n = (p.variants || []).length;
+  const idAttr = offersId ? ` id="${offersId}"` : '';
+  return `<div class="offers"${idAttr} style="--offer-n:${n}" role="radiogroup" aria-label="${t('choose_pack')}">
+    ${(p.variants || []).map(v => {
+      const vid = vidFor ? vidFor(v.id) : v.id;
+      const on = String(selectedId) === String(v.id);
+      const desc = v.hint && v.hint[lang] ? v.hint[lang] : t('feat_ship_ch').replace('🚚 ', '');
+      const oos = !isInStock(p, vid);
+      return `<button type="button" class="offer${v.best ? ' offer--best' : ''}${on ? ' is-on' : ''}${oos ? ' is-oos' : ''}" data-size-pick="${p.id}" data-vid="${v.id}" aria-pressed="${on}">
+        ${oos ? `<span class="offer__mark offer__mark--oos">${t('oos_badge')}</span>` : (v.best ? `<span class="offer__mark">${t('best_offer')}</span>` : '')}
+        <span class="offer__name">${variantShort(v)}</span>
+        <span class="offer__price">${v.old ? `<s>${chf(v.old)}</s>` : ''}${chf(v.price)}</span>
+        <span class="offer__desc">${oos ? t('oos_temp') : desc}</span>
+      </button>`;
+    }).join('')}
+  </div>`;
+}
+function featBuybarHtml(p, vid){
+  const {price, old} = displayPrice(p, vid);
+  const oos = !isInStock(p, vid);
+  return `<div class="feat__buybar${oos ? ' feat__buybar--oos' : ''}">
+    <span class="price">${old ? `<s>${chf(old)}</s>` : ''}${chf(price)}</span>
+    ${buyHtml(p, vid)}
+  </div>`;
+}
+function featFootHtml(note){
+  return `
+    ${note ? `<p class="feat__note">${note}</p>` : ''}
+    <div class="feat__ship">${t('feat_ship_ch')}</div>
+    <div class="feat__foot">
+      <div class="feat__pay">
+        <span>${t('pay_with')}</span>
+        ${payLogosHtml()}
+      </div>
+      <div class="feat__trust">
+        <span>${FEAT_CHECK}<span>${t('feat_trust_ship')}</span></span>
+        <span>${FEAT_CHECK}<span>${t('t2_t')}</span></span>
+        <span>${FEAT_CHECK}<span>${t('t3_t')}</span></span>
+      </div>
+    </div>`;
+}
+function featSheetHtml({p, photo, stageId, heroId, badges, kicker, extra, offers, buybar, note, techKeys}){
+  return `
+    <div class="feat__sticky">
+      <div class="feat__media">
+        ${thumbsHtml(p, photo)}
+        <div class="feat__visual feat__visual--photo" id="${stageId}" data-lightbox="${p.id}" data-lightbox-src="${photo}" title="${t('lb_zoom')}">
+          <img id="${heroId}" src="${photo}" alt="${photoAlt(p, photo)}">
+          ${ZOOM_HINT}
+        </div>
+      </div>
+      ${techBoxHtml(techKeys)}
+    </div>
+    <div>
+      <div class="feat__badges">${badges}</div>
+      <h2><small>${kicker}</small>${p[lang].n}</h2>
+      <p class="feat__lead">${p[lang].d}</p>
+      ${extra || ''}
+      ${offers || ''}
+      ${buybar || ''}
+      ${featFootHtml(note)}
+    </div>`;
+}
+
+/* ------------------------- 6. RENDU ------------------------- */
+function renderStatic(){
+  document.documentElement.lang = lang;
+  $$('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));
+  $$('[data-i18n-html]').forEach(el => el.innerHTML = t(el.dataset.i18nHtml));
+  $$('[data-i18n-ph]').forEach(el => el.placeholder = t(el.dataset.i18nPh));
+  $('.topbar span').innerHTML = t('topbar');   // contient du HTML
+  $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  document.title = lang === 'fr' ? 'NovaMedia Home — Décorations de Noël' : 'NovaMedia Home — Christmas Decorations';
+  fillPayLogos();
+}
+
+function renderCats(){
+  $('#cats').innerHTML = CATS.map(c => `
+    <button class="cat" data-cat="${c.id}">
+      <div class="cat__ic">${c.ic}</div>
+      <h3>${c[lang]}</h3>
+      <p>${c[lang === 'fr' ? 'dfr' : 'den']}</p>
+      <div class="cat__go">${lang === 'fr' ? 'Voir les produits →' : 'View products →'}</div>
+    </button>`).join('');
+  $$('.cat').forEach(b => b.addEventListener('click', () => {
+    filter = b.dataset.cat;
+    renderFilters(); renderGrid();
+    $('#boutique').scrollIntoView({behavior:'smooth'});
+  }));
+}
+
+function renderFilters(){
+  const items = [{id:'all', label:t('all')}].concat(CATS.map(c => ({id:c.id, label:c[lang]})));
+  $('#filters').innerHTML = items.map(i =>
+    `<button class="chip" data-f="${i.id}" aria-pressed="${i.id === filter}">${i.label}</button>`).join('');
+  $$('.chip').forEach(b => b.addEventListener('click', () => {
+    filter = b.dataset.f; renderFilters(); renderGrid();
+  }));
+}
+
+function renderFeat(){
+  const el = $('#bougiesFeat');
+  const candles = byId(24);
+  const bundle = byId(25);
+  if (!el || !candles) return;
+  const g = galleryOf(candles);
+  if (!bougiesPhoto || !g.includes(bougiesPhoto)) bougiesPhoto = candles.photo;
+  const offers = [
+    {
+      key: '3', p: candles, vid: '3', best: false, short: t('feat_bougies_opt3'),
+      fr: {d:'Livraison Suivie Offerte en Suisse'},
+      en: {d:'Tracked delivery included in Switzerland'}
+    },
+    {
+      key: '5', p: candles, vid: '5', best: true, short: t('feat_bougies_opt5'),
+      fr: {d:'Économisez 40 CHF — Livraison offerte'},
+      en: {d:'Save CHF 40 — Free tracked delivery'}
+    },
+    {
+      key: 'feerie', p: bundle, vid: null, best: false, short: t('feat_bougies_optp'),
+      fr: {d:'Pack Ambiance Totale — Livraison offerte'},
+      en: {d:'Full ambience pack — Tracked delivery included'}
+    }
+  ];
+  const cur = offers.find(o => o.key === bougiesOffer) || offers[0];
+  const curP = cur.p;
+  const offersHtml = `<div class="offers" id="offres-phare" style="--offer-n:3" role="radiogroup" aria-label="${t('choose_pack')}">
+    ${offers.map(o => {
+      if (!o.p) return '';
+      const v = o.vid ? variantOf(o.p, o.vid) : null;
+      const price = v ? v.price : o.p.price;
+      const oOld = v ? v.old : o.p.old;
+      const oos = !isInStock(o.p, o.vid);
+      return `<button type="button" class="offer${o.best ? ' offer--best' : ''}${o.key === bougiesOffer ? ' is-on' : ''}${oos ? ' is-oos' : ''}" data-bougies-offer="${o.key}" aria-pressed="${o.key === bougiesOffer}">
+        ${oos ? `<span class="offer__mark offer__mark--oos">${t('oos_badge')}</span>` : (o.best ? `<span class="offer__mark">${t('best_offer')}</span>` : '')}
+        <span class="offer__name">${o.short}</span>
+        <span class="offer__price">${oOld ? `<s>${chf(oOld)}</s>` : ''}${chf(price)}</span>
+        <span class="offer__desc">${oos ? t('oos_temp') : o[lang].d}</span>
+      </button>`;
+    }).join('')}
+  </div>`;
+  el.innerHTML = featSheetHtml({
+    p: candles,
+    photo: bougiesPhoto,
+    stageId: 'bougiesStage',
+    heroId: 'bougiesHero',
+    badges: `<span class="badge badge--best">${t('badge_best')}</span><span class="badge badge--hot">${t('badge_special')}</span>`,
+    kicker: t('feat_kicker'),
+    extra: specsListHtml(candles),
+    offers: offersHtml,
+    buybar: featBuybarHtml(curP, cur.vid),
+    note: cur[lang].d,
+    techKeys: ['feat_bougies_dim','feat_bougies_batt','feat_bougies_gar']
+  });
+}
+
+function renderFlagship(){
+  const el = $('#flagshipFeat');
+  const p = byId(23);
+  if (!el || !p) return;
+  const cur = currentVariant(p);
+  const g = galleryOf(p);
+  if (!featPhoto || !g.includes(featPhoto)) featPhoto = p.photo;
+  const vid = currentVid(p);
+  el.innerHTML = featSheetHtml({
+    p,
+    photo: featPhoto,
+    stageId: 'featStage',
+    heroId: 'featHero',
+    badges: `<span class="badge badge--best">${TAGS.best[lang]}</span><span class="badge badge--hot">${TAGS.new[lang]}</span>`,
+    kicker: t('feat_flagship_kicker'),
+    extra: specsListHtml(p),
+    offers: offerCardsHtml(p, cur.id, null, 'offres-guirlande'),
+    buybar: featBuybarHtml(p, vid),
+    note: cur && cur.hint && cur.hint[lang] ? cur.hint[lang] : '',
+    techKeys: ['feat_flag_t1','feat_flag_t2','feat_flag_t3']
+  });
+}
+
+function renderSolaireFeat(){
+  const el = $('#solaireFeat');
+  const p = byId(26);
+  if (!el || !p) return;
+  const show = filter === 'all' || filter === p.cat;
+  el.hidden = !show;
+  if (!show) return;
+  const cur = currentVariant(p);
+  const col = currentColor(p);
+  const photo = productPhoto(p);
+  const g = galleryOf(p);
+  if (!solairePhoto || !g.includes(solairePhoto)) solairePhoto = photo;
+  const vidFor = packId => `${col.id}-${packId}`;
+  el.innerHTML = featSheetHtml({
+    p,
+    photo: solairePhoto,
+    stageId: 'solaireStage',
+    heroId: 'solaireHero',
+    badges: `<span class="badge badge--best">${TAGS.solar[lang]}</span><span class="badge badge--sapin">${TAGS.ip65[lang]}</span>`,
+    kicker: t('feat_solaire_kicker'),
+    extra: colorsHtml(p) + specsListHtml(p, 3),
+    offers: offerCardsHtml(p, cur.id),
+    buybar: featBuybarHtml(p, vidFor(cur.id)),
+    note: cur && (cur[lang] || cur.label),
+    techKeys: ['feat_solaire_t1','feat_solaire_t2','feat_solaire_t3']
+  });
+}
+
+function renderParachuteFeat(){
+  const el = $('#parachuteFeat');
+  const p = byId(27);
+  if (!el || !p) return;
+  const cur = currentVariant(p);
+  const col = currentColor(p);
+  const photo = productPhoto(p);
+  const g = galleryOf(p);
+  if (!parachutePhoto || !g.includes(parachutePhoto)) parachutePhoto = photo;
+  const vidFor = packId => `${col.id}-${packId}`;
+  el.innerHTML = featSheetHtml({
+    p,
+    photo: parachutePhoto,
+    stageId: 'parachuteStage',
+    heroId: 'parachuteHero',
+    badges: `${productHasStock(p) ? '' : oosBadgeHtml()}<span class="badge badge--best">${t('feat_para_edition')}</span><span class="badge badge--sapin">${TAGS.ip65[lang]}</span><span class="badge badge--nuit">${t('feat_para_usb')}</span>`,
+    kicker: t('feat_para_kicker'),
+    extra: colorsHtml(p) + specsListHtml(p, 3),
+    offers: offerCardsHtml(p, cur.id),
+    buybar: featBuybarHtml(p, vidFor(cur.id)),
+    note: cur && (cur[lang] || cur.label),
+    techKeys: ['feat_para_t1','feat_para_t2','feat_para_t3']
+  });
+  el.classList.toggle('is-oos', !productHasStock(p));
+}
+
+function renderRubanFeat(){
+  const el = $('#rubanFeat');
+  const p = byId(28);
+  if (!el || !p) return;
+  const cur = currentVariant(p);
+  const vid = currentVid(p);
+  const g = galleryOf(p);
+  const preferred = (cur && cur.photo) || p.photo;
+  if (!rubanPhoto || !g.includes(rubanPhoto)) rubanPhoto = preferred;
+  el.innerHTML = featSheetHtml({
+    p,
+    photo: rubanPhoto,
+    stageId: 'rubanStage',
+    heroId: 'rubanHero',
+    badges: `<span class="badge badge--hot">${TAGS.new[lang]}</span><span class="badge badge--sapin">${t('feat_ruban_c1')}</span>`,
+    kicker: t('feat_ruban_kicker'),
+    extra: specsListHtml(p),
+    offers: offerCardsHtml(p, cur.id),
+    buybar: featBuybarHtml(p, vid),
+    note: cur && cur.hint && cur.hint[lang] ? cur.hint[lang] : t('feat_ruban_ship'),
+    techKeys: ['feat_ruban_t1','feat_ruban_t2','feat_ruban_t3']
+  });
+}
+
+function renderGrid(){
+  const list = PRODUCTS.filter(p => !p.hideGrid && (filter === 'all' || p.cat === filter));
+  $('#grid').innerHTML = list.map(p => {
+    const tag = tagsHtml(p);
+    const cat = CATS.find(c => c.id === p.cat)[lang];
+    const star = p.featured ? ' card--wide card--star' : '';
+    const {price, old} = displayPrice(p);
+    const imgCls = p.photo ? 'card__img card__img--photo' : 'card__img';
+    const vid = currentVid(p);
+    const oos = !productHasStock(p);
+    const actions = `<div class="card__f card__f--col">
+           ${sizesHtml(p)}
+           ${variantHintHtml(p)}
+           <span class="price">${old ? `<s>${chf(old)}</s>` : ''}${chf(price)}</span>
+           <div class="card__btns">${buyHtml(p, vid)}</div>
+           ${oos ? '' : cardTrustHtml(p)}
+         </div>`;
+    return `
+    <article class="card${star}${oos ? ' is-oos' : ''}">
+      <div class="${imgCls}" ${p.photo ? `data-lightbox="${p.id}" title="${t('lb_zoom')}"` : `data-open="${p.id}"`}>${tag}${mediaHtml(p)}${p.photo ? ZOOM_HINT : ''}</div>
+      <div class="card__b">
+        <div class="card__cat">${cat}</div>
+        <div class="card__t" data-open="${p.id}">${p[lang].n}</div>
+        <div class="card__d">${p[lang].d}</div>
+        ${actions}
+      </div>
+    </article>`;
+  }).join('');
+  renderSolaireFeat();
+}
+
+/* ------------------------- 8. MODALE ------------------------- */
+function openModal(id){
+  const p = byId(id);
+  modalProduct = p;
+  if (!p.gallery || !p.gallery.includes(modalPhoto) || !modalPhoto) modalPhoto = productPhoto(p) || p.photo || null;
+  const vid = currentVid(p);
+  const {price, old} = displayPrice(p);
+  const imgBox = $('#mImg');
+  if (p.photo){
+    imgBox.classList.add('modal__img--photo');
+    const src = modalPhoto || p.photo;
+    imgBox.innerHTML = `
+      ${thumbsHtml(p, src)}
+      <button type="button" class="modal__stage" id="mStage" data-lightbox="${p.id}" data-lightbox-src="${src}" title="${t('lb_zoom')}">
+        <img id="mHero" src="${src}" alt="${photoAlt(p, src)}">
+        ${ZOOM_HINT}
+      </button>`;
+  } else {
+    imgBox.classList.remove('modal__img--photo');
+    imgBox.innerHTML = ART[p.art] || '';
+  }
+  $('#mCat').textContent = CATS.find(c => c.id === p.cat)[lang];
+  $('#mTitle').textContent = p[lang].n;
+  $('#mDesc').textContent = p[lang].d;
+  $('#mPrice').innerHTML = (old ? `<s>${chf(old)}</s>` : '') + chf(price);
+  $('#mSizes').innerHTML = sizesHtml(p) + variantHintHtml(p) + cardTrustHtml(p);
+  const tick = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+  const extra = (p.specs && p.specs[lang] ? p.specs[lang] : []).map(s => `<li>${tick}<span>${s}</span></li>`).join('');
+  $('#mSpecs').innerHTML = extra + ['spec_stock','spec_ship','spec_ret'].map(k => `<li>${tick}<span>${t(k)}</span></li>`).join('');
+  const mBuy = $('#mBuy');
+  const url = stripeUrl(p, vid);
+  const ok = isInStock(p, vid) && url;
+  mBuy.hidden = false;
+  mBuy.textContent = ok ? orderLabel(p, vid) : t('oos_btn');
+  mBuy.dataset.buy = String(p.id);
+  if (vid) mBuy.dataset.variant = vid; else delete mBuy.dataset.variant;
+  mBuy.target = '_blank';
+  mBuy.rel = 'noopener noreferrer';
+  mBuy.classList.toggle('buy--oos', !ok);
+  if (ok){
+    mBuy.href = url;
+    mBuy.dataset.stripe = url;
+    mBuy.removeAttribute('aria-disabled');
+  } else {
+    mBuy.removeAttribute('href');
+    mBuy.removeAttribute('data-stripe');
+    mBuy.setAttribute('aria-disabled', 'true');
+  }
+  $('#modal').classList.add('on');
+}
+function closeModal(){ $('#modal').classList.remove('on'); modalProduct = null; modalPhoto = null; }
+
+/* ------------------------- 8b. LIGHTBOX ------------------------- */
+function lightboxOpen(){ return $('#lightbox').classList.contains('on'); }
+function setModalHero(src){
+  modalPhoto = src;
+  const hero = $('#mHero');
+  const stage = $('#mStage');
+  if (!hero) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const apply = () => {
+    hero.src = src;
+    hero.classList.remove('is-fading');
+    if (stage) stage.dataset.lightboxSrc = src;
+    $$('#mImg [data-gallery]').forEach(b => b.classList.toggle('is-on', b.dataset.gallery === src));
+  };
+  if (reduce || hero.getAttribute('src') === src){ apply(); return; }
+  hero.classList.add('is-fading');
+  setTimeout(apply, 180);
+}
+function setFeatHero(src){
+  const p = byId(23);
+  if (!p || !galleryOf(p).includes(src)) return;
+  featPhoto = src;
+  const hero = $('#featHero');
+  const stage = $('#featStage');
+  if (!hero) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const apply = () => {
+    hero.src = src;
+    hero.classList.remove('is-fading');
+    if (stage) stage.dataset.lightboxSrc = src;
+    $$('#flagshipFeat [data-gallery]').forEach(b => b.classList.toggle('is-on', b.dataset.gallery === src));
+  };
+  if (reduce || hero.getAttribute('src') === src){ apply(); return; }
+  hero.classList.add('is-fading');
+  setTimeout(apply, 180);
+}
+function setBougiesHero(src){
+  const p = byId(24);
+  if (!p || !galleryOf(p).includes(src)) return;
+  bougiesPhoto = src;
+  const hero = $('#bougiesHero');
+  const stage = $('#bougiesStage');
+  if (!hero) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const apply = () => {
+    hero.src = src;
+    hero.alt = photoAlt(p, src);
+    hero.classList.remove('is-fading');
+    if (stage) stage.dataset.lightboxSrc = src;
+    $$('#bougiesFeat [data-gallery]').forEach(b => b.classList.toggle('is-on', b.dataset.gallery === src));
+  };
+  if (reduce || hero.getAttribute('src') === src){ apply(); return; }
+  hero.classList.add('is-fading');
+  setTimeout(apply, 180);
+}
+function setSolaireHero(src){
+  const p = byId(26);
+  if (!p || !galleryOf(p).includes(src)) return;
+  solairePhoto = src;
+  const match = (p.colors || []).find(c => c.photo === src);
+  if (match) setProductOption(26, {color: match.id});
+  if ($('#solaireFeat') && !$('#solaireFeat').hidden) renderSolaireFeat();
+}
+function setParachuteHero(src){
+  const p = byId(27);
+  if (!p || !galleryOf(p).includes(src)) return;
+  parachutePhoto = src;
+  const match = (p.colors || []).find(c => c.photo === src);
+  if (match) setProductOption(27, {color: match.id});
+  if ($('#parachuteFeat')) renderParachuteFeat();
+}
+function setRubanHero(src){
+  const p = byId(28);
+  if (!p || !galleryOf(p).includes(src)) return;
+  rubanPhoto = src;
+  const hero = $('#rubanHero');
+  const stage = $('#rubanStage');
+  if (!hero) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const apply = () => {
+    hero.src = src;
+    hero.alt = photoAlt(p, src);
+    hero.classList.remove('is-fading');
+    if (stage) stage.dataset.lightboxSrc = src;
+    $$('#rubanFeat [data-gallery]').forEach(b => b.classList.toggle('is-on', b.dataset.gallery === src));
+  };
+  if (reduce || hero.getAttribute('src') === src){ apply(); return; }
+  hero.classList.add('is-fading');
+  setTimeout(apply, 180);
+}
+function renderLightbox(animate){
+  if (!lbProduct) return;
+  const g = galleryOf(lbProduct);
+  const src = g[lbIndex] || g[0];
+  const img = $('#lbImg');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const paint = () => {
+    img.src = src;
+    img.alt = photoAlt(lbProduct, src);
+    img.classList.add('is-in');
+    $('#lbCount').textContent = `${lbIndex + 1} / ${g.length}`;
+    $('#lbThumbs').innerHTML = g.map((s, i) =>
+      `<button type="button" class="${i === lbIndex ? 'is-on' : ''}" data-lb-thumb="${i}" aria-label="${photoAlt(lbProduct, s)}">
+        <img src="${s}" alt="${photoAlt(lbProduct, s)}">
+      </button>`).join('');
+    const many = g.length > 1;
+    $('#lbPrev').hidden = !many;
+    $('#lbNext').hidden = !many;
+    $('#lbClose').setAttribute('aria-label', t('lb_close'));
+    $('#lbPrev').setAttribute('aria-label', t('lb_prev'));
+    $('#lbNext').setAttribute('aria-label', t('lb_next'));
+    $('#lightbox').setAttribute('aria-label', t('lb_gallery'));
+  };
+  if (!animate || reduce){ img.classList.remove('is-in'); paint(); return; }
+  img.classList.remove('is-in');
+  setTimeout(paint, 160);
+}
+function openLightbox(id, src){
+  const p = byId(id);
+  const g = galleryOf(p);
+  if (!p || !g.length) return;
+  lbProduct = p;
+  const start = src && g.includes(src) ? src : (modalPhoto && g.includes(modalPhoto) ? modalPhoto : g[0]);
+  lbIndex = Math.max(0, g.indexOf(start));
+  $('#lightbox').classList.add('on');
+  $('#lightbox').setAttribute('aria-hidden', 'false');
+  renderLightbox(false);
+  $('#lbClose').focus();
+}
+function closeLightbox(){
+  $('#lightbox').classList.remove('on');
+  $('#lightbox').setAttribute('aria-hidden', 'true');
+  lbProduct = null;
+}
+function lbStep(dir){
+  if (!lbProduct) return;
+  const g = galleryOf(lbProduct);
+  if (g.length < 2) return;
+  lbIndex = (lbIndex + dir + g.length) % g.length;
+  modalPhoto = g[lbIndex];
+  renderLightbox(true);
+  if (modalProduct && modalProduct.id === lbProduct.id) setModalHero(g[lbIndex]);
+  if (lbProduct.id === 23) setFeatHero(g[lbIndex]);
+  if (lbProduct.id === 24) setBougiesHero(g[lbIndex]);
+  if (lbProduct.id === 26) setSolaireHero(g[lbIndex]);
+  if (lbProduct.id === 27) setParachuteHero(g[lbIndex]);
+  if (lbProduct.id === 28) setRubanHero(g[lbIndex]);
+}
+
+/* ------------------------- 9. TOAST ------------------------- */
+let toastTimer;
+function toast(msg){
+  $('#toastMsg').textContent = msg;
+  $('#toast').classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => $('#toast').classList.remove('on'), 2600);
+}
+
+/* ------------------------- 10. NEIGE ------------------------- */
+function snow(){
+  const box = $('#snow');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let html = '';
+  for (let i = 0; i < 26; i++){
+    const size = 6 + Math.random() * 10;
+    html += `<span class="flake" style="left:${Math.random()*100}%;font-size:${size}px;
+      animation-duration:${8 + Math.random()*10}s;animation-delay:${-Math.random()*14}s;
+      opacity:${.25 + Math.random()*.4}">❄</span>`;
+  }
+  box.innerHTML = html;
+}
+
+/* ------------------------- 11. CONTACT & LÉGAL ------------------------- */
+const LEGAL_PAGES = {
+  mentions: { title: 'legal_mentions_title', html: 'legal_mentions_html', hash: 'mentions' },
+  privacy: { title: 'legal_privacy_title', html: 'legal_privacy_html', hash: 'confidentialite' },
+  cgv: { title: 'legal_cgv_title', html: 'legal_cgv_html', hash: 'cgv' }
+};
+const LEGAL_HASH = { mentions: 'mentions', confidentialite: 'privacy', cgv: 'cgv' };
+let legalKey = null;
+
+function fillLegal(){
+  if (!legalKey || !LEGAL_PAGES[legalKey]) return;
+  $('#legalTitle').textContent = t(LEGAL_PAGES[legalKey].title);
+  $('#legalBody').innerHTML = t(LEGAL_PAGES[legalKey].html);
+}
+
+function openLegal(key){
+  if (!LEGAL_PAGES[key]) return;
+  legalKey = key;
+  fillLegal();
+  $('#legal').classList.add('on');
+  $('#legal').setAttribute('aria-hidden', 'false');
+}
+
+function closeLegal(){
+  $('#legal').classList.remove('on');
+  $('#legal').setAttribute('aria-hidden', 'true');
+  legalKey = null;
+  const h = (location.hash || '').replace('#', '');
+  if (LEGAL_HASH[h]) history.replaceState(null, '', location.pathname + location.search);
+}
+
+function handleLocationHash(){
+  const h = (location.hash || '').replace('#', '');
+  if (h === 'offres-phare' || h === 'offres-guirlande'){
+    requestAnimationFrame(() => scrollToFlagshipOffers());
+    return;
+  }
+  if (LEGAL_HASH[h]) openLegal(LEGAL_HASH[h]);
+}
+
+/* ------------------------- 12. ÉVÉNEMENTS ------------------------- */
+$$('.lang button').forEach(b => b.addEventListener('click', () => {
+  lang = b.dataset.lang;
+  renderStatic(); renderFeat(); renderFlagship(); renderParachuteFeat(); renderRubanFeat(); renderCats(); renderFilters(); renderGrid();
+  fillLegal();
+  if (modalProduct) openModal(modalProduct.id);
+  if (lightboxOpen()) renderLightbox(false);
+}));
+
+document.addEventListener('click', e => {
+  const orderNav = e.target.closest('[data-order-scroll]');
+  if (orderNav){
+    scrollToFlagshipOffers(e);
+    return;
+  }
+  const offer = e.target.closest('[data-bougies-offer]');
+  if (offer){
+    e.preventDefault();
+    bougiesOffer = offer.dataset.bougiesOffer;
+    const candles = byId(24);
+    const bundle = byId(25);
+    if (bougiesOffer === 'feerie' && bundle){
+      bougiesPhoto = bundle.photo;
+    } else if (candles){
+      setProductOption(24, {pack: bougiesOffer});
+      const v = variantOf(candles, bougiesOffer);
+      bougiesPhoto = (v && v.photo) || candles.photo;
+    }
+    renderFeat();
+    return;
+  }
+  const size = e.target.closest('[data-size-pick]');
+  if (size){
+    e.preventDefault();
+    const pid = +size.dataset.sizePick;
+    setProductOption(pid, {pack: size.dataset.vid});
+    if (pid === 28){
+      const v = variantOf(byId(28), size.dataset.vid);
+      if (v && v.photo) rubanPhoto = v.photo;
+    }
+    renderGrid(); renderFlagship(); renderSolaireFeat(); renderParachuteFeat(); renderRubanFeat();
+    if (modalProduct && modalProduct.id === pid) openModal(pid);
+    return;
+  }
+  const colorBtn = e.target.closest('[data-color-pick]');
+  if (colorBtn){
+    e.preventDefault();
+    const pid = +colorBtn.dataset.colorPick;
+    setProductOption(pid, {color: colorBtn.dataset.cid});
+    const p = byId(pid);
+    if (p){
+      modalPhoto = productPhoto(p);
+      if (pid === 26) solairePhoto = productPhoto(p);
+      if (pid === 27) parachutePhoto = productPhoto(p);
+    }
+    renderGrid();
+    renderSolaireFeat();
+    renderParachuteFeat();
+    if (modalProduct && modalProduct.id === pid) openModal(pid);
+    return;
+  }
+  const gal = e.target.closest('[data-gallery]');
+  if (gal){
+    e.preventDefault();
+    e.stopPropagation();
+    const src = gal.dataset.gallery;
+    if (gal.closest('#mImg')) setModalHero(src);
+    if (gal.closest('#flagshipFeat')) setFeatHero(src);
+    if (gal.closest('#bougiesFeat')) setBougiesHero(src);
+    if (gal.closest('#solaireFeat')) setSolaireHero(src);
+    if (gal.closest('#parachuteFeat')) setParachuteHero(src);
+    if (gal.closest('#rubanFeat')) setRubanHero(src);
+    return;
+  }
+  const lbThumb = e.target.closest('[data-lb-thumb]');
+  if (lbThumb){
+    lbIndex = +lbThumb.dataset.lbThumb;
+    if (lbProduct){
+      modalPhoto = galleryOf(lbProduct)[lbIndex];
+      renderLightbox(true);
+      if (modalProduct && modalProduct.id === lbProduct.id) setModalHero(modalPhoto);
+      if (lbProduct.id === 23) setFeatHero(modalPhoto);
+      if (lbProduct.id === 24) setBougiesHero(modalPhoto);
+      if (lbProduct.id === 26) setSolaireHero(modalPhoto);
+      if (lbProduct.id === 27) setParachuteHero(modalPhoto);
+      if (lbProduct.id === 28) setRubanHero(modalPhoto);
+    }
+    return;
+  }
+  const lb = e.target.closest('[data-lightbox]');
+  if (lb){
+    e.preventDefault();
+    openLightbox(+lb.dataset.lightbox, lb.dataset.lightboxSrc);
+    return;
+  }
+  const buy = e.target.closest('[data-buy]');
+  if (buy){
+    if (buy.classList.contains('buy--oos') || buy.getAttribute('aria-disabled') === 'true' || buy.disabled){
+      e.preventDefault();
+      toast(t('oos_btn'));
+      return;
+    }
+    const url = stripeUrl(byId(+buy.dataset.buy), buy.dataset.variant);
+    if (url){
+      if (buy.tagName === 'A' && (buy.target === '_blank' || buy.getAttribute('target') === '_blank')) return;
+      e.preventDefault();
+      goStripe(url);
+      return;
+    }
+    e.preventDefault();
+    goBuy(+buy.dataset.buy, buy.dataset.variant);
+    return;
+  }
+  const open = e.target.closest('[data-open]');
+  if (open){ openModal(+open.dataset.open); return; }
+  const legal = e.target.closest('[data-legal]');
+  if (legal){
+    e.preventDefault();
+    const key = legal.dataset.legal;
+    openLegal(key);
+    if (LEGAL_PAGES[key]) history.replaceState(null, '', '#' + LEGAL_PAGES[key].hash);
+  }
+});
+
+$('#closeModal').addEventListener('click', closeModal);
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+$('#lbClose').addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+$('#lbPrev').addEventListener('click', e => { e.stopPropagation(); lbStep(-1); });
+$('#lbNext').addEventListener('click', e => { e.stopPropagation(); lbStep(1); });
+$('#lightbox').addEventListener('click', e => {
+  if (e.target.id === 'lightbox' || e.target.classList.contains('lightbox__frame')) closeLightbox();
+});
+document.addEventListener('keydown', e => {
+  if (lightboxOpen()){
+    if (e.key === 'Escape'){ closeLightbox(); return; }
+    if (e.key === 'ArrowLeft'){ e.preventDefault(); lbStep(-1); return; }
+    if (e.key === 'ArrowRight'){ e.preventDefault(); lbStep(1); return; }
+  }
+  if (e.key === 'Escape'){ closeModal(); closeLegal(); }
+});
+
+$('#nlForm').addEventListener('submit', e => { e.preventDefault(); e.target.reset(); toast(t('nl_ok')); });
+$('#contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const name = String(fd.get('name') || '').trim();
+  const email = String(fd.get('email') || '').trim();
+  const msg = String(fd.get('message') || '').trim();
+  const subject = encodeURIComponent('Contact NovaMedia Home — ' + name);
+  const body = encodeURIComponent('Nom : ' + name + '\nE-mail : ' + email + '\n\n' + msg);
+  window.location.href = 'mailto:adoarraa@gmail.com?subject=' + subject + '&body=' + body;
+  toast(t('contact_ok'));
+});
+$('#closeLegal').addEventListener('click', closeLegal);
+$('#legal').addEventListener('click', e => { if (e.target.id === 'legal') closeLegal(); });
+window.addEventListener('hashchange', handleLocationHash);
+$('#burger').addEventListener('click', () => $('#nav').classList.toggle('on'));
+$$('nav.main a').forEach(a => a.addEventListener('click', () => $('#nav').classList.remove('on')));
+
+/* ------------------------- 13. DÉMARRAGE ------------------------- */
+renderStatic(); renderFeat(); renderFlagship(); renderParachuteFeat(); renderRubanFeat(); renderCats(); renderFilters(); renderGrid(); snow();
+handleLocationHash();
+</script>
+</body>
+</html>
