@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="Câbles de charge">
+  <rect width="320" height="280" fill="#f4f7fb"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M54 78c48 8 52 86 108 92 40 4 58-38 92-34" stroke="#0B1730" stroke-width="10"/>
+    <path d="M54 78c48 8 52 86 108 92 40 4 58-38 92-34" stroke="#C9A227" stroke-width="3.2"/>
+    <path d="M62 168c40-18 70 42 118 28 36-10 48-48 86-42" stroke="#1F7A4D" stroke-width="10"/>
+    <path d="M62 168c40-18 70 42 118 28 36-10 48-48 86-42" stroke="#E3C86B" stroke-width="3.2"/>
+  </g>
+  <rect x="36" y="68" width="28" height="18" rx="4" fill="#0B1730"/>
+  <rect x="248" y="128" width="28" height="18" rx="4" fill="#0B1730"/>
+  <rect x="44" y="158" width="28" height="18" rx="4" fill="#1F7A4D"/>
+  <rect x="258" y="146" width="28" height="18" rx="4" fill="#1F7A4D"/>
+</svg>
