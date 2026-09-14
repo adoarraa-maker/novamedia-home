@@ -35,6 +35,21 @@
     return isMobile() ? waMeUrl(phone, text) : waWebUrl(phone, text);
   }
 
+  /* Share to a WhatsApp chat (no phone). api.whatsapp.com opens the app on mobile and WhatsApp Web on desktop. */
+  function waShareUrl(text) {
+    return 'https://api.whatsapp.com/send?text=' + encodeURIComponent(text || '');
+  }
+
+  function waShareOpen(text) {
+    var href = waShareUrl(text);
+    if (isMobile()) {
+      window.location.href = href;
+    } else {
+      window.open(href, '_blank', 'noopener,noreferrer');
+    }
+    return href;
+  }
+
   function parseWaHref(href) {
     if (!href) return null;
     var s = String(href);
@@ -62,6 +77,8 @@
     BF_TEXT: BF_TEXT,
     meUrl: waMeUrl,
     openUrl: waOpenUrl,
+    shareUrl: waShareUrl,
+    share: waShareOpen,
     open: function (phone, text) {
       var n = resolvePhone(phone);
       var href = waMeUrl(n, text);

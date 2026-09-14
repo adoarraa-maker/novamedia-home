@@ -5,6 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Derra Global Trading — Import usine Chine ➔ Ouagadougou</title>
 <meta name="description" content="Derra Global Trading — cartons et volumes usine depuis la Chine. Fret aérien express & maritime sécurisé vers le Burkina Faso, dédouanement de bout en bout, retrait direct à Ouagadougou.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization", "OnlineStore"],
+  "name": "Derra Global Trading",
+  "email": "adoarraa@gmail.com",
+  "telephone": ["+22607554790", "+41765761672"],
+  "address": [
+    {
+      "@type": "PostalAddress",
+      "addressLocality": "Ouagadougou",
+      "addressCountry": "BF",
+      "streetAddress": "Quartier Toudoubweogo / Polesgo"
+    },
+    {
+      "@type": "PostalAddress",
+      "addressLocality": "Genève",
+      "addressCountry": "CH"
+    }
+  ],
+  "hasMerchantReturnPolicy": {
+    "@type": "MerchantReturnPolicy",
+    "applicableCountry": ["BF", "CH"],
+    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+    "merchantReturnDays": 7,
+    "returnMethod": "https://schema.org/ReturnInStore",
+    "returnFees": "https://schema.org/FreeReturn"
+  }
+}
+</script>
 <style>
 :root{
   --navy:#0B1730;
@@ -70,6 +100,30 @@ p{margin:0}
 .btn--ch:hover{background:var(--navy-2)}
 .btn--bf{background:var(--wa);color:#fff;box-shadow:0 6px 16px rgba(37,211,102,.28)}
 .btn--bf:hover{filter:brightness(1.05)}
+.share-fab{
+  position:absolute;top:12px;right:12px;z-index:5;
+  width:38px;height:38px;padding:0;margin:0;
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:50%;border:1px solid rgba(37,211,102,.28);
+  background:#fff;color:#25D366;
+  text-decoration:none;cursor:pointer;
+  box-shadow:0 6px 16px rgba(11,23,48,.14);
+  transition:transform .15s,box-shadow .2s,background .15s,border-color .15s;
+}
+.share-fab:hover,.share-fab:focus-visible{
+  background:#25D366;color:#fff;border-color:#25D366;
+  box-shadow:0 8px 20px rgba(37,211,102,.38);
+  transform:scale(1.08);
+}
+.share-fab svg,
+.shop-card__visual .share-fab svg,
+.range-photo .share-fab svg,
+.air31-zoom .share-fab svg{
+  width:20px !important;height:20px !important;flex:none;
+  padding:0 !important;background:none !important;
+  max-width:none;object-fit:unset;
+  fill:currentColor;stroke:none;
+}
 .wa-pair{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .hdr-ch{
   flex-direction:column;align-items:center;gap:2px;
@@ -332,10 +386,11 @@ html.js-ready #catalogue:not(.is-open){display:none}
 .shop-card{
   background:#fff;border:1px solid rgba(15,23,42,.08);border-radius:20px;
   overflow:hidden;text-decoration:none;color:inherit;
-  display:flex;flex-direction:column;
+  display:flex;flex-direction:column;cursor:pointer;
   box-shadow:0 10px 28px rgba(11,23,48,.06);
   transition:transform .22s,box-shadow .25s,border-color .2s;
 }
+.shop-card:hover,.shop-card:focus-visible,
 a.shop-card:hover,a.shop-card:focus-visible,
 .shop-card--air31:hover,.shop-card--air31:focus-visible{
   transform:translateY(-6px);box-shadow:0 18px 40px rgba(11,23,48,.12);
@@ -411,7 +466,7 @@ a.shop-card:hover,a.shop-card:focus-visible,
 }
 .range:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(11,23,48,.12)}
 .range-photo{
-  margin:0;background:#ffffff;cursor:zoom-in;
+  position:relative;margin:0;background:#ffffff;cursor:zoom-in;
 }
 .range-photo img,
 .range-main{
@@ -629,6 +684,14 @@ body.lb-open{overflow:hidden}
   font-size:.76rem;font-weight:500;color:rgba(237,230,212,.68);
   letter-spacing:.01em;
 }
+.fret-local{
+  margin:18px auto 0;max-width:720px;
+  padding:14px 18px;border-radius:14px;
+  background:rgba(255,253,248,.96);color:var(--navy);
+  border:1px solid rgba(227,200,107,.45);
+  box-shadow:0 8px 22px rgba(0,0,0,.18);
+  font-size:.88rem;line-height:1.55;font-weight:600;text-align:left;
+}
 .verre-demo{margin:28px 0;padding:8px 0 4px}
 .verre-demo h2,.verre-demo h3{text-align:center;margin:0 0 16px}
 .verre-demo__grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -663,7 +726,15 @@ body.lb-open{overflow:hidden}
 .cta-band__act{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
 .cta-band .wa-pair{justify-content:flex-end}
 
-.contact__in{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.contact__in{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(280px,.82fr);
+  grid-template-areas:"main aside";
+  gap:28px;
+  align-items:stretch;
+}
+.contact__main{grid-area:main;min-width:0}
+.contact__aside{grid-area:aside;min-width:0}
 .contact__card{
   display:flex;gap:12px;padding:16px;border:1px solid var(--line);
   border-radius:14px;background:var(--paper);margin-bottom:12px;
@@ -679,6 +750,80 @@ body.lb-open{overflow:hidden}
 .contact__card p{font-size:.9rem;color:var(--muted)}
 .contact__card .wa-pair{margin-top:10px}
 .contact__role{font-size:.78rem;color:var(--muted);margin-top:2px}
+.agent-card{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:22px 20px 20px;margin:0;
+  background:#fff;border:1px solid var(--line);border-radius:20px;
+  box-shadow:0 12px 32px rgba(11,23,48,.08);
+}
+.agent-card__badge{
+  display:inline-block;margin:0 0 16px;
+  font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--gold);background:rgba(201,162,39,.12);
+  padding:6px 11px;border-radius:999px;line-height:1.35;
+}
+.agent-card__photo{
+  flex:none;width:118px;height:118px;margin:0 0 14px;
+  border-radius:50%;overflow:hidden;
+  border:3px solid var(--gold);
+  box-shadow:0 0 0 4px rgba(201,162,39,.18),0 8px 20px rgba(11,23,48,.12);
+}
+.agent-card__photo img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 12%;
+  display:block;
+}
+.agent-card__info{min-width:0;width:100%}
+.agent-card__info h3{
+  margin:0 0 4px;font-size:1.18rem;letter-spacing:-.02em;color:var(--navy);
+}
+.agent-card__role{
+  margin:0 0 12px;font-size:.88rem;font-weight:700;color:var(--gold);
+  letter-spacing:.01em;
+}
+.agent-card__meta{
+  margin:0 0 6px;font-size:.86rem;color:var(--muted);line-height:1.45;
+}
+.agent-card__phone{
+  margin:10px 0 14px;font-size:1.02rem;font-weight:800;
+}
+.agent-card__phone a{color:var(--navy);text-decoration:none}
+.agent-card__phone a:hover{color:var(--gold)}
+.agent-card__act{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+}
+.agent-card__act .btn{
+  flex:1 1 132px;justify-content:center;min-height:44px;
+}
+.btn--call{
+  border:1.5px solid var(--line);background:#fff;color:var(--navy);
+}
+.btn--call:hover{border-color:var(--gold);color:var(--navy)}
+.btn--call svg,.agent-card .btn--bf svg{width:16px;height:16px;flex:none}
+@media (min-width:981px){
+  .agent-card{
+    position:sticky;top:90px;
+  }
+}
+.agent-host{
+  display:flex;gap:12px;align-items:flex-start;
+  margin-top:12px;padding:12px 14px;
+  background:#F4FBF6;border:1px solid rgba(31,122,77,.22);
+  border-radius:14px;
+}
+.agent-host__photo{
+  flex:none;width:44px;height:44px;margin:0;
+  border-radius:50%;overflow:hidden;
+  border:2px solid var(--gold);
+}
+.agent-host__photo img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;
+}
+.agent-host b{display:block;margin:0 0 4px;font-size:.84rem;color:var(--navy)}
+.agent-host p{margin:0;font-size:.82rem;line-height:1.5;color:var(--muted)}
+.policy-modal .agent-host{margin:0 0 16px}
+@media (max-width:560px){
+  .agent-host{text-align:left}
+}
 .form{
   background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px;
   display:grid;gap:10px;
@@ -695,7 +840,77 @@ footer{background:var(--navy);color:#d9d3c4;padding:48px 0 24px}
 .foot ul{list-style:none;margin:0;padding:0}
 .foot a{text-decoration:none}
 .foot a:hover{color:var(--gold-2)}
-.foot__bot{border-top:1px solid rgba(255,255,255,.1);padding-top:16px;font-size:.82rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.foot__bot{border-top:1px solid rgba(255,255,255,.1);padding-top:16px;font-size:.82rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.foot__policy{
+  color:var(--gold-2);font-weight:700;text-decoration:none;
+  border-bottom:1px solid rgba(227,200,107,.45);padding-bottom:1px;
+}
+.foot__policy:hover{color:#fff;border-color:#fff}
+body.policy-open{overflow:hidden}
+.policy-modal{
+  position:fixed;inset:0;z-index:140;
+  display:none;align-items:center;justify-content:center;
+  padding:28px 16px;
+}
+.policy-modal.is-on{display:flex !important}
+.policy-modal__backdrop{
+  position:absolute;inset:0;
+  background:rgba(11,23,48,.62);
+  backdrop-filter:blur(4px);
+}
+.policy-modal__box{
+  position:relative;z-index:1;
+  width:min(760px,100%);
+  max-width:100%;
+  min-width:0;
+  max-height:min(92vh,880px);
+  overflow:auto;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:0 28px 70px rgba(11,23,48,.28);
+  padding:28px 26px 26px;
+}
+.policy-modal__x{
+  position:absolute;top:12px;right:12px;z-index:2;
+  width:40px;height:40px;border-radius:50%;
+  background:#fff;color:var(--navy);
+  border:1px solid var(--line);
+  font-size:1.25rem;line-height:1;font-weight:500;
+}
+.policy-modal__x:hover{border-color:var(--gold);color:var(--gold)}
+.policy-modal__hd{padding-right:44px;margin-bottom:18px}
+.policy-modal__hd h2{margin:0 0 10px;font-size:clamp(1.35rem,3vw,1.85rem)}
+.policy-modal__hd p{color:var(--muted);font-size:.92rem;line-height:1.55;max-width:58ch}
+.policy-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 18px;
+}
+.policy-card{
+  margin:0;padding:16px 16px 15px;
+  background:#fff;border:1px solid var(--line);border-radius:16px;
+  box-shadow:0 8px 22px rgba(11,23,48,.06);
+}
+.policy-card b{
+  display:block;color:var(--navy);font-size:.92rem;letter-spacing:-.02em;margin:0 0 8px;
+}
+.policy-card p{margin:0;color:var(--muted);font-size:.84rem;line-height:1.5}
+.policy-card__tag{
+  display:inline-block;margin-bottom:8px;
+  font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--gold);background:rgba(201,162,39,.12);
+  padding:4px 9px;border-radius:999px;
+}
+.policy-card--place{
+  grid-column:1 / -1;
+  border-color:rgba(31,122,77,.28);
+  background:#F4FBF6;
+}
+.policy-modal__act{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.policy-modal__act .btn{white-space:normal;text-align:center}
+@media (max-width:700px){
+  .policy-grid{grid-template-columns:1fr}
+  .policy-modal__box{padding:22px 18px 20px}
+}
 
 .wa-dock{
   position:fixed;right:16px;bottom:16px;z-index:90;
@@ -713,7 +928,7 @@ footer{background:var(--navy);color:#d9d3c4;padding:48px 0 24px}
 .wa-float--ch{background:var(--navy);box-shadow:0 12px 28px rgba(11,23,48,.28)}
 .wa-float::after{display:none}
 .to-top{
-  position:fixed;right:16px;bottom:132px;z-index:85;
+  position:fixed;right:16px;bottom:190px;z-index:85;
   width:44px;height:44px;border-radius:50%;
   background:var(--navy);color:#fff;
   border:1px solid rgba(227,200,107,.4);
@@ -725,9 +940,75 @@ footer{background:var(--navy);color:#d9d3c4;padding:48px 0 24px}
 }
 .to-top.is-on{opacity:1;pointer-events:auto;transform:none}
 .to-top:hover{background:var(--navy-2);color:var(--gold-2)}
+.jan-float{
+  position:fixed !important;
+  right:20px !important;
+  bottom:110px !important;
+  top:auto !important;
+  left:auto !important;
+  z-index:9999 !important;
+  display:flex;align-items:center;gap:10px;
+  max-width:min(280px,calc(100vw - 40px));
+  padding:7px 14px 7px 7px;
+  border-radius:999px;
+  background:rgba(255,253,248,.94);
+  border:1px solid rgba(11,23,48,.1);
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
+  backdrop-filter:blur(12px);
+  text-decoration:none;color:inherit;cursor:pointer;
+  transition:transform .18s,box-shadow .2s;
+}
+.jan-float:hover,.jan-float:focus-visible{
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(11,23,48,.2);
+}
+.jan-float__photo{
+  position:relative;flex:none;
+  width:48px;height:48px;margin:0;
+}
+.jan-float__photo img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;
+  border-radius:50%;
+  border:2px solid #25D366;
+  box-shadow:0 0 0 3px rgba(37,211,102,.18);
+}
+.jan-float__live{
+  position:absolute;right:1px;bottom:1px;
+  width:11px;height:11px;border-radius:50%;
+  background:#25D366;border:2px solid #fff;
+  box-shadow:0 0 0 0 rgba(37,211,102,.45);
+  animation:janPulse 1.8s ease-out infinite;
+}
+.jan-float__txt{min-width:0;line-height:1.2;white-space:nowrap}
+.jan-float__txt b{
+  display:block;font-size:.82rem;font-weight:800;color:var(--navy);
+  letter-spacing:-.01em;
+}
+.jan-float__txt small{
+  display:flex;align-items:center;gap:6px;
+  margin:3px 0 0;font-size:.68rem;font-weight:700;color:var(--ok);
+}
+.jan-float__dot{
+  width:7px;height:7px;border-radius:50%;background:#25D366;flex:none;
+}
+.jan-float__txt em{
+  display:block;margin-top:2px;
+  font-style:normal;font-size:.72rem;font-weight:800;color:var(--muted);
+  letter-spacing:.01em;
+}
+@keyframes janPulse{
+  0%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}
+  70%{box-shadow:0 0 0 6px rgba(37,211,102,0)}
+  100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
+}
+@media (max-width:700px){
+  .jan-float{padding:4px 11px 4px 4px;gap:8px;max-width:none}
+  .jan-float__photo{width:42px;height:42px}
+  .jan-float__city,.jan-float__txt small,.jan-float__txt em{display:none}
+}
 
 @media (prefers-reduced-motion:reduce){
-  .float-card,.float-chip,.flags__track{animation:none}
+  .float-card,.float-chip,.flags__track,.jan-float__live{animation:none}
   html{scroll-behavior:auto}
   .slide{transition:none}
   .flags__viewport{
@@ -755,7 +1036,12 @@ footer{background:var(--navy);color:#d9d3c4;padding:48px 0 24px}
   .hdr-search{max-width:none;flex:1 1 140px}
   .burger{display:block}
   .cat-grid{grid-template-columns:repeat(2,1fr)}
-  .slide,.logi-grid,.contact__in,.cta-band,.foot{grid-template-columns:1fr}
+  .slide,.logi-grid,.cta-band,.foot{grid-template-columns:1fr}
+  .contact__in{
+    grid-template-columns:1fr;
+    grid-template-areas:"aside" "main";
+  }
+  .agent-card{position:static;top:auto}
   .cta-band{flex-direction:column;align-items:flex-start}
   .mode-bar{padding:8px 20px 22px}
   .cta-band__act,.cta-band .wa-pair{align-items:flex-start;justify-content:flex-start}
@@ -830,10 +1116,24 @@ footer{background:var(--navy);color:#d9d3c4;padding:48px 0 24px}
 }
 .pay-opt:hover{border-color:rgba(201,162,39,.55)}
 .pay-opt--om.is-on{border-color:#ff7900;background:#fff6ee;box-shadow:0 0 0 3px rgba(255,121,0,.16)}
+.pay-opt--pickup.is-on{border-color:#1F7A4D;background:#eef8f2;box-shadow:0 0 0 3px rgba(31,122,77,.16)}
 .pay-opt--wave.is-on{border-color:#1c64f2;background:#eef4ff;box-shadow:0 0 0 3px rgba(28,100,242,.16)}
 .pay-opt__t{display:block;font-weight:800;font-size:.88rem;color:var(--navy)}
 .pay-opt__d{display:block;font-size:.78rem;color:var(--muted);margin-top:3px}
+.pay-form-t{margin:0;font-size:.82rem;font-weight:800;color:var(--navy)}
+.pay-goods{margin:0;font-size:.76rem;line-height:1.45;color:var(--muted)}
+.pay-field{display:flex;flex-direction:column;gap:5px;font-size:.78rem;font-weight:800;color:var(--navy)}
+.pay-field input{
+  width:100%;height:42px;border:1px solid var(--line);border-radius:12px;
+  background:#fff;padding:0 12px;font-weight:600;font-size:.88rem;
+}
+.pay-field input:focus{outline:2px solid var(--gold);outline-offset:1px}
 .pay-pickup{margin:0;font-size:.78rem;line-height:1.45;color:var(--muted)}
+.pay-delivery{
+  margin:0;font-size:.76rem;line-height:1.5;color:var(--navy);
+  padding:10px 12px;background:rgba(31,122,77,.08);
+  border-radius:12px;border-left:3px solid #1F7A4D;font-weight:600;
+}
 .pay-wa{width:100%;text-align:center;white-space:normal}
 .shop-card .pay-panel{margin-top:8px}
 .shop-card .btn--pay{align-self:stretch}
@@ -873,7 +1173,7 @@ body.air31-open{overflow:hidden}
   gap:22px;align-items:start;
 }
 .air31-zoom{
-  margin:0;overflow:hidden;border-radius:16px;
+  position:relative;margin:0;overflow:hidden;border-radius:16px;
   background:#fff;border:1px solid var(--line);
   cursor:zoom-in;height:340px;
   display:flex;align-items:center;justify-content:center;
@@ -1274,10 +1574,10 @@ body.air31-open{overflow:hidden}
     <div class="sec__hd sec__hd--c">
       <div class="eyebrow" data-i18n="shop_eye">Catalogue Pro</div>
       <h2 data-i18n="shop_title">Nos Catégories de Produits</h2>
-      <p class="lead" data-i18n="shop_sub">Choisissez une gamme pour consulter les tarifs gros / détail et commander via Orange Money ou Wave.</p>
+      <p class="lead" data-i18n="shop_sub">Choisissez une gamme pour consulter les tarifs gros / détail. Paiement de la marchandise via Orange Money, ou au retrait.</p>
     </div>
     <div class="cat-grid">
-      <a class="shop-card" href="#prod-verre-hd" data-filter="verre">
+      <article class="shop-card" href="#prod-verre-hd" data-filter="verre" data-kind="verre">
         <figure class="shop-card__visual">
           <span class="shop-card__badge" data-i18n="sc1_badge">Protection écran</span>
           <img src="V2.png" alt="Verres Trempés" style="width: 100%; height: 200px; object-fit: contain; background: #ffffff; padding: 10px;">
@@ -1288,8 +1588,8 @@ body.air31-open{overflow:hidden}
           <p class="shop-card__price" data-i18n-html="sc1_px">Détail : <b>1 500 F CFA</b> · Gros revendeur : <b>750 F CFA</b></p>
           <span class="btn btn--gold btn--sm shop-card__cta" data-i18n="sc_cta">Découvrir la gamme</span>
         </div>
-      </a>
-      <a class="shop-card" href="#prod-coque" data-filter="coque" data-sub="airbag">
+      </article>
+      <article class="shop-card" href="#prod-coque" data-filter="coque" data-sub="airbag" data-kind="coque">
         <figure class="shop-card__visual">
           <span class="shop-card__badge" data-i18n="sc2_badge">Coques</span>
           <img src="coque1.png" alt="Coques Antichoc" style="width: 100%; height: 200px; object-fit: contain; background: #fff; padding: 10px;" onerror="this.src='coque1.png'">
@@ -1300,8 +1600,8 @@ body.air31-open{overflow:hidden}
           <p class="shop-card__price" data-i18n-html="sc2_px">Détail : <b>3 000 F CFA</b> · Gros revendeur : <b>1 500 F CFA</b></p>
           <span class="btn btn--gold btn--sm shop-card__cta" data-i18n="sc_cta">Découvrir la gamme</span>
         </div>
-      </a>
-      <a class="shop-card" href="#prod-cable" data-filter="power">
+      </article>
+      <article class="shop-card" href="#prod-cable" data-filter="power" data-kind="cable" data-sub="tresse">
         <figure class="shop-card__visual">
           <span class="shop-card__badge" data-i18n="sc3_badge">Énergie</span>
           <img src="bloc-charge.jpg" alt="Câbles et chargeurs rapides" style="width: 100%; height: 200px; object-fit: contain; background: #fff; padding: 10px;">
@@ -1312,8 +1612,8 @@ body.air31-open{overflow:hidden}
           <p class="shop-card__price" data-i18n-html="sc3_px">Détail : <b>4 500 F CFA</b> · Gros revendeur : <b>2 500 F CFA</b></p>
           <span class="btn btn--gold btn--sm shop-card__cta" data-i18n="sc_cta">Découvrir la gamme</span>
         </div>
-      </a>
-      <a class="shop-card shop-card--air31" id="cat-air31" href="#prod-ecouteurs" data-filter="audio" data-sub="air31">
+      </article>
+      <article class="shop-card shop-card--air31" id="cat-air31" href="#prod-ecouteurs" data-filter="audio" data-sub="air31" data-kind="audio">
         <figure class="shop-card__visual">
           <span class="shop-card__badge" data-i18n="sc4_badge">Audio</span>
           <span class="shop-card__stock" data-i18n="sc_stock">En stock / Arrivage</span>
@@ -1324,7 +1624,7 @@ body.air31-open{overflow:hidden}
           <p data-i18n="sc4_teaser">Design transparent, affichage LED, Bluetooth 5.3, son stéréo haute fidélité.</p>
           <span class="btn btn--gold btn--sm shop-card__cta" data-i18n="sc4_cta">Voir le produit &amp; couleurs</span>
         </div>
-      </a>
+      </article>
     </div>
   </div>
 </section>
@@ -1334,7 +1634,7 @@ body.air31-open{overflow:hidden}
     <div class="sec__hd sec__hd--c">
       <div class="eyebrow" data-i18n="pole_eye">Pôle Accessoires & Téléphonie</div>
       <h2 data-i18n="pole_title">Deux espaces : gros revendeurs ou boutique</h2>
-      <p class="lead" data-i18n="pole_sub">Choisissez votre mode d’achat. Paiement Mobile Money : Orange Money ou Wave. Retrait à la boutique Derra Global Trading, Quartier Toudoubweogo.</p>
+      <p class="lead" data-i18n="pole_sub">Choisissez votre mode d’achat. Paiement de la marchandise via Orange Money (ou au retrait). Livraison locale gérée sur place avec Janvier.</p>
       <p class="filter-empty" id="filterEmpty" data-i18n="filter_empty">Aucun produit ne correspond à votre recherche.</p>
     </div>
     <div class="verre-demo verre-demo--prod" id="demo-produits">
@@ -1678,10 +1978,10 @@ body.air31-open{overflow:hidden}
               </div>
             </div>
             <div class="finish-box">
-              <p class="finish-box__t" data-i18n="air31_pay_t">Paiement Mobile Money</p>
+              <p class="finish-box__t" data-i18n="air31_pay_t">Paiement de la marchandise</p>
               <ul>
-                <li>🟠 <strong>Orange Money Burkina :</strong> +226 07 55 47 90</li>
-                <li>🔵 <strong>Wave Burkina :</strong> +226 07 55 47 90</li>
+                <li>🟠 <strong>Orange Money Burkina :</strong> +226 07 55 47 90 (prix de la marchandise uniquement)</li>
+                <li data-i18n="pay_pickup_opt">💵 Paiement au retrait possible</li>
                 <li data-i18n="air31_pick">📍 Retrait boutique : Toudoubwéogo / Polesgo</li>
               </ul>
             </div>
@@ -1710,7 +2010,7 @@ body.air31-open{overflow:hidden}
     <article class="space space--detail" id="espace-detail">
       <div class="eyebrow" data-i18n="det_eye">Espace Boutique Particuliers</div>
       <h2 data-i18n="det_title">Prix à la pièce · pose sur place · retrait immédiat</h2>
-      <p class="lead" data-i18n="det_sub">Boutique Ouagadougou : paiement Orange Money ou Wave, pose de verre offerte, retrait Quartier Toudoubweogo.</p>
+      <p class="lead" data-i18n="det_sub">Boutique Ouagadougou : paiement Orange Money (ou au retrait), pose de verre offerte, retrait point relais ou livraison à convenir avec Janvier.</p>
       <div class="pole-grid" style="margin-top:22px">
         <article class="range" data-kind="coque" data-sub="airbag">
           <div class="range-layout">
@@ -2060,6 +2360,15 @@ body.air31-open{overflow:hidden}
         </figure>
         <b data-i18n="shop_pin_t">Boutique Ouagadougou</b>
         <p data-i18n="shop_pin_d">Localisation et horaires : contactez Janvier au +226 07 55 47 90. Retrait immédiat, pose de verre offerte, test de charge sur place.</p>
+        <aside class="agent-host">
+          <figure class="agent-host__photo">
+            <img src="assets/janvier.jpg" alt="Janvier Rouamba" width="88" height="88">
+          </figure>
+          <div>
+            <b data-i18n="jan_host_t">Accueil &amp; service sur place</b>
+            <p data-i18n="jan_host_d">Janvier vous accueille directement au point relais pour vos retraits, tests de matériel et éventuels échanges sous garantie.</p>
+          </div>
+        </aside>
         <div class="wa-pair" style="margin-top:10px">
           <a class="btn btn--bf" href="https://wa.me/22607554790?text=Bonjour%20Agence%20Derra%20Global%20Trading%20Ouaga%2C%20je%20vous%20contacte%20depuis%20le%20site%20web%20pour%20des%20informations%20sur%20vos%20produits%20et%20le%20fret." target="_blank" rel="noopener noreferrer" data-i18n="btn_jan">WhatsApp Janvier · +226 07 55 47 90</a>
         </div>
@@ -2176,6 +2485,7 @@ body.air31-open{overflow:hidden}
       <div class="fret-cta">
         <a class="btn btn--gold" href="https://wa.me/41765761672?text=Bonjour%20Derra%20Global%20Trading%2C%20je%20souhaite%20une%20cotation%20logistique%20Axe%20Guangzhou%20Ouagadougou." target="_blank" rel="noopener noreferrer" data-i18n="fret_cta">Demander une cotation logistique sur WhatsApp</a>
       </div>
+      <p class="fret-local" data-i18n="fret_local">🛵 Livraison urbaine à Ouagadougou : Retrait gratuit à notre point relais (Toudoubwéogo / Polesgo). Pour une livraison par coursier à domicile ou en boutique, les frais sont fixés selon votre quartier et réglés directement à la réception avec Janvier.</p>
     </div>
   </div>
 </section>
@@ -2300,7 +2610,7 @@ body.air31-open{overflow:hidden}
       <p class="lead" data-i18n="co_sub">Deux pôles : Genève pour la coordination internationale et le fret ; Ouagadougou pour le stock local et les expéditions sous-régionales.</p>
     </div>
     <div class="contact__in">
-      <div>
+      <div class="contact__main">
         <div class="contact__card">
           <div class="contact__ic">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.5a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9z"/></svg>
@@ -2312,20 +2622,6 @@ body.air31-open{overflow:hidden}
             <p><a href="https://wa.me/41765761672?text=Bonjour%20Derra%20Global%20Trading%2C%20Coordination%20%26%20Logistique%20Internationale%20(Gen%C3%A8ve)%20%E2%80%94%20devis%20import%20usine%2C%20conteneurs%20et%20fret%20maritime%2Fa%C3%A9rien%20group%C3%A9." target="_blank" rel="noopener noreferrer">+41 76 576 16 72</a></p>
             <div class="wa-pair">
               <a class="btn btn--sm btn--ch" href="https://wa.me/41765761672?text=Bonjour%20Derra%20Global%20Trading%2C%20Coordination%20%26%20Logistique%20Internationale%20(Gen%C3%A8ve)%20%E2%80%94%20devis%20import%20usine%2C%20conteneurs%20et%20fret%20maritime%2Fa%C3%A9rien%20group%C3%A9." target="_blank" rel="noopener noreferrer" data-i18n="btn_wa_ge">WhatsApp Direction Genève</a>
-            </div>
-          </div>
-        </div>
-        <div class="contact__card">
-          <div class="contact__ic">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.5a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9z"/></svg>
-          </div>
-          <div>
-            <h3 data-i18n="co_bf_t">🇧🇫 Pôle Distribution &amp; Stock Local</h3>
-            <p class="contact__role" data-i18n="co_bf_city">Ville : Ouagadougou, Burkina Faso (Agence Ouaga)</p>
-            <p data-i18n="co_bf_r">Rôle : Retrait boutique, stocks disponibles, expéditions express sous-régionales (Accra, Niamey, Douala, Abidjan, Bamako, Lomé, Cotonou, Dakar, Conakry).</p>
-            <p><a href="https://wa.me/22607554790?text=Bonjour%20Agence%20Derra%20Global%20Trading%20Ouaga%2C%20je%20vous%20contacte%20depuis%20le%20site%20web%20pour%20des%20informations%20sur%20vos%20produits%20et%20le%20fret." target="_blank" rel="noopener noreferrer">+226 07 55 47 90</a></p>
-            <div class="wa-pair">
-              <a class="btn btn--sm btn--bf" href="https://wa.me/22607554790?text=Bonjour%20Agence%20Derra%20Global%20Trading%20Ouaga%2C%20je%20vous%20contacte%20depuis%20le%20site%20web%20pour%20des%20informations%20sur%20vos%20produits%20et%20le%20fret." target="_blank" rel="noopener noreferrer" data-i18n="btn_wa_bf">WhatsApp Agence Ouaga</a>
             </div>
           </div>
         </div>
@@ -2355,24 +2651,49 @@ body.air31-open{overflow:hidden}
             <a class="btn btn--maps" href="https://www.google.com/maps/search/?api=1&query=CSPS+De+Polesgo+Toudoubweogo+Ouagadougou" target="_blank" rel="noopener noreferrer" data-i18n="co_maps">Ouvrir l'itinéraire Google Maps</a>
           </div>
         </div>
+        <form class="form" id="quoteForm">
+          <h3 data-i18n="form_t">Demande de devis</h3>
+          <input type="text" name="name" required data-i18n-ph="ph_name" placeholder="Votre nom">
+          <select name="cat" aria-label="Catalogue">
+            <option value="Téléphonie & Protection" data-i18n="opt_tel">Téléphonie & Protection</option>
+            <option value="Tech" data-i18n="opt_tech">Tech & électronique</option>
+            <option value="Accessoires" data-i18n="opt_acc">Accessoires</option>
+            <option value="Sneakers & mode" data-i18n="opt_snk">Sneakers & mode</option>
+          </select>
+          <select name="dest" aria-label="Contact">
+            <option value="ch" data-i18n="opt_dest_ch">Coordination Genève — import usine / fret</option>
+            <option value="bf" data-i18n="opt_dest_bf">Agence Ouaga — boutique / distribution</option>
+          </select>
+          <textarea name="message" required data-i18n-ph="ph_msg" placeholder="Volumes, produits, délai souhaité…"></textarea>
+          <button class="btn btn--navy" type="submit" data-i18n="form_btn">Envoyer via WhatsApp</button>
+          <small data-i18n="form_note">Le message s’ouvre dans WhatsApp, prêt à être envoyé.</small>
+        </form>
       </div>
-      <form class="form" id="quoteForm">
-        <h3 data-i18n="form_t">Demande de devis</h3>
-        <input type="text" name="name" required data-i18n-ph="ph_name" placeholder="Votre nom">
-        <select name="cat" aria-label="Catalogue">
-          <option value="Téléphonie & Protection" data-i18n="opt_tel">Téléphonie & Protection</option>
-          <option value="Tech" data-i18n="opt_tech">Tech & électronique</option>
-          <option value="Accessoires" data-i18n="opt_acc">Accessoires</option>
-          <option value="Sneakers & mode" data-i18n="opt_snk">Sneakers & mode</option>
-        </select>
-        <select name="dest" aria-label="Contact">
-          <option value="ch" data-i18n="opt_dest_ch">Coordination Genève — import usine / fret</option>
-          <option value="bf" data-i18n="opt_dest_bf">Agence Ouaga — boutique / distribution</option>
-        </select>
-        <textarea name="message" required data-i18n-ph="ph_msg" placeholder="Volumes, produits, délai souhaité…"></textarea>
-        <button class="btn btn--navy" type="submit" data-i18n="form_btn">Envoyer via WhatsApp</button>
-        <small data-i18n="form_note">Le message s’ouvre dans WhatsApp, prêt à être envoyé.</small>
-      </form>
+      <aside class="contact__aside">
+        <article class="agent-card">
+          <span class="agent-card__badge" data-i18n="jan_hub">🇧🇫 Pôle Distribution &amp; Stock Local (Ouagadougou)</span>
+          <figure class="agent-card__photo">
+            <img src="assets/janvier.jpg" alt="Janvier Rouamba, responsable local à Ouagadougou" width="320" height="400">
+          </figure>
+          <div class="agent-card__info">
+            <h3>Janvier Rouamba</h3>
+            <p class="agent-card__role" data-i18n="jan_role">Responsable Logistique &amp; Distribution</p>
+            <p class="agent-card__meta" data-i18n="jan_pick">Lieu de retrait : Toudoubwéogo / Polesgo</p>
+            <p class="agent-card__meta" data-i18n="jan_stock">Stocks disponibles &amp; expéditions régionales (sous-région)</p>
+            <p class="agent-card__phone"><a href="tel:+22607554790">+226 07 55 47 90</a></p>
+            <div class="agent-card__act">
+              <a class="btn btn--call" href="tel:+22607554790">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.5a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9z"/></svg>
+                <span data-i18n="jan_call">Appeler</span>
+              </a>
+              <a class="btn btn--bf" href="https://wa.me/22607554790" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span data-i18n="jan_wa">WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </aside>
     </div>
   </div>
 </section>
@@ -2397,6 +2718,7 @@ body.air31-open{overflow:hidden}
           <li><a href="#telephonie" data-i18n="nav_tel">Téléphonie</a></li>
           <li><a href="#fonctionnement" data-i18n="nav_how">Fonctionnement</a></li>
           <li><a href="#logistique" data-i18n="nav_log">Garanties & Logistique</a></li>
+          <li><a href="#politique-retour" class="js-policy-open" data-i18n="foot_return">Politique de Retour &amp; Garantie</a></li>
         </ul>
       </div>
       <div>
@@ -2414,6 +2736,7 @@ body.air31-open{overflow:hidden}
     </div>
     <div class="foot__bot">
       <span>© 2026 Derra Global Trading</span>
+      <a href="#politique-retour" class="foot__policy js-policy-open" data-i18n="foot_return">Politique de Retour &amp; Garantie</a>
       <span data-i18n="foot_rights">Tous droits réservés.</span>
     </div>
   </div>
@@ -2431,6 +2754,57 @@ body.air31-open{overflow:hidden}
   </a>
 </div>
 
+<div class="policy-modal" id="policyModal" hidden>
+  <div class="policy-modal__backdrop" data-policy-close></div>
+  <div class="policy-modal__box" role="dialog" aria-modal="true" aria-labelledby="policyTitle">
+    <button type="button" class="policy-modal__x" id="policyClose" aria-label="Fermer">✕</button>
+    <div class="policy-modal__hd">
+      <div class="eyebrow" data-i18n="pol_eye">Retour &amp; garantie · 7 jours</div>
+      <h2 id="policyTitle" data-i18n="pol_title">Politique de Retour &amp; Garantie</h2>
+      <p data-i18n="pol_intro">Les échanges sont traités gratuitement en boutique à Ouagadougou. Signalez tout défaut technique d’usine dans les 7 jours suivant la réception.</p>
+    </div>
+    <div class="policy-grid">
+      <article class="policy-card">
+        <span class="policy-card__tag" data-i18n="pol_delay_tag">7 jours</span>
+        <b data-i18n="pol_delay_t">Délais de signalement</b>
+        <p data-i18n="pol_delay_d">7 jours à compter de la réception pour tout défaut technique d’usine.</p>
+      </article>
+      <article class="policy-card">
+        <span class="policy-card__tag" data-i18n="pol_audio_tag">Audio &amp; énergie</span>
+        <b data-i18n="pol_audio_t">Écouteurs Air31 TWS et chargeurs / câbles</b>
+        <p data-i18n="pol_audio_d">Échange immédiat au point relais contre un article neuf en cas de panne d’origine constatée (boîte et accessoires d’origine requis).</p>
+      </article>
+      <article class="policy-card">
+        <span class="policy-card__tag" data-i18n="pol_glass_tag">Verres trempés</span>
+        <b data-i18n="pol_glass_t">Vérification à la remise</b>
+        <p data-i18n="pol_glass_d">Vérification à la remise en main propre. Non repris si le film plastique protecteur a déjà été retiré ou posé.</p>
+      </article>
+      <article class="policy-card">
+        <span class="policy-card__tag" data-i18n="pol_case_tag">Coques</span>
+        <b data-i18n="pol_case_t">Erreur de modèle</b>
+        <p data-i18n="pol_case_d">Échange sous 48 h si erreur de modèle.</p>
+      </article>
+      <article class="policy-card policy-card--place">
+        <span class="policy-card__tag" data-i18n="pol_place_tag">Ouagadougou</span>
+        <b data-i18n="pol_place_t">Lieu de traitement</b>
+        <p data-i18n="pol_place_d">Directement auprès de l’agence à Ouagadougou (point relais Toudoubwéogo / Polesgo ou par contact WhatsApp au +226 07 55 47 90).</p>
+      </article>
+    </div>
+    <aside class="agent-host">
+      <figure class="agent-host__photo">
+        <img src="assets/janvier.jpg" alt="Janvier Rouamba" width="88" height="88">
+      </figure>
+      <div>
+        <b data-i18n="jan_host_t">Accueil &amp; service sur place</b>
+        <p data-i18n="jan_host_d">Janvier vous accueille directement au point relais pour vos retraits, tests de matériel et éventuels échanges sous garantie.</p>
+      </div>
+    </aside>
+    <div class="policy-modal__act">
+      <a class="btn btn--bf" href="https://wa.me/22607554790?text=Bonjour%20Agence%20Derra%20Global%20Trading%20Ouaga%2C%20je%20souhaite%20signaler%20un%20d%C3%A9faut%20ou%20demander%20un%20%C3%A9change%20dans%20le%20cadre%20de%20la%20politique%20de%20retour%20(7%20jours)." target="_blank" rel="noopener noreferrer" data-i18n="pol_wa">Signaler un défaut sur WhatsApp</a>
+    </div>
+  </div>
+</div>
+
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Aperçu produit">
   <button type="button" class="lb__x" id="lbClose" aria-label="Fermer">✕</button>
   <button type="button" class="lb__nav lb__prev" id="lbPrev" aria-label="Image précédente">‹</button>
@@ -2438,7 +2812,7 @@ body.air31-open{overflow:hidden}
   <img id="lbImg" alt="">
 </div>
 
-<div class="air31-modal" id="air31Modal" hidden>
+<div class="air31-modal" id="air31Modal" data-kind="audio" data-sub="air31" hidden>
   <div class="air31-modal__backdrop" data-air31-close></div>
   <div class="air31-modal__box" role="dialog" aria-modal="true" aria-labelledby="air31ModalTitle">
     <button type="button" class="air31-modal__x" id="air31Close" aria-label="Fermer">✕</button>
@@ -2446,6 +2820,9 @@ body.air31-open{overflow:hidden}
       <div class="air31-modal__gallery">
         <figure class="air31-zoom" id="air31Zoom">
           <img id="air31Main" src="air31-1.jpg" alt="Écouteurs Air31 TWS Crystal LED — Noir">
+          <a class="share-fab" id="air31Share" href="https://api.whatsapp.com/send?text=" target="_blank" rel="noopener noreferrer" title="Partager sur WhatsApp" aria-label="Partager sur WhatsApp" data-i18n-title="share_wa">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
         </figure>
         <div class="air31-thumbs" id="air31Thumbs">
           <button type="button" class="is-on" data-src="air31-1.jpg" data-color="Noir" aria-label="Noir">
@@ -2487,12 +2864,12 @@ body.air31-open{overflow:hidden}
         </div>
         <div class="air31-pay">
           <p data-i18n="pay_om_t">🟠 Orange Money Burkina</p>
-          <small data-i18n="pay_om_d">Envoyer le montant au +226 07 55 47 90</small>
-          <p data-i18n="pay_wave_t">🔵 Wave Burkina</p>
-          <small data-i18n="pay_wave_d">Envoyer le montant au +226 07 55 47 90</small>
+          <small data-i18n="pay_om_d">Envoyer uniquement le prix du produit au +226 07 55 47 90</small>
+          <p data-i18n="pay_pickup_t">💵 Paiement au retrait</p>
+          <small data-i18n="pay_pickup_d">Vous pouvez aussi régler la marchandise sur place.</small>
           <small data-i18n="air31_pick">Retrait : Boutique Toudoubweogo / Polesgo.</small>
         </div>
-        <a class="btn btn--bf" id="air31Wa" href="https://wa.me/22607554790?text=Bonjour%2C%20je%20souhaite%20commander%20les%20%C3%89couteurs%20Air31%20TWS" target="_blank" rel="noopener noreferrer" data-i18n="air31_wa">Commander sur WhatsApp</a>
+        <a class="btn btn--bf" id="air31Wa" href="https://wa.me/22607554790?text=Bonjour%2C%20je%20souhaite%20commander%20les%20%C3%89couteurs%20Air31%20TWS" target="_blank" rel="noopener noreferrer" data-i18n="air31_wa">Valider la commande</a>
       </div>
     </div>
   </div>
@@ -2540,7 +2917,7 @@ body.air31-open{overflow:hidden}
       h3_sub:'Sneakers, textiles et assortiments mode. Acheminement cargo sécurisé avec suivi d’expédition, puis dédouanement et retrait sécurisé à Ouagadougou.',
       cta_quote:'Demander un devis', cta_price:'Demander le catalogue prix', cta_pole:'Voir les catégories', cta_how:'Voir le fonctionnement', cta_log:'Garanties & logistique', cta_cat:'Voir les catalogues',
       shop_eye:'Catalogue Pro', shop_title:'Nos Catégories de Produits',
-      shop_sub:'Choisissez une gamme pour consulter les tarifs gros / détail et commander via Orange Money ou Wave.',
+      shop_sub:'Choisissez une gamme pour consulter les tarifs gros / détail. Paiement de la marchandise via Orange Money, ou au retrait.',
       sc1_badge:'Protection écran', sc1_t:'Protections d\'Écran &amp; Verres Trempés',
       sc1_d:'Verres 9D HD, Privacy anti-espion et films de protection pour Tecno, Infinix, Samsung et iPhone.',
       sc1_px:'Détail : <b>1 500 F CFA</b> · Gros revendeur : <b>750 F CFA</b>',
@@ -2561,8 +2938,8 @@ body.air31-open{overflow:hidden}
       sc4_px:'Détail : <b>5 000 F CFA</b> / unité · Offre spéciale : 2 pour <b>9 000 F CFA</b><br>Gros revendeur : <b>3 500 F CFA</b> (à partir de 10 pièces)',
       sc4_d1:'Prix détail : <b>5 000 F CFA</b> (Offre spéciale : 2 pour <b>9 000 F CFA</b>)',
       sc4_g1:'Prix gros revendeur : <b>3 500 F CFA</b> (à partir de 10 pièces)',
-      sc4_wa:'Commander / Payer (Orange Money &amp; Wave)',
-      air31_wa:'Commander sur WhatsApp',
+      sc4_wa:'Valider la commande',
+      air31_wa:'Valider la commande',
       air31_pick:'📍 Retrait boutique : Toudoubwéogo / Polesgo',
       air31_test:'Test audio garanti à la boutique.',
       air31_sheet_d:'Design Crystal transparent, affichage numérique LED du boîtier. Bluetooth 5.3, son stéréo haute fidélité, commandes tactiles. Autonomie jusqu\'à 5h par charge (20h avec boîtier).',
@@ -2578,7 +2955,7 @@ body.air31-open{overflow:hidden}
       air31_batt_t:'Autonomie',
       air31_audio_t:'Audio',
       air31_audio_d:'Son stéréo haute fidélité, commandes tactiles. Test audio garanti à la boutique.',
-      air31_pay_t:'Paiement Mobile Money',
+      air31_pay_t:'Paiement de la marchandise',
       sc_cta:'Découvrir la gamme', sc_soon:'Bientôt disponible',
       t1_t:'Fret aérien express & maritime sécurisé', t1_s:'Chine ➔ Burkina Faso',
       t2_t:'Dédouanement géré de bout en bout', t2_s:'Formalités prises en charge',
@@ -2593,14 +2970,14 @@ body.air31-open{overflow:hidden}
       cat_sub:'Volumes usine complémentaires. Gros via la Direction ; détail via la boutique Ouaga.',
       pole_eye:'Pôle Accessoires & Téléphonie',
       pole_title:'Deux espaces : gros revendeurs ou boutique',
-      pole_sub:'Choisissez votre mode d’achat. Paiement Mobile Money : Orange Money ou Wave. Retrait à la boutique Derra Global Trading, Quartier Toudoubweogo.',
+      pole_sub:'Choisissez votre mode d’achat. Paiement de la marchandise via Orange Money (ou au retrait). Livraison locale gérée sur place avec Janvier.',
       gros_eye:'Espace Revendeurs & Grossistes',
       gros_title:'Cartons de 50 / 100 pcs · prix usine revendeurs',
       gros_sub:'Tarifs par cartons et boîtes atelier pour commerçants. Commandes groupées : Direction Suisse ou Agence Ouaga.',
       gros_cta:'Commande groupée',
       det_eye:'Espace Boutique Particuliers',
       det_title:'Prix à la pièce · pose sur place · retrait immédiat',
-      det_sub:'Boutique Ouagadougou : paiement Orange Money ou Wave, pose de verre offerte, retrait Quartier Toudoubweogo.',
+      det_sub:'Boutique Ouagadougou : paiement Orange Money (ou au retrait), pose de verre offerte, retrait point relais ou livraison à convenir avec Janvier.',
       det_coque:'Modèles Tecno, Infinix, Samsung et iPhone. Retrait immédiat en boutique.',
       det_cable:'Type-C, Lightning, Micro-USB. Test de charge garanti sur place.',
       det_verre:'Vente au détail (Boutique Ouaga) : 1 500 F CFA / unité (Pose pro garantie offerte). Marques compatibles : Tecno, Infinix, Samsung, iPhone.',
@@ -2636,7 +3013,7 @@ body.air31-open{overflow:hidden}
       p5_t:'Verre Trempé Anti-Espion',
       p5_d:'Filtre de confidentialité 28°, verre trempé haute dureté 9H, anti-rayures, anti-traces. Tecno, Infinix, Samsung, iPhone.',
       p5_pack:'Protection Confidentialité 28°',
-      p5_wa:'Commander / Payer (Orange Money &amp; Wave)',
+      p5_wa:'Valider la commande',
       p5_eye:'Fiche technique',
       p5_spec_t:'Verre Anti-Espion · Confidentialité 28°',
       p5_h_t:'Dureté',
@@ -2692,6 +3069,7 @@ body.air31-open{overflow:hidden}
       fret_west_list:'<li>Abidjan, Bamako, Lomé, Cotonou, Dakar, Niamey</li><li>Expéditions directes ou relais au départ de Ouagadougou sur simple demande.</li>',
       fret_cta:'Demander une cotation logistique sur WhatsApp',
       fret_note:'Dédouanement inclus à l\'arrivée au Hub de Ouagadougou.',
+      fret_local:'🛵 Livraison urbaine à Ouagadougou : Retrait gratuit à notre point relais (Toudoubwéogo / Polesgo). Pour une livraison par coursier à domicile ou en boutique, les frais sont fixés selon votre quartier et réglés directement à la réception avec Janvier.',
       demo_home_t:'Démonstration &amp; Qualité en direct',
       demo_prod_t:'Test de résistance &amp; pose en atelier',
       how_eye:'Fonctionnement logistique', how_title:'Quatre étapes, de l’usine à Ouagadougou.',
@@ -2728,6 +3106,17 @@ body.air31-open{overflow:hidden}
       co_bf_t:'🇧🇫 Pôle Distribution &amp; Stock Local',
       co_bf_city:'Ville : Ouagadougou, Burkina Faso (Agence Ouaga)',
       co_bf_r:'Rôle : Retrait boutique, stocks disponibles, expéditions express sous-régionales (Accra, Niamey, Douala, Abidjan, Bamako, Lomé, Cotonou, Dakar, Conakry).',
+      jan_hub:'🇧🇫 Pôle Distribution &amp; Stock Local (Ouagadougou)',
+      jan_role:'Responsable Logistique &amp; Distribution',
+      jan_pick:'Lieu de retrait : Toudoubwéogo / Polesgo',
+      jan_stock:'Stocks disponibles &amp; expéditions régionales (sous-région)',
+      jan_call:'Appeler',
+      jan_wa:'WhatsApp',
+      jan_float_n:'Janvier',
+      jan_float_city:'(Ouaga)',
+      jan_float_s:'En ligne • Point Relais',
+      jan_host_t:'Accueil &amp; service sur place',
+      jan_host_d:'Janvier vous accueille directement au point relais pour vos retraits, tests de matériel et éventuels échanges sous garantie.',
       co_pick:'Boutique & retrait', co_pick_d:'Vente au détail en boutique à Ouagadougou, et retrait après dédouanement pour les cartons usine.',
       co_addr:'📍 Quartier Toudoubweogo (proximité CSPS De Polesgo / Paroisse Saint Jean), Ouagadougou',
       co_maps:'Ouvrir l\'itinéraire Google Maps',
@@ -2738,23 +3127,61 @@ body.air31-open{overflow:hidden}
       opt_dest_ch:'Coordination Genève — import usine / fret', opt_dest_bf:'Agence Ouaga — boutique / distribution',
       foot_about:'Coordination &amp; logistique depuis Genève. Vente en gros usine et distribution locale à Ouagadougou, avec expéditions sous-régionales.',
       foot_nav:'Navigation', foot_contact:'Contact', foot_city:'Genève · Ouagadougou', foot_rights:'Tous droits réservés.',
+      foot_return:'Politique de Retour &amp; Garantie',
+      pol_eye:'Retour &amp; garantie · 7 jours',
+      pol_title:'Politique de Retour &amp; Garantie',
+      pol_intro:'Les échanges sont traités gratuitement en boutique à Ouagadougou. Signalez tout défaut technique d’usine dans les 7 jours suivant la réception.',
+      pol_delay_tag:'7 jours',
+      pol_delay_t:'Délais de signalement',
+      pol_delay_d:'7 jours à compter de la réception pour tout défaut technique d’usine.',
+      pol_audio_tag:'Audio &amp; énergie',
+      pol_audio_t:'Écouteurs Air31 TWS et chargeurs / câbles',
+      pol_audio_d:'Échange immédiat au point relais contre un article neuf en cas de panne d’origine constatée (boîte et accessoires d’origine requis).',
+      pol_glass_tag:'Verres trempés',
+      pol_glass_t:'Vérification à la remise',
+      pol_glass_d:'Vérification à la remise en main propre. Non repris si le film plastique protecteur a déjà été retiré ou posé.',
+      pol_case_tag:'Coques',
+      pol_case_t:'Erreur de modèle',
+      pol_case_d:'Échange sous 48 h si erreur de modèle.',
+      pol_place_tag:'Ouagadougou',
+      pol_place_t:'Lieu de traitement',
+      pol_place_d:'Directement auprès de l’agence à Ouagadougou (point relais Toudoubwéogo / Polesgo ou par contact WhatsApp au +226 07 55 47 90).',
+      pol_wa:'Signaler un défaut sur WhatsApp',
       pdp_specs:'Caractéristiques techniques',
       pdp_desc:'Description &amp; garantie',
       pdp_qty:'Quantité',
-      pdp_wa:'Commander / Payer (Orange Money &amp; Wave)',
+      pdp_wa:'Valider la commande',
       pdp_wa_ch:'Direction Suisse',
       pdp_tiers:'Tarifs volume',
       pdp_view:'Voir la fiche détaillée',
       pdp_total:'Montant estimé',
       pdp_quote:'Sur devis',
-      pay_cta:'Commander / Payer (Orange Money &amp; Wave)',
-      pay_amount:'Montant à envoyer',
+      pay_cta:'Valider la commande',
+      pay_amount:'Montant marchandise (hors livraison)',
+      pay_goods:'Le paiement en ligne concerne uniquement le prix du produit, pas le transport.',
       pay_om_t:'🟠 Orange Money Burkina',
-      pay_om_d:'Envoyer le montant au +226 07 55 47 90',
+      pay_om_d:'Envoyer uniquement le prix du produit au +226 07 55 47 90',
+      pay_pickup_t:'💵 Paiement au retrait',
+      pay_pickup_d:'Régler la marchandise sur place au point relais.',
+      pay_pickup_opt:'💵 Paiement au retrait possible',
       pay_wave_t:'🔵 Wave Burkina',
       pay_wave_d:'Envoyer le montant au +226 07 55 47 90',
+      pay_name:'Nom et prénom',
+      pay_name_ph:'Nom et prénom',
+      pay_phone:'Numéro WhatsApp',
+      pay_phone_ph:'Ex. +226 07 00 00 00',
+      pay_om_ref:'Référence de transaction Orange Money',
+      pay_om_ref_ph:'Transaction ID / Réf SMS',
+      pay_om_ref_err:'Indiquez la référence Orange Money (Transaction ID / Réf SMS).',
+      pay_area:'Quartier / Ville (Ouagadougou)',
+      pay_area_ph:'Ex. Toudoubweogo, Ouagadougou',
+      pay_form_t:'Validation de commande',
       pay_pickup:'Lieu de retrait : Boutique Derra Global Trading, Quartier Toudoubweogo (proximité CSPS De Polesgo / Paroisse Saint Jean), Ouagadougou.',
-      pay_confirm:'Confirmer le paiement sur WhatsApp'
+      pay_confirm:'Confirmer la commande',
+      pay_delivery:'Livraison locale à Ouagadougou : Le prix payé en ligne concerne uniquement la marchandise. Le retrait au point relais est gratuit. En cas de livraison à domicile, le tarif de transport dépend de votre zone/quartier et sera convenu directement avec notre responsable local (Janvier) puis réglé à la réception.',
+      share_wa:'Partager sur WhatsApp',
+      share_wa_hook:'Regarde cet article disponible chez Derra Global Trading : ',
+      share_wa_avail:'Disponible à Ouagadougou'
     },
     en:{
       topbar:'International Coordination &amp; Logistics (Geneva) · Express air &amp; sea freight · Customs · Ouagadougou pickup',
@@ -2794,7 +3221,7 @@ body.air31-open{overflow:hidden}
       h3_sub:'Sneakers, textiles and fashion assortments. Secure cargo routing with shipment tracking, then customs clearance and secure pickup in Ouagadougou.',
       cta_quote:'Request a quote', cta_price:'Request the price catalog', cta_pole:'Browse categories', cta_how:'See how it works', cta_log:'Guarantees & logistics', cta_cat:'Browse catalogs',
       shop_eye:'Pro catalog', shop_title:'Our Product Categories',
-      shop_sub:'Choose a range to see wholesale / retail prices and order via Orange Money or Wave.',
+      shop_sub:'Choose a range to see wholesale / retail prices. Pay for the goods via Orange Money, or on pickup.',
       sc1_badge:'Screen protection', sc1_t:'Screen Protectors &amp; Tempered Glass',
       sc1_d:'9D HD glass, privacy anti-spy and protection films for Tecno, Infinix, Samsung and iPhone.',
       sc1_px:'Retail: <b>1,500 F CFA</b> · Wholesale: <b>750 F CFA</b>',
@@ -2815,8 +3242,8 @@ body.air31-open{overflow:hidden}
       sc4_px:'Retail: <b>5,000 F CFA</b> each · Special offer: 2 for <b>9,000 F CFA</b><br>Wholesale: <b>3,500 F CFA</b> (from 10 units)',
       sc4_d1:'Retail: <b>5,000 F CFA</b> (Special offer: 2 for <b>9,000 F CFA</b>)',
       sc4_g1:'Wholesale: <b>3,500 F CFA</b> (from 10 units)',
-      sc4_wa:'Order / Pay (Orange Money &amp; Wave)',
-      air31_wa:'Order on WhatsApp',
+      sc4_wa:'Place order',
+      air31_wa:'Place order',
       air31_pick:'📍 Shop pickup: Toudoubwéogo / Polesgo',
       air31_test:'In-store audio test guaranteed.',
       air31_sheet_d:'Transparent Crystal design, digital LED case display. Bluetooth 5.3, hi-fi stereo, touch controls. Up to 5h per charge (20h with the case).',
@@ -2832,7 +3259,7 @@ body.air31-open{overflow:hidden}
       air31_batt_t:'Battery',
       air31_audio_t:'Audio',
       air31_audio_d:'Hi-fi stereo sound, touch controls. In-store audio test guaranteed.',
-      air31_pay_t:'Mobile Money payment',
+      air31_pay_t:'Payment for the goods',
       sc_cta:'Discover the range', sc_soon:'Coming soon',
       t1_t:'Secure express air & sea freight', t1_s:'China ➔ Burkina Faso',
       t2_t:'End-to-end customs clearance', t2_s:'Formalities handled for you',
@@ -2847,14 +3274,14 @@ body.air31-open{overflow:hidden}
       cat_sub:'Additional factory volumes. Wholesale via HQ; retail via the Ouaga shop.',
       pole_eye:'Accessories & Telephony pole',
       pole_title:'Two spaces: wholesale resellers or the shop',
-      pole_sub:'Choose your buying mode. Mobile Money payment: Orange Money or Wave. Pickup at Derra Global Trading, Toudoubweogo.',
+      pole_sub:'Choose your buying mode. Pay for the goods via Orange Money (or on pickup). Local delivery arranged on site with Janvier.',
       gros_eye:'Resellers & Wholesalers space',
       gros_title:'50 / 100 pc cartons · factory reseller prices',
       gros_sub:'Carton and workshop-box pricing for traders. Group orders: Switzerland HQ or Ouaga agency.',
       gros_cta:'Group order',
       det_eye:'Retail shop space',
       det_title:'Unit prices · fitting on site · immediate pickup',
-      det_sub:'Ouagadougou shop: Orange Money or Wave payment, glass fitting included, pickup in Toudoubweogo.',
+      det_sub:'Ouagadougou shop: Orange Money (or pay on pickup), glass fitting included, free relay pickup or home delivery arranged with Janvier.',
       det_coque:'Tecno, Infinix, Samsung and iPhone models. Immediate in-store pickup.',
       det_cable:'Type-C, Lightning, Micro-USB. Charge test guaranteed on site.',
       det_verre:'Retail (Ouaga shop): 1,500 F CFA per unit (professional fitting guaranteed, included). Compatible brands: Tecno, Infinix, Samsung, iPhone.',
@@ -2890,7 +3317,7 @@ body.air31-open{overflow:hidden}
       p5_t:'Anti-spy tempered glass',
       p5_d:'28° privacy filter, 9H high-hardness tempered glass, scratch-resistant, anti-fingerprint. Tecno, Infinix, Samsung, iPhone.',
       p5_pack:'28° Privacy Protection',
-      p5_wa:'Order / Pay (Orange Money &amp; Wave)',
+      p5_wa:'Place order',
       p5_eye:'Technical sheet',
       p5_spec_t:'Anti-spy glass · 28° privacy',
       p5_h_t:'Hardness',
@@ -2946,6 +3373,7 @@ body.air31-open{overflow:hidden}
       fret_west_list:'<li>Abidjan, Bamako, Lomé, Cotonou, Dakar, Niamey</li><li>Direct shipments or relay from Ouagadougou on request.</li>',
       fret_cta:'Request a logistics quote on WhatsApp',
       fret_note:'Customs clearance included on arrival at the Ouagadougou Hub.',
+      fret_local:'🛵 Urban delivery in Ouagadougou: Free pickup at our relay point (Toudoubwéogo / Polesgo). For courier delivery to your home or shop, fees are set according to your neighborhood and paid on receipt with Janvier.',
       demo_home_t:'Live demonstration &amp; quality',
       demo_prod_t:'Durability test &amp; workshop fitting',
       how_eye:'Logistics process', how_title:'Four steps, from factory to Ouagadougou.',
@@ -2982,6 +3410,17 @@ body.air31-open{overflow:hidden}
       co_bf_t:'🇧🇫 Local distribution &amp; stock hub',
       co_bf_city:'City: Ouagadougou, Burkina Faso (Ouaga agency)',
       co_bf_r:'Role: Shop pickup, available stock, express sub-regional shipping (Accra, Niamey, Douala, Abidjan, Bamako, Lomé, Cotonou, Dakar, Conakry).',
+      jan_hub:'🇧🇫 Local distribution &amp; stock hub (Ouagadougou)',
+      jan_role:'Logistics &amp; Distribution Manager',
+      jan_pick:'Pickup: Toudoubwéogo / Polesgo',
+      jan_stock:'Available stock &amp; regional shipping (sub-region)',
+      jan_call:'Call',
+      jan_wa:'WhatsApp',
+      jan_float_n:'Janvier',
+      jan_float_city:'(Ouaga)',
+      jan_float_s:'Online • Pickup point',
+      jan_host_t:'Welcome &amp; on-site service',
+      jan_host_d:'Janvier welcomes you in person at the relay point for pickups, hardware tests and any warranty exchanges.',
       co_pick:'Shop & pickup', co_pick_d:'Retail in-store in Ouagadougou, and pickup after customs for factory cartons.',
       co_addr:'📍 Toudoubweogo district (near CSPS De Polesgo / Saint Jean Parish), Ouagadougou',
       co_maps:'Open Google Maps directions',
@@ -2992,23 +3431,61 @@ body.air31-open{overflow:hidden}
       opt_dest_ch:'Geneva coordination — factory import / freight', opt_dest_bf:'Ouaga agency — shop / distribution',
       foot_about:'Coordination &amp; logistics from Geneva. Factory wholesale and local distribution in Ouagadougou, with sub-regional shipping.',
       foot_nav:'Navigation', foot_contact:'Contact', foot_city:'Geneva · Ouagadougou', foot_rights:'All rights reserved.',
+      foot_return:'Return &amp; Warranty Policy',
+      pol_eye:'Returns &amp; warranty · 7 days',
+      pol_title:'Return &amp; Warranty Policy',
+      pol_intro:'Exchanges are handled free of charge in store in Ouagadougou. Report any factory technical defect within 7 days of receipt.',
+      pol_delay_tag:'7 days',
+      pol_delay_t:'Reporting window',
+      pol_delay_d:'7 days from receipt for any factory technical defect.',
+      pol_audio_tag:'Audio &amp; power',
+      pol_audio_t:'Air31 TWS earbuds and chargers / cables',
+      pol_audio_d:'Immediate exchange at the relay point for a new item if an original factory fault is confirmed (original box and accessories required).',
+      pol_glass_tag:'Tempered glass',
+      pol_glass_t:'Checked at handover',
+      pol_glass_d:'Checked when handed over in person. Not taken back once the protective plastic film has been removed or the glass fitted.',
+      pol_case_tag:'Cases',
+      pol_case_t:'Wrong model',
+      pol_case_d:'Exchange within 48 hours if the model is wrong.',
+      pol_place_tag:'Ouagadougou',
+      pol_place_t:'Where to process it',
+      pol_place_d:'Directly with the Ouagadougou agency (Toudoubwéogo / Polesgo relay point, or via WhatsApp at +226 07 55 47 90).',
+      pol_wa:'Report a defect on WhatsApp',
       pdp_specs:'Technical specifications',
       pdp_desc:'Description &amp; warranty',
       pdp_qty:'Quantity',
-      pdp_wa:'Order / Pay (Orange Money &amp; Wave)',
+      pdp_wa:'Place order',
       pdp_wa_ch:'Switzerland HQ',
       pdp_tiers:'Volume pricing',
       pdp_view:'View product details',
       pdp_total:'Estimated total',
       pdp_quote:'On request',
-      pay_cta:'Order / Pay (Orange Money &amp; Wave)',
-      pay_amount:'Amount to send',
+      pay_cta:'Place order',
+      pay_amount:'Merchandise amount (excluding delivery)',
+      pay_goods:'Online payment covers the product price only, not transport.',
       pay_om_t:'🟠 Orange Money Burkina',
-      pay_om_d:'Send the amount to +226 07 55 47 90',
+      pay_om_d:'Send the product price only to +226 07 55 47 90',
+      pay_pickup_t:'💵 Pay on pickup',
+      pay_pickup_d:'You can also pay for the goods at the relay point.',
+      pay_pickup_opt:'💵 Pay on pickup available',
       pay_wave_t:'🔵 Wave Burkina',
       pay_wave_d:'Send the amount to +226 07 55 47 90',
+      pay_name:'First and last name',
+      pay_name_ph:'First and last name',
+      pay_phone:'WhatsApp number',
+      pay_phone_ph:'e.g. +226 07 00 00 00',
+      pay_om_ref:'Orange Money transaction reference',
+      pay_om_ref_ph:'Transaction ID / SMS ref',
+      pay_om_ref_err:'Enter the Orange Money reference (Transaction ID / SMS ref).',
+      pay_area:'Neighbourhood / City (Ouagadougou)',
+      pay_area_ph:'e.g. Toudoubweogo, Ouagadougou',
+      pay_form_t:'Order validation',
       pay_pickup:'Pickup: Derra Global Trading shop, Toudoubweogo district (near CSPS De Polesgo / Saint Jean Parish), Ouagadougou.',
-      pay_confirm:'Confirm payment on WhatsApp'
+      pay_confirm:'Confirm order',
+      pay_delivery:'Local delivery in Ouagadougou: The amount paid online covers the goods only. Relay-point pickup is free. For home delivery, the transport fee depends on your area/neighbourhood and will be agreed directly with our local manager (Janvier), then paid on receipt.',
+      share_wa:'Share on WhatsApp',
+      share_wa_hook:'Check out this item at Derra Global Trading: ',
+      share_wa_avail:'Available in Ouagadougou'
     }
   };
 
@@ -3027,6 +3504,13 @@ body.air31-open{overflow:hidden}
     document.querySelectorAll('[data-i18n-ph]').forEach(el => {
       const k = el.getAttribute('data-i18n-ph');
       if(t[k] != null) el.setAttribute('placeholder', t[k]);
+    });
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+      const k = el.getAttribute('data-i18n-title');
+      if(t[k] != null){
+        el.setAttribute('title', t[k]);
+        el.setAttribute('aria-label', t[k]);
+      }
     });
     document.querySelectorAll('[data-lang]').forEach(btn => {
       btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
@@ -3572,10 +4056,151 @@ body.air31-open{overflow:hidden}
     const titleEl = card.querySelector('.range-col--buy h3') || card.querySelector('h3');
     return ((titleEl || {}).textContent || '').trim() || (KIND_FR[card.dataset.kind] || 'accessoire');
   }
-  function waPayText(card, method){
+  var WA_SHARE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
+  var SHARE_HASH = {
+    'coque|airbag':'prod-coque',
+    'cable|tresse':'prod-cable',
+    'verre|hd':'prod-verre-hd',
+    'verre|privacy':'prod-verre-privacy',
+    'chargeur|fast':'prod-chargeur',
+    'audio|air31':'prod-ecouteurs',
+    'power|':'prod-cable',
+    'verre|':'prod-verre-hd'
+  };
+  function productShareHash(card){
+    if(!card) return '#catalogue';
+    if(card.id === 'air31Modal' || card.id === 'cat-air31') return '#prod-ecouteurs';
+    if(card.id && card.id.indexOf('prod-') === 0) return '#' + card.id;
+    const href = (card.getAttribute && (card.getAttribute('href') || card.getAttribute('data-href'))) || '';
+    if(href.charAt(0) === '#') return href;
+    const kind = (card.dataset && (card.dataset.kind || card.dataset.filter)) || '';
+    const sub = (card.dataset && card.dataset.sub) || '';
+    return '#' + (SHARE_HASH[kind + '|' + sub] || SHARE_HASH[kind + '|'] || 'catalogue');
+  }
+  function productShareLink(card){
+    const hash = productShareHash(card);
+    const base = (location.href || '').split('#')[0];
+    try{ return new URL(hash, base).href; }
+    catch(err){ return base + hash; }
+  }
+  function productSharePrice(card){
+    const avail = tI18n('share_wa_avail', 'Disponible à Ouagadougou');
     const st = card._buy || {};
-    const extra = st.variant ? ' (Couleur / modèle : ' + st.variant + ')' : '';
-    return "Bonjour, j'ai effectué mon paiement via " + method + " pour " + productTitle(card) + extra + ". Voici la capture de preuve pour le retrait.";
+    if(st.quote) return avail;
+    if(st.unit != null) return fmtFcfa(st.unit) + ' F CFA';
+    const spec = buySpec(card);
+    if(spec && spec.tiers && spec.tiers[0] && spec.tiers[0].unit != null){
+      return fmtFcfa(spec.tiers[0].unit) + ' F CFA';
+    }
+    const el = card.querySelector('.shop-card__price') || card.querySelector('.prix-box--detail b') || card.querySelector('.prix-box b');
+    if(el){
+      const raw = (el.textContent || '').replace(/\s+/g, ' ').trim();
+      const m = raw.match(/[\d\s.,]{2,}\s*F\s*CFA/i);
+      if(m) return m[0].replace(/\s+/g, ' ').trim();
+      if(/\d/.test(raw)) return raw;
+    }
+    return avail;
+  }
+  function productShareText(card){
+    const name = productTitle(card);
+    const price = productSharePrice(card);
+    const url = productShareLink(card);
+    const hook = tI18n('share_wa_hook', 'Regarde cet article disponible chez Derra Global Trading : ');
+    return hook + name + ' — ' + price + '\n\n' + url;
+  }
+  function fillShareAnchor(a, card){
+    if(!a || !card) return;
+    const text = productShareText(card);
+    const href = (window.DerraWA && DerraWA.shareUrl)
+      ? DerraWA.shareUrl(text)
+      : 'https://api.whatsapp.com/send?text=' + encodeURIComponent(text);
+    a.href = href;
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener noreferrer');
+    const label = tI18n('share_wa', 'Partager sur WhatsApp');
+    a.setAttribute('title', label);
+    a.setAttribute('aria-label', label);
+    a.setAttribute('data-i18n-title', 'share_wa');
+  }
+  function shareHost(card){
+    if(!card) return null;
+    if(card.id === 'air31Modal' || (card.classList && card.classList.contains('air31-modal'))){
+      return card.querySelector('.air31-zoom') || card.querySelector('.air31-modal__gallery');
+    }
+    if(card.classList.contains('shop-card')){
+      return card.querySelector('.shop-card__visual');
+    }
+    return card.querySelector('.range-photo');
+  }
+  function updateShareUI(card){
+    if(!card) return;
+    const a = card.querySelector('.share-fab');
+    if(a) fillShareAnchor(a, card);
+  }
+  function mountShareUI(card){
+    const host = shareHost(card);
+    if(!host) return;
+    let a = host.querySelector('.share-fab') || card.querySelector('.share-fab, a.btn--wa-share');
+    if(a && a.parentElement !== host) host.appendChild(a);
+    card.querySelectorAll('.share-fab, a.btn--wa-share').forEach(el => {
+      if(el !== a) el.remove();
+    });
+    if(!a){
+      a = document.createElement('a');
+      a.className = 'share-fab';
+      a.innerHTML = WA_SHARE_ICON;
+      host.appendChild(a);
+    } else {
+      a.className = 'share-fab';
+      a.innerHTML = WA_SHARE_ICON;
+    }
+    if(!a.dataset.shareBound){
+      a.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fillShareAnchor(a, card);
+      });
+      a.dataset.shareBound = '1';
+    }
+    fillShareAnchor(a, card);
+  }
+  function waPayText(card, panel){
+    const st = card._buy || {};
+    const extra = st.variant ? ' · ' + st.variant : '';
+    const qty = st.qty || 1;
+    const method = (panel && panel.dataset.method) || 'Orange Money';
+    const val = (sel) => {
+      const el = panel && panel.querySelector(sel);
+      return el ? el.value.trim() : '';
+    };
+    const name = val('[name="clientName"]');
+    const phone = val('[name="clientPhone"]');
+    const omref = val('[name="omRef"]');
+    const area = val('[name="clientArea"]');
+    const amount = st.quote
+      ? tI18n('pdp_quote', 'Sur devis')
+      : (st.total != null ? fmtFcfa(st.total) + ' F CFA' : '—');
+    const payLine = method === 'Orange Money'
+      ? (omref || '—')
+      : tI18n('pay_pickup_t', 'Paiement au retrait');
+    return 'Bonjour Derra Global Trading, nouvelle commande.' +
+      '\n\nRéférence / Produit : ' + productTitle(card) + extra + ' · ' + qty + ' pc' + (qty > 1 ? 's' : '') +
+      '\nMontant marchandise : ' + amount +
+      '\nPaiement : ' + method +
+      '\nNom du client : ' + (name || '—') +
+      '\nContact WhatsApp : ' + (phone || '—') +
+      '\nRéf Orange Money : ' + payLine +
+      '\nQuartier / livraison : ' + (area || '—');
+  }
+  function syncPayMethod(panel){
+    if(!panel) return;
+    const om = panel.dataset.method === 'Orange Money';
+    const wrap = panel.querySelector('.pay-field--om');
+    const ref = panel.querySelector('[name="omRef"]');
+    if(wrap) wrap.hidden = !om;
+    if(ref){
+      ref.required = om;
+      if(!om) ref.setCustomValidity('');
+    }
   }
   function fillPayPanel(panel, card){
     if(!panel || !card) return;
@@ -3585,43 +4210,53 @@ body.air31-open{overflow:hidden}
       if(st.quote){
         amountEl.innerHTML = '<b>' + tI18n('pdp_quote', 'Sur devis') + '</b>';
       } else if(st.total != null){
-        amountEl.innerHTML = tI18n('pay_amount', 'Montant à envoyer') + ' : <b>' + fmtFcfa(st.total) + ' F CFA</b>';
-      } else if(card.id === 'cat-air31'){
+        amountEl.innerHTML = tI18n('pay_amount', 'Montant marchandise (hors livraison)') + ' : <b>' + fmtFcfa(st.total) + ' F CFA</b>';
+      } else if(card.id === 'cat-air31' || card.id === 'air31Modal'){
         amountEl.innerHTML = tI18n('sc4_d1', 'Détail : <b>5 000 F CFA</b> / unité · Promo : 2 pour <b>9 000 F CFA</b>');
       } else {
-        amountEl.innerHTML = tI18n('pay_amount', 'Montant à envoyer') + ' : <b>—</b>';
+        amountEl.innerHTML = tI18n('pay_amount', 'Montant marchandise (hors livraison)') + ' : <b>—</b>';
       }
     }
-    const method = panel.dataset.method || 'Orange Money';
-    const wa = panel.querySelector('.pay-wa');
-    if(wa){
-      wa.href = 'https://wa.me/' + WA_PAY + '?text=' + encodeURIComponent(waPayText(card, method));
-      stampWaAnchor(wa);
-    }
+    syncPayMethod(panel);
   }
   function updatePayPanel(card){
     const panel = card.querySelector('.pay-panel');
     if(panel) fillPayPanel(panel, card);
   }
   function buildPayPanel(card){
-    const panel = document.createElement('div');
+    const panel = document.createElement('form');
     panel.className = 'pay-panel';
     panel.hidden = true;
     panel.dataset.method = 'Orange Money';
+    panel.setAttribute('novalidate', '');
     panel.innerHTML =
+      '<p class="pay-form-t" data-i18n="pay_form_t">Validation de commande</p>' +
       '<p class="pay-amount"></p>' +
+      '<p class="pay-goods" data-i18n="pay_goods">Le paiement en ligne concerne uniquement le prix du produit, pas le transport.</p>' +
       '<div class="pay-opts">' +
         '<button type="button" class="pay-opt pay-opt--om is-on" data-method="Orange Money">' +
           '<span class="pay-opt__t" data-i18n="pay_om_t">🟠 Orange Money Burkina</span>' +
-          '<span class="pay-opt__d" data-i18n="pay_om_d">Envoyer le montant au +226 07 55 47 90</span>' +
+          '<span class="pay-opt__d" data-i18n="pay_om_d">Envoyer uniquement le prix du produit au +226 07 55 47 90</span>' +
         '</button>' +
-        '<button type="button" class="pay-opt pay-opt--wave" data-method="Wave">' +
-          '<span class="pay-opt__t" data-i18n="pay_wave_t">🔵 Wave Burkina</span>' +
-          '<span class="pay-opt__d" data-i18n="pay_wave_d">Envoyer le montant au +226 07 55 47 90</span>' +
+        '<button type="button" class="pay-opt pay-opt--pickup" data-method="Retrait">' +
+          '<span class="pay-opt__t" data-i18n="pay_pickup_t">💵 Paiement au retrait</span>' +
+          '<span class="pay-opt__d" data-i18n="pay_pickup_d">Régler la marchandise sur place au point relais.</span>' +
         '</button>' +
       '</div>' +
-      '<p class="pay-pickup" data-i18n="pay_pickup">Lieu de retrait : Boutique Derra Global Trading, Quartier Toudoubweogo (proximité CSPS De Polesgo / Paroisse Saint Jean), Ouagadougou.</p>' +
-      '<a class="btn btn--bf pay-wa" data-i18n="pay_confirm">Confirmer le paiement sur WhatsApp</a>';
+      '<label class="pay-field"><span data-i18n="pay_name">Nom et prénom</span>' +
+        '<input name="clientName" type="text" required autocomplete="name" data-i18n-ph="pay_name_ph" placeholder="Nom et prénom">' +
+      '</label>' +
+      '<label class="pay-field"><span data-i18n="pay_phone">Numéro WhatsApp</span>' +
+        '<input name="clientPhone" type="tel" required autocomplete="tel" inputmode="tel" data-i18n-ph="pay_phone_ph" placeholder="Ex. +226 07 00 00 00">' +
+      '</label>' +
+      '<label class="pay-field pay-field--om"><span data-i18n="pay_om_ref">Référence de transaction Orange Money</span>' +
+        '<input name="omRef" type="text" required autocomplete="off" data-i18n-ph="pay_om_ref_ph" placeholder="Transaction ID / Réf SMS">' +
+      '</label>' +
+      '<label class="pay-field"><span data-i18n="pay_area">Quartier / Ville (Ouagadougou)</span>' +
+        '<input name="clientArea" type="text" required autocomplete="address-level2" data-i18n-ph="pay_area_ph" placeholder="Ex. Toudoubweogo, Ouagadougou">' +
+      '</label>' +
+      '<button type="submit" class="btn btn--bf pay-wa" data-i18n="pay_confirm">Confirmer la commande</button>' +
+      '<p class="pay-delivery" data-i18n="pay_delivery">Livraison locale à Ouagadougou : Le prix payé en ligne concerne uniquement la marchandise. Le retrait au point relais est gratuit. En cas de livraison à domicile, le tarif de transport dépend de votre zone/quartier et sera convenu directement avec notre responsable local (Janvier) puis réglé à la réception.</p>';
     panel.querySelectorAll('.pay-opt').forEach(opt => {
       opt.addEventListener('click', () => {
         panel.dataset.method = opt.getAttribute('data-method') || 'Orange Money';
@@ -3629,19 +4264,45 @@ body.air31-open{overflow:hidden}
         fillPayPanel(panel, card);
       });
     });
+    panel.addEventListener('click', (e) => e.stopPropagation());
+    panel.addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const om = panel.dataset.method === 'Orange Money';
+      const omRef = panel.querySelector('[name="omRef"]');
+      if(omRef){
+        if(om && !omRef.value.trim()){
+          omRef.setCustomValidity(tI18n('pay_om_ref_err', 'Indiquez la référence Orange Money (Transaction ID / Réf SMS).'));
+        } else {
+          omRef.setCustomValidity('');
+        }
+      }
+      if(!panel.checkValidity()){
+        panel.reportValidity();
+        return;
+      }
+      const text = waPayText(card, panel);
+      if(window.DerraWA && DerraWA.open){
+        DerraWA.open(WA_PAY, text);
+      } else {
+        window.open('https://wa.me/' + WA_PAY + '?text=' + encodeURIComponent(text), '_blank', 'noopener,noreferrer');
+      }
+    });
     fillPayPanel(panel, card);
     return panel;
   }
   function mountPayUI(card){
     if(!card || card.querySelector('.pay-panel')) return;
-    const act = card.querySelector('.range__act') || (card.classList.contains('shop-card') ? card.querySelector('.shop-card__b') : null);
+    const act = card.querySelector('.range__act')
+      || (card.classList.contains('shop-card') ? card.querySelector('.shop-card__b') : null)
+      || card.querySelector('.air31-modal__info');
     if(!act) return;
-    act.querySelectorAll('a.btn--bf, a.shop-card__cta').forEach(a => {
+    act.querySelectorAll('a.btn--bf:not(.share-fab):not(.pay-wa), a.shop-card__cta').forEach(a => {
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'btn btn--pay pay-open' + (a.classList.contains('btn--sm') || a.classList.contains('shop-card__cta') ? ' btn--sm shop-card__cta' : '');
       btn.setAttribute('data-i18n', 'pay_cta');
-      btn.innerHTML = tI18n('pay_cta', 'Commander / Payer (Orange Money & Wave)');
+      btn.innerHTML = tI18n('pay_cta', 'Valider la commande');
       a.replaceWith(btn);
     });
     let opener = act.querySelector('.pay-open');
@@ -3650,12 +4311,13 @@ body.air31-open{overflow:hidden}
       opener.type = 'button';
       opener.className = 'btn btn--pay pay-open';
       opener.setAttribute('data-i18n', 'pay_cta');
-      opener.innerHTML = tI18n('pay_cta', 'Commander / Payer (Orange Money & Wave)');
+      opener.innerHTML = tI18n('pay_cta', 'Valider la commande');
       act.appendChild(opener);
     }
     const panel = buildPayPanel(card);
     opener.insertAdjacentElement('afterend', panel);
-    opener.addEventListener('click', () => {
+    opener.addEventListener('click', (e) => {
+      e.stopPropagation();
       const open = panel.hidden;
       document.querySelectorAll('.pay-panel').forEach(p => { p.hidden = true; });
       panel.hidden = !open;
@@ -3676,6 +4338,7 @@ body.air31-open{overflow:hidden}
       stampWaAnchor(bf);
     }
     updatePayPanel(card);
+    updateShareUI(card);
   }
   document.querySelectorAll('a[href]').forEach(a => {
     const href = a.getAttribute('href') || '';
@@ -3858,8 +4521,14 @@ body.air31-open{overflow:hidden}
     });
   });
   document.querySelectorAll('#telephonie .range').forEach(mountPayUI);
+  document.querySelectorAll('#telephonie .range').forEach(mountShareUI);
+  document.querySelectorAll('.shop-card').forEach(mountShareUI);
 
   const air31Modal = document.getElementById('air31Modal');
+  if(air31Modal){
+    mountPayUI(air31Modal);
+    mountShareUI(air31Modal);
+  }
   const air31Card = document.getElementById('cat-air31');
   const air31Main = document.getElementById('air31Main');
   const air31Thumbs = document.getElementById('air31Thumbs');
@@ -3880,6 +4549,10 @@ body.air31-open{overflow:hidden}
       a.href = href;
       stampWaAnchor(a);
     });
+    if(air31Modal) updateShareUI(air31Modal);
+    const air31Sheet = document.getElementById('prod-ecouteurs');
+    if(air31Sheet) updateShareUI(air31Sheet);
+    if(air31Card) updateShareUI(air31Card);
   }
   function selectAir31Color(btn){
     if(!btn || !air31Main) return;
@@ -3933,7 +4606,8 @@ body.air31-open{overflow:hidden}
     air31Zoom.addEventListener('mouseleave', () => {
       air31Main.style.transformOrigin = 'center';
     });
-    air31Zoom.addEventListener('click', () => {
+    air31Zoom.addEventListener('click', (e) => {
+      if(e.target.closest('.share-fab')) return;
       if(typeof openLb === 'function'){
         openLb(air31Main.getAttribute('src'), air31Main.alt, air31Sources());
       }
@@ -3950,6 +4624,50 @@ body.air31-open{overflow:hidden}
     }
   });
   updateAir31Wa();
+
+  const policyModal = document.getElementById('policyModal');
+  let policyLastFocus = null;
+  function openPolicyModal(){
+    if(!policyModal) return;
+    policyLastFocus = document.activeElement;
+    policyModal.hidden = false;
+    policyModal.classList.add('is-on');
+    document.body.classList.add('policy-open');
+    const closeBtn = document.getElementById('policyClose');
+    if(closeBtn) closeBtn.focus({preventScroll:true});
+    if(location.hash !== '#politique-retour'){
+      try{ history.replaceState(null, '', '#politique-retour'); }catch(err){}
+    }
+  }
+  function closePolicyModal(){
+    if(!policyModal || policyModal.hidden) return;
+    policyModal.classList.remove('is-on');
+    policyModal.hidden = true;
+    document.body.classList.remove('policy-open');
+    if(location.hash === '#politique-retour'){
+      try{ history.replaceState(null, '', location.pathname + location.search); }catch(err){}
+    }
+    if(policyLastFocus && typeof policyLastFocus.focus === 'function'){
+      try{ policyLastFocus.focus(); }catch(err){}
+    }
+  }
+  document.querySelectorAll('.js-policy-open').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      openPolicyModal();
+    });
+  });
+  document.getElementById('policyClose')?.addEventListener('click', closePolicyModal);
+  policyModal?.querySelectorAll('[data-policy-close]').forEach(el => {
+    el.addEventListener('click', closePolicyModal);
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && policyModal && !policyModal.hidden){
+      if(typeof lb !== 'undefined' && lb && lb.classList.contains('is-on')) return;
+      closePolicyModal();
+    }
+  });
+  if(location.hash === '#politique-retour') openPolicyModal();
 
   const lb = document.getElementById('lb');
   const lbImg = document.getElementById('lbImg');
@@ -4114,11 +4832,16 @@ body.air31-open{overflow:hidden}
 
   document.querySelectorAll('.shop-card[data-filter]').forEach(a => {
     a.addEventListener('click', (e) => {
+      if(e.target.closest('.share-fab')) return;
       e.preventDefault();
+      if(a.id === 'cat-air31'){
+        openAir31Modal();
+        return;
+      }
       gotoFilter({
         kind: a.dataset.filter || '',
         sub: a.dataset.sub || '',
-        hash: a.getAttribute('href')
+        hash: a.getAttribute('href') || a.getAttribute('data-href')
       });
     });
   });
@@ -4164,7 +4887,7 @@ body.air31-open{overflow:hidden}
 
   if(isCatalogHash(location.hash)){
     revealCatalogue();
-    const hashLink = document.querySelector('#megaPanel a[href="' + location.hash + '"], .shop-card[href="' + location.hash + '"]');
+    const hashLink = document.querySelector('#megaPanel a[href="' + location.hash + '"], .shop-card[href="' + location.hash + '"], .shop-card[data-href="' + location.hash + '"]');
     if(hashLink && hashLink.dataset.filter){
       activeFilter.kind = hashLink.dataset.filter === 'brand' ? '' : (hashLink.dataset.filter || '');
       activeFilter.sub = hashLink.dataset.sub || '';
@@ -4185,7 +4908,13 @@ body.air31-open{overflow:hidden}
       }
       mountPayUI(card);
       updatePayPanel(card);
+      mountShareUI(card);
     });
+    document.querySelectorAll('.shop-card').forEach(mountShareUI);
+    if(air31Modal){
+      mountPayUI(air31Modal);
+      mountShareUI(air31Modal);
+    }
     updateAir31Wa();
   };
 
@@ -4214,6 +4943,23 @@ body.air31-open{overflow:hidden}
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+})();
+</script>
+<a class="jan-float" href="https://wa.me/22607554790?text=Bonjour%20Janvier%2C%20je%20vous%20contacte%20depuis%20le%20site%20Derra%20Global%20Trading" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Janvier Ouagadougou">
+  <figure class="jan-float__photo">
+    <img src="assets/janvier.jpg" alt="" width="96" height="96">
+    <span class="jan-float__live" aria-hidden="true"></span>
+  </figure>
+  <span class="jan-float__txt">
+    <b><span data-i18n="jan_float_n">Janvier</span> <span class="jan-float__city" data-i18n="jan_float_city">(Ouaga)</span></b>
+    <small><span class="jan-float__dot" aria-hidden="true"></span><span data-i18n="jan_float_s">En ligne • Point Relais</span></small>
+    <em>+226 07 55 47 90</em>
+  </span>
+</a>
+<script>
+(function(){
+  var el = document.querySelector('.jan-float');
+  if(el) document.body.appendChild(el);
 })();
 </script>
 </body>
