@@ -210,7 +210,7 @@ nav.main .wa-pair{display:none}
   transform:translateY(-50%);pointer-events:none;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%235E6573' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E") center/contain no-repeat;
 }
-#accueil,#prod-coque,#prod-cable,#prod-verre-hd,#prod-verre-privacy,#prod-chargeur,#prod-air31,#cat-air31,#espace-gros,#espace-detail,#tarifs-fret,#catalogue,#categories,#temoignages,#contact{scroll-margin-top:110px}
+#accueil,#offre-ia,#prod-coque,#prod-cable,#prod-verre-hd,#prod-verre-privacy,#prod-chargeur,#prod-air31,#cat-air31,#espace-gros,#espace-detail,#tarifs-fret,#catalogue,#categories,#temoignages,#contact{scroll-margin-top:110px}
 .range.is-dim{opacity:.38;filter:grayscale(.15)}
 .filter-empty{display:none;text-align:center;color:var(--muted);padding:18px 8px}
 .filter-empty.is-on{display:block}
@@ -289,6 +289,40 @@ nav.main .wa-pair{display:none}
 .mode-btn small{display:block;font-size:.78rem;font-weight:600;opacity:.88;margin-top:2px}
 .mode-btn--gros{background:var(--gold);color:var(--navy);box-shadow:0 10px 24px rgba(201,162,39,.28)}
 .mode-btn--detail{background:var(--wa);color:#fff;box-shadow:0 10px 24px rgba(37,211,102,.28)}
+
+/* Offre IA Automne */
+.ia-offer{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(201,162,39,.16), transparent 58%),
+    linear-gradient(180deg, var(--navy) 0%, #0e1d3a 52%, var(--navy-2) 100%);
+  color:#fff;
+  padding:56px 0 64px;
+  border-bottom:1px solid rgba(227,200,107,.16);
+}
+.ia-offer__in{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  max-width:720px;
+}
+.ia-offer__poster{
+  margin:0 auto;width:100%;max-width:480px;
+  border-radius:24px;overflow:hidden;
+  background:#1a2744;
+  border:1px solid rgba(227,200,107,.32);
+  box-shadow:
+    0 24px 60px rgba(0,0,0,.42),
+    0 0 0 1px rgba(255,255,255,.06),
+    0 0 80px rgba(201,162,39,.12);
+}
+.ia-offer__poster img{
+  width:100%;height:auto;display:block;
+  object-fit:cover;object-position:center top;
+}
+@media (max-width:700px){
+  #offre-ia{scroll-margin-top:150px}
+  .ia-offer{padding:36px 0 40px}
+  .ia-offer__poster{max-width:100%;border-radius:18px}
+}
 
 /* Barre de drapeaux */
 .flags{
@@ -1453,6 +1487,14 @@ body.air31-open{overflow:hidden}
       <span data-i18n="mode_detail">🛍️ ACHAT AU DÉTAIL (Boutique Ouagadougou)</span>
       <small data-i18n="mode_detail_s">Prix à l’unité · pose et retrait sur place</small>
     </a>
+  </div>
+</section>
+
+<section class="ia-offer" id="offre-ia" aria-label="Offre d'automne — sourcing intelligent avec IA">
+  <div class="wrap ia-offer__in">
+    <figure class="ia-offer__poster">
+      <img src="offre-automne-ia.jpg" width="816" height="1024" alt="Offre d'automne — Sourcing intelligent avec IA et automatisation avancée" decoding="async">
+    </figure>
   </div>
 </section>
 
