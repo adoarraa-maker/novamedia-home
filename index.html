@@ -475,6 +475,8 @@ a.shop-card:hover,a.shop-card:focus-visible,
 .shop-card__b p{color:var(--muted);font-size:.88rem;flex:1}
 .shop-card__b p.shop-card__price{font-size:.82rem;color:var(--navy);margin:4px 0 0;line-height:1.45;flex:none}
 .shop-card__price b{color:var(--navy)}
+.price-old{text-decoration:line-through;color:#94a3b8;font-weight:650;margin-right:.35em}
+.price-promo{color:#9a3412;font-weight:800}
 .shop-card__cta{margin-top:12px;align-self:flex-start}
 .shop-card--soon .shop-card__cta{
   background:#e8edf3;color:#64748b;box-shadow:none;cursor:default;
@@ -1498,7 +1500,7 @@ body.air31-open{overflow:hidden}
     </a>
     <a class="mode-btn mode-btn--detail" href="#espace-detail">
       <span data-i18n="mode_detail">🛍️ ACHAT AU DÉTAIL (Boutique Ouagadougou)</span>
-      <small data-i18n="mode_detail_s">Prix à l’unité · pose et retrait sur place</small>
+      <small data-i18n="mode_detail_s">Prix à l’unité · blister / boîte d’origine, à emporter</small>
     </a>
   </div>
 </section>
@@ -1641,7 +1643,7 @@ body.air31-open{overflow:hidden}
         <div class="shop-card__b">
           <h3 data-i18n="sc1_t">Protections d'Écran &amp; Verres Trempés</h3>
           <p data-i18n="sc1_d">Verres 9D HD, Privacy anti-espion et films de protection pour Tecno, Infinix, Samsung et iPhone.</p>
-          <p class="shop-card__price" data-i18n-html="sc1_px">Détail : <b>1 500 F CFA</b> · Gros revendeur : <b>750 F CFA</b></p>
+          <p class="shop-card__price" data-i18n-html="sc1_px">9D HD <s class="price-old">1 500 F</s> <b class="price-promo">1 000 F CFA</b> · Anti-espion <s class="price-old">2 500 F</s> <b class="price-promo">1 500 F CFA</b></p>
           <span class="btn btn--gold btn--sm shop-card__cta" data-i18n="sc_cta">Découvrir la gamme</span>
         </div>
       </article>
@@ -1653,7 +1655,7 @@ body.air31-open{overflow:hidden}
         <div class="shop-card__b">
           <h3 data-i18n="sc2_t">Coques &amp; Étuis Antichoc</h3>
           <p data-i18n="sc2_d">Airbag transparente, MagSafe, béquille et silicone soft-touch pour les marques du marché.</p>
-          <p class="shop-card__price" data-i18n-html="sc2_px">Détail : <b>3 000 F CFA</b> · Gros revendeur : <b>1 500 F CFA</b></p>
+          <p class="shop-card__price" data-i18n-html="sc2_px"><s class="price-old">2 000 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 000 F CFA</b> · Gros dès 50 : <b>600 F CFA</b></p>
           <span class="btn btn--gold btn--sm shop-card__cta" data-i18n="sc_cta">Découvrir la gamme</span>
         </div>
       </article>
@@ -1665,7 +1667,7 @@ body.air31-open{overflow:hidden}
         <div class="shop-card__b">
           <h3 data-i18n="sc3_t">Câbles &amp; Chargeurs Rapides</h3>
           <p data-i18n="sc3_d">Câbles tressés Type-C / Lightning et blocs Fast Charge 20W / 35W en cartons usine.</p>
-          <p class="shop-card__price" data-i18n-html="sc3_px">Détail : <b>4 500 F CFA</b> · Gros revendeur : <b>2 500 F CFA</b></p>
+          <p class="shop-card__price" data-i18n-html="sc3_px">Câbles <s class="price-old">2 000 F</s> <b class="price-promo">1 000 F CFA</b> · Chargeurs 20W <s class="price-old">4 000 F</s> <b class="price-promo">2 500 F CFA</b></p>
           <span class="btn btn--gold btn--sm shop-card__cta" data-i18n="sc_cta">Découvrir la gamme</span>
         </div>
       </article>
@@ -1678,6 +1680,7 @@ body.air31-open{overflow:hidden}
         <div class="shop-card__b">
           <h3 data-i18n="sc4_t">Écouteurs Air31 TWS Crystal LED</h3>
           <p data-i18n="sc4_teaser">Design transparent, affichage LED, Bluetooth 5.3, son stéréo haute fidélité.</p>
+          <p class="shop-card__price" data-i18n-html="sc4_px"><s class="price-old">5 000 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 3 500 F CFA</b> · Duo 6 500 F · Gros 2 500 F</p>
           <span class="btn btn--gold btn--sm shop-card__cta" data-i18n="sc4_cta">Voir le produit &amp; couleurs</span>
         </div>
       </article>
@@ -1694,7 +1697,7 @@ body.air31-open{overflow:hidden}
       <p class="filter-empty" id="filterEmpty" data-i18n="filter_empty">Aucun produit ne correspond à votre recherche.</p>
     </div>
     <div class="verre-demo verre-demo--prod" id="demo-produits">
-      <h3 data-i18n="demo_prod_t">Test de résistance &amp; pose en atelier</h3>
+      <h3 data-i18n="demo_prod_t">Test de résistance en atelier</h3>
       <div class="verre-demo__grid">
         <figure>
           <video controls playsinline preload="metadata" src="video-Global1.mp4"></video>
@@ -1848,7 +1851,7 @@ body.air31-open{overflow:hidden}
               </div>
               <div class="prix-box prix-box--detail">
                 <h4 data-i18n="p3_px_det">Prix Détail Boutique</h4>
-                <b data-i18n="p3_d1">1 500 F CFA / unité (Pose pro garantie offerte)</b>
+                <b data-i18n="p3_d1"><s class="price-old">1 500 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 000 F CFA</b> / pièce</b>
                 <span data-i18n="p3_d">Marques compatibles : Tecno, Infinix, Samsung, iPhone</span>
               </div>
             </div>
@@ -1859,7 +1862,7 @@ body.air31-open{overflow:hidden}
                 <li><b>Bords profilés anti-ébréchure :</b> Finition incurvée qui ne s'effrite pas aux coins.</li>
                 <li><b>Traitement Oléophobique :</b> Anti-traces de doigts, surface ultra-glissante et déperlante.</li>
                 <li><b>Colle Optique Intégrale (ESD) :</b> Adhésion totale sans bulles, résiste à la forte chaleur.</li>
-                <li><b>Pose Zéro Défaut :</b> Nettoyage méticuleux et pose offerte en boutique à Ouaga.</li>
+                <li><b>Sous blister, à emporter :</b> Accessoire vendu en boîte d’origine, sans pose en boutique.</li>
               </ul>
             </div>
             </div>
@@ -1897,12 +1900,12 @@ body.air31-open{overflow:hidden}
               <div class="prix-box prix-box--gros">
                 <h4 data-i18n="p3_px_gros">Prix Gros / Revendeurs</h4>
                 <ul>
-                  <li data-i18n="p3_g1">Gros revendeur : <b>750 F CFA</b> / pièce</li>
+                  <li data-i18n="p5_g1">Gros dès 20 pcs : <b>1 000 F CFA</b> / pièce</li>
                 </ul>
               </div>
               <div class="prix-box prix-box--detail">
                 <h4 data-i18n="p3_px_det">Prix Détail Boutique</h4>
-                <b data-i18n="p3_d1">1 500 F CFA / unité (Pose pro garantie offerte)</b>
+                <b data-i18n="p5_d1"><s class="price-old">2 500 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 500 F CFA</b> / pièce</b>
               </div>
             </div>
             <div class="spec-sheet">
@@ -1945,12 +1948,12 @@ body.air31-open{overflow:hidden}
         <article class="range" data-kind="chargeur" data-sub="fast" id="prod-chargeur">
           <div class="range-layout">
             <div class="range-col range-col--main">
-          <figure class="range-photo"><img class="range-main" src="bloc-charge.jpg" alt="Chargeurs Fast Charge 20W / 40W"></figure>
+          <figure class="range-photo"><img class="range-main" src="bloc-charge.jpg" alt="Chargeurs Fast Charge 20W"></figure>
           <div class="range-thumbs">
             <button type="button" class="is-on" data-src="bloc-charge.jpg" aria-label="Chargeur"><img src="bloc-charge.jpg" alt=""></button>
             <button type="button" data-src="cable-charge.jpg" aria-label="Câble"><img src="cable-charge.jpg" alt=""></button>
           </div>
-            <p data-i18n="p1_d">Kits chargeur + câble tressé 20W et 40W pour revendeurs, en cartons usine.</p>
+            <p data-i18n="p1_d">Kits complets en boîte (chargeur 20W + câble), à emporter.</p>
             <div class="prix-grid">
               <div class="prix-box prix-box--gros">
                 <h4 data-i18n="px_gros">Prix Grossiste / Cartons</h4>
@@ -1966,7 +1969,7 @@ body.air31-open{overflow:hidden}
             </div>
             <aside class="range-col range-col--buy">
             <span class="pack-tag" data-i18n="p1_pack">Cartons usine</span>
-            <h3 data-i18n="p1_t">Chargeurs Fast Charge 20W / 40W</h3>
+            <h3 data-i18n="p1_t">Chargeurs Fast Charge 20W</h3>
             <div class="buy-tiers"></div>
             <label class="buy-qty"><span data-i18n="pdp_qty">Quantité</span>
               <input class="buy-qty-input" type="number" min="1" step="1" value="1">
@@ -1976,7 +1979,7 @@ body.air31-open{overflow:hidden}
               <span class="cta-label" data-i18n="gros_cta">Commande groupée</span>
               <div class="wa-pair">
                 <a class="btn btn--sm btn--ch" href="https://wa.me/41765761672?text=Bonjour%20Derra%20Global%20Trading%2C%20commande%20gros%20blocs%20Fast%20Charge." target="_blank" rel="noopener noreferrer" data-i18n="pdp_wa_ch">Direction Suisse</a>
-                <a class="btn btn--sm btn--bf" href="https://wa.me/22607554790?text=Bonjour%20Agence%20Derra%20Global%20Trading%20Ouaga%2C%20je%20souhaite%20commander%20les%20Chargeurs%20Fast%20Charge%2020W%20%2F%2040W." target="_blank" rel="noopener noreferrer" data-i18n="pdp_wa">Commander sur WhatsApp</a>
+                <a class="btn btn--sm btn--bf" href="https://wa.me/22607554790?text=Bonjour%20Agence%20Derra%20Global%20Trading%20Ouaga%2C%20je%20souhaite%20commander%20les%20Chargeurs%20Fast%20Charge%2020W%20(kit%20complet%20bo%C3%AEte)." target="_blank" rel="noopener noreferrer" data-i18n="pdp_wa">Commander sur WhatsApp</a>
               </div>
             </div>
             </aside>
@@ -2065,8 +2068,8 @@ body.air31-open{overflow:hidden}
 
     <article class="space space--detail" id="espace-detail">
       <div class="eyebrow" data-i18n="det_eye">Espace Boutique Particuliers</div>
-      <h2 data-i18n="det_title">Prix à la pièce · pose sur place · retrait immédiat</h2>
-      <p class="lead" data-i18n="det_sub">Boutique Ouagadougou : paiement Orange Money (ou au retrait), pose de verre offerte, retrait point relais ou livraison à convenir avec Janvier.</p>
+      <h2 data-i18n="det_title">Prix à la pièce · blister / boîte d’origine, à emporter</h2>
+      <p class="lead" data-i18n="det_sub">Boutique Ouagadougou : accessoires sous blister ou boîte d’origine, à emporter. Paiement Orange Money ou au retrait.</p>
       <div class="pole-grid" style="margin-top:22px">
         <article class="range" data-kind="coque" data-sub="airbag">
           <div class="range-layout">
@@ -2171,7 +2174,7 @@ body.air31-open{overflow:hidden}
             <button type="button" data-src="V5.png" aria-label="Caractéristiques anti-statique"><img src="V5.png" alt=""></button>
             <button type="button" data-src="V6.png" aria-label="Boîte et verre trempé"><img src="V6.png" alt=""></button>
           </div>
-            <p data-i18n="det_verre">Vente au détail (Boutique Ouaga) : 1 500 F CFA / unité (Pose pro garantie offerte). Marques compatibles : Tecno, Infinix, Samsung, iPhone.</p>
+            <p data-i18n="det_verre">Vente au détail (Boutique Ouaga) : <s class="price-old">1 500 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 000 F CFA</b> / pièce. Marques compatibles : Tecno, Infinix, Samsung, iPhone.</p>
             <div class="prix-grid">
               <div class="prix-box prix-box--gros">
                 <h4 data-i18n="p3_px_gros">Prix Gros / Revendeurs</h4>
@@ -2181,7 +2184,7 @@ body.air31-open{overflow:hidden}
               </div>
               <div class="prix-box prix-box--detail">
                 <h4 data-i18n="p3_px_det">Prix Détail Boutique</h4>
-                <b data-i18n="p3_d1">1 500 F CFA / unité (Pose pro garantie offerte)</b>
+                <b data-i18n="p3_d1"><s class="price-old">1 500 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 000 F CFA</b> / pièce</b>
                 <span data-i18n="p3_d">Marques compatibles : Tecno, Infinix, Samsung, iPhone</span>
               </div>
             </div>
@@ -2192,12 +2195,12 @@ body.air31-open{overflow:hidden}
                 <li><b>Bords profilés anti-ébréchure :</b> Finition incurvée qui ne s'effrite pas aux coins.</li>
                 <li><b>Traitement Oléophobique :</b> Anti-traces de doigts, surface ultra-glissante et déperlante.</li>
                 <li><b>Colle Optique Intégrale (ESD) :</b> Adhésion totale sans bulles, résiste à la forte chaleur.</li>
-                <li><b>Pose Zéro Défaut :</b> Nettoyage méticuleux et pose offerte en boutique à Ouaga.</li>
+                <li><b>Sous blister, à emporter :</b> Accessoire vendu en boîte d’origine, sans pose en boutique.</li>
               </ul>
             </div>
             </div>
             <aside class="range-col range-col--buy">
-            <span class="pack-tag" data-i18n="p3_d1">1 500 F CFA / unité (Pose pro garantie offerte)</span>
+            <span class="pack-tag" data-i18n="p3_tag">Promo lancement 1 000 F CFA</span>
             <h3 data-i18n="p3_t">Verres trempés 9D HD</h3>
             <div class="buy-tiers"></div>
             <label class="buy-qty"><span data-i18n="pdp_qty">Quantité</span>
@@ -2224,7 +2227,8 @@ body.air31-open{overflow:hidden}
             <p data-i18n="p5_d">Filtre de confidentialité 28°, verre trempé haute dureté 9H, anti-rayures, anti-traces. Tecno, Infinix, Samsung, iPhone.</p>
             <div class="prix-box prix-box--detail">
               <h4 data-i18n="p3_px_det">Prix Détail Boutique</h4>
-              <b data-i18n="p3_d1">1 500 F CFA / unité (Pose pro garantie offerte)</b>
+              <b data-i18n="p5_d1"><s class="price-old">2 500 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 500 F CFA</b> / pièce</b>
+              <span data-i18n="p5_g1">Gros dès 20 pcs : <b>1 000 F CFA</b> / pièce</span>
             </div>
             <div class="spec-sheet">
               <p class="spec-sheet__eye" data-i18n="p5_eye">Fiche technique</p>
@@ -2335,9 +2339,9 @@ body.air31-open{overflow:hidden}
             <button type="button" data-src="V6.png" aria-label="Boîte et verre trempé"><img src="V6.png" alt=""></button>
           </div>
           <div class="range__b">
-            <span class="pack-tag" data-i18n="p3_d1">1 500 F CFA / unité (Pose pro garantie offerte)</span>
+            <span class="pack-tag" data-i18n="p3_tag">Promo lancement 1 000 F CFA</span>
             <h3 data-i18n="p3_t">Verres trempés 9D HD</h3>
-            <p data-i18n="det_verre">Vente au détail (Boutique Ouaga) : 1 500 F CFA / unité (Pose pro garantie offerte). Marques compatibles : Tecno, Infinix, Samsung, iPhone.</p>
+            <p data-i18n="det_verre">Vente au détail (Boutique Ouaga) : <s class="price-old">1 500 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 000 F CFA</b> / pièce. Marques compatibles : Tecno, Infinix, Samsung, iPhone.</p>
             <div class="prix-grid">
               <div class="prix-box prix-box--gros">
                 <h4 data-i18n="p3_px_gros">Prix Gros / Revendeurs</h4>
@@ -2347,7 +2351,7 @@ body.air31-open{overflow:hidden}
               </div>
               <div class="prix-box prix-box--detail">
                 <h4 data-i18n="p3_px_det">Prix Détail Boutique</h4>
-                <b data-i18n="p3_d1">1 500 F CFA / unité (Pose pro garantie offerte)</b>
+                <b data-i18n="p3_d1"><s class="price-old">1 500 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 000 F CFA</b> / pièce</b>
                 <span data-i18n="p3_d">Marques compatibles : Tecno, Infinix, Samsung, iPhone</span>
               </div>
             </div>
@@ -2358,7 +2362,7 @@ body.air31-open{overflow:hidden}
                 <li><b>Bords profilés anti-ébréchure :</b> Finition incurvée qui ne s'effrite pas aux coins.</li>
                 <li><b>Traitement Oléophobique :</b> Anti-traces de doigts, surface ultra-glissante et déperlante.</li>
                 <li><b>Colle Optique Intégrale (ESD) :</b> Adhésion totale sans bulles, résiste à la forte chaleur.</li>
-                <li><b>Pose Zéro Défaut :</b> Nettoyage méticuleux et pose offerte en boutique à Ouaga.</li>
+                <li><b>Sous blister, à emporter :</b> Accessoire vendu en boîte d’origine, sans pose en boutique.</li>
               </ul>
             </div>
             <div class="range__act">
@@ -2381,7 +2385,8 @@ body.air31-open{overflow:hidden}
             <p data-i18n="p5_d">Filtre de confidentialité 28°, verre trempé haute dureté 9H, anti-rayures, anti-traces. Tecno, Infinix, Samsung, iPhone.</p>
             <div class="prix-box prix-box--detail">
               <h4 data-i18n="p3_px_det">Prix Détail Boutique</h4>
-              <b data-i18n="p3_d1">1 500 F CFA / unité (Pose pro garantie offerte)</b>
+              <b data-i18n="p5_d1"><s class="price-old">2 500 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 500 F CFA</b> / pièce</b>
+              <span data-i18n="p5_g1">Gros dès 20 pcs : <b>1 000 F CFA</b> / pièce</span>
             </div>
             <div class="spec-sheet">
               <p class="spec-sheet__eye" data-i18n="p5_eye">Fiche technique</p>
@@ -2415,7 +2420,7 @@ body.air31-open{overflow:hidden}
           </figcaption>
         </figure>
         <b data-i18n="shop_pin_t">Boutique Ouagadougou</b>
-        <p data-i18n="shop_pin_d">Localisation et horaires : contactez Janvier au +226 07 55 47 90. Retrait immédiat, pose de verre offerte, test de charge sur place.</p>
+        <p data-i18n="shop_pin_d">Localisation et horaires : contactez Janvier au +226 07 55 47 90. Retrait immédiat, accessoires sous blister, test de charge sur place.</p>
         <aside class="agent-host">
           <figure class="agent-host__photo">
             <img src="assets/janvier.jpg" alt="Janvier Rouamba" width="88" height="88">
@@ -2956,7 +2961,7 @@ body.air31-open{overflow:hidden}
       mode_gros:'📦 ACHAT EN GROS (Cartons Revendeurs)',
       mode_gros_s:'Tarifs par cartons et boîtes atelier',
       mode_detail:'🛍️ ACHAT AU DÉTAIL (Boutique Ouagadougou)',
-      mode_detail_s:'Prix à l’unité · pose et retrait sur place',
+      mode_detail_s:'Prix à l’unité · blister / boîte d’origine, à emporter',
       cta_tarif:'Demander le tarif gros / détail',
       offer_bar:'Vente en gros par cartons usine pour revendeurs <b>&amp;</b> vente au détail directement disponible en boutique à Ouagadougou',
       h0_badge:'Top vente B2B / Cartons usine',
@@ -2976,13 +2981,13 @@ body.air31-open{overflow:hidden}
       shop_sub:'Choisissez une gamme pour consulter les tarifs gros / détail. Paiement de la marchandise via Orange Money, ou au retrait.',
       sc1_badge:'Protection écran', sc1_t:'Protections d\'Écran &amp; Verres Trempés',
       sc1_d:'Verres 9D HD, Privacy anti-espion et films de protection pour Tecno, Infinix, Samsung et iPhone.',
-      sc1_px:'Détail : <b>1 500 F CFA</b> · Gros revendeur : <b>750 F CFA</b>',
+      sc1_px:'<b>9D HD</b> <s class="price-old">1 500 F</s> <b class="price-promo">1 000 F CFA</b> · gros 500 F dès 50<br><b>Anti-espion</b> <s class="price-old">2 500 F</s> <b class="price-promo">1 500 F CFA</b> · gros 1 000 F dès 20',
       sc2_badge:'Coques', sc2_t:'Coques &amp; Étuis Antichoc',
       sc2_d:'Airbag transparente, MagSafe, béquille et silicone soft-touch pour les marques du marché.',
-      sc2_px:'Détail : <b>3 000 F CFA</b> · Gros revendeur : <b>1 500 F CFA</b>',
+      sc2_px:'<s class="price-old">2 000 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 000 F CFA</b> · Gros dès 50 : <b>600 F CFA</b>',
       sc3_badge:'Énergie', sc3_t:'Câbles &amp; Chargeurs Rapides',
       sc3_d:'Câbles tressés Type-C / Lightning et blocs Fast Charge 20W / 35W en cartons usine.',
-      sc3_px:'Détail : <b>4 500 F CFA</b> · Gros revendeur : <b>2 500 F CFA</b>',
+      sc3_px:'<b>Câbles</b> <s class="price-old">2 000 F</s> <b class="price-promo">1 000 F CFA</b> · gros 500 F dès 50<br><b>Chargeurs 20W</b> <s class="price-old">4 000 F</s> <b class="price-promo">2 500 F CFA</b> · gros 1 800 F dès 10',
       sc4_badge:'Audio', sc4_t:'Écouteurs Air31 TWS Crystal LED',
       sc4_teaser:'Design transparent, affichage LED, Bluetooth 5.3, son stéréo haute fidélité.',
       sc4_cta:'Voir le produit &amp; couleurs',
@@ -2991,9 +2996,9 @@ body.air31-open{overflow:hidden}
       sc4_batt:'Autonomie batterie : jusqu\'à 5 heures d\'écoute par charge, jusqu\'à 20 heures avec le boîtier. Recharge USB. L\'écran LED affiche le niveau restant en temps réel.',
       sc_stock:'En stock / Arrivage',
       sc4_colors:'Couleurs : Noir, Blanc, Vert, Bleu, Violet',
-      sc4_px:'Détail : <b>5 000 F CFA</b> / unité · Offre spéciale : 2 pour <b>9 000 F CFA</b><br>Gros revendeur : <b>3 500 F CFA</b> (à partir de 10 pièces)',
-      sc4_d1:'Prix détail : <b>5 000 F CFA</b> (Offre spéciale : 2 pour <b>9 000 F CFA</b>)',
-      sc4_g1:'Prix gros revendeur : <b>3 500 F CFA</b> (à partir de 10 pièces)',
+      sc4_px:'<s class="price-old">5 000 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 3 500 F CFA</b><br>Duo : 2 pour <b>6 500 F CFA</b> · Gros dès 10 : <b>2 500 F CFA</b>',
+      sc4_d1:'<s class="price-old">5 000 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 3 500 F CFA</b> (Duo : 2 pour <b>6 500 F CFA</b>)',
+      sc4_g1:'Gros dès 10 pcs : <b>2 500 F CFA</b> / pièce',
       sc4_wa:'Valider la commande',
       air31_wa:'Valider la commande',
       air31_pick:'📍 Retrait boutique : Toudoubwéogo / Polesgo',
@@ -3001,7 +3006,7 @@ body.air31-open{overflow:hidden}
       air31_sheet_d:'Design Crystal transparent, affichage numérique LED du boîtier. Bluetooth 5.3, son stéréo haute fidélité, commandes tactiles. Autonomie jusqu\'à 5h par charge (20h avec boîtier).',
       air31_px_det:'Prix Détail Ouaga',
       air31_px_gros:'Prix Gros Revendeur',
-      air31_offer:'Offre : 2 pour 9 000 F CFA',
+      air31_offer:'Duo : 2 pour 6 500 F CFA',
       air31_from10:'(À partir de 10 pièces)',
       air31_c_noir:'Noir', air31_c_blanc:'Blanc', air31_c_vert:'Vert', air31_c_bleu:'Bleu', air31_c_violet:'Violet',
       air31_bt_t:'Bluetooth',
@@ -3032,43 +3037,46 @@ body.air31-open{overflow:hidden}
       gros_sub:'Tarifs par cartons et boîtes atelier pour commerçants. Commandes groupées : Direction Suisse ou Agence Ouaga.',
       gros_cta:'Commande groupée',
       det_eye:'Espace Boutique Particuliers',
-      det_title:'Prix à la pièce · pose sur place · retrait immédiat',
-      det_sub:'Boutique Ouagadougou : paiement Orange Money (ou au retrait), pose de verre offerte, retrait point relais ou livraison à convenir avec Janvier.',
+      det_title:'Prix à la pièce · blister / boîte d’origine, à emporter',
+      det_sub:'Boutique Ouagadougou : accessoires sous blister ou boîte d’origine, à emporter. Paiement Orange Money ou au retrait.',
       det_coque:'Modèles Tecno, Infinix, Samsung et iPhone. Retrait immédiat en boutique.',
       det_cable:'Type-C, Lightning, Micro-USB. Test de charge garanti sur place.',
-      det_verre:'Vente au détail (Boutique Ouaga) : 1 500 F CFA / unité (Pose pro garantie offerte). Marques compatibles : Tecno, Infinix, Samsung, iPhone.',
-      det_tag_coque:'3 000 F CFA / pièce', det_tag_cable:'4 500 F CFA l’unité', det_tag_verre:'Pose de verre offerte',
+      det_verre:'Promo lancement : <b>1 000 F CFA</b> / pièce (prix normal 1 500 F). Vendu sous blister, à emporter. Tecno, Infinix, Samsung, iPhone.',
+      det_tag_coque:'Promo 1 000 F CFA', det_tag_cable:'Promo 1 000 F CFA', det_tag_verre:'Promo 1 000 F CFA',
       px_gros:'Prix Grossiste / Cartons', px_det:'Prix Détail Boutique Ouaga',
-      p4_g1:'Coque Airbag standard : <b>1 500 F CFA</b> / pièce (gros revendeur)',
-      p4_g2:'Coques MagSafe / Béquille / Silicone : même tarif (3 000 / 1 500 F CFA)',
-      p4_d1:'Coque Airbag standard : <b>3 000 F CFA</b> détail', p4_d2:'Tecno, Infinix, Samsung, iPhone',
-      p4_d3:'Coques MagSafe / Béquille / Silicone : même tarif (3 000 / 1 500 F CFA)',
-      p2_g1:'Gros revendeur : <b>2 500 F CFA</b> / pièce',
-      p2_g2:'Câbles &amp; chargeurs rapides : même grille tarifaire',
-      p2_d1:'4 500 F CFA l’unité', p2_d2:'Test de charge garanti sur place',
+      p4_g1:'Gros dès 50 pcs : <b>600 F CFA</b> / pièce',
+      p4_g2:'Toutes finitions (Airbag, MagSafe, Béquille, Silicone) : même promo',
+      p4_d1:'<s class="price-old">2 000 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 000 F CFA</b> / pièce', p4_d2:'Tecno, Infinix, Samsung, iPhone',
+      p4_d3:'Toutes finitions (Airbag, MagSafe, Béquille, Silicone) : même promo',
+      p2_g1:'Gros dès 50 pcs : <b>500 F CFA</b> / pièce',
+      p2_g2:'Les chargeurs 20W ont une grille séparée.',
+      p2_d1:'<s class="price-old">2 000 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 000 F CFA</b> / pièce', p2_d2:'Test de charge garanti sur place',
       shop_pin_t:'Boutique Ouagadougou',
       shop_pin_cap:'Monument des Héros Nationaux et Martyrs — Ouagadougou',
-      shop_pin_d:'Localisation et horaires : contactez Janvier au +226 07 55 47 90. Retrait immédiat, pose de verre offerte, test de charge sur place.',
-      p1_t:'Chargeurs Fast Charge 20W / 40W',
-      p1_d:'Kits chargeur + câble tressé 20W et 40W pour revendeurs, en cartons usine.',
-      p1_pack:'Cartons usine',
-      p1_g1:'Gros revendeur : <b>2 500 F CFA</b> / pièce',
-      p1_d1:'Détail : <b>4 500 F CFA</b> / pièce',
+      shop_pin_d:'Localisation et horaires : contactez Janvier au +226 07 55 47 90. Retrait immédiat, accessoires sous blister, test de charge sur place.',
+      p1_t:'Chargeurs Fast Charge 20W',
+      p1_d:'Kits complets en boîte (chargeur 20W + câble), à emporter.',
+      p1_pack:'Kit 20W · promo 2 500 F',
+      p1_g1:'Gros dès 10 pcs : <b>1 800 F CFA</b> / kit',
+      p1_d1:'<s class="price-old">4 000 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 2 500 F CFA</b> / kit',
       p2_t:'Câbles tressés de charge rapide',
       p2_d:'Type-C, Lightning et Micro-USB. Test de charge garanti en boutique.',
-      p2_pack:'Détail 4 500 F CFA · Gros 2 500 F CFA',
+      p2_pack:'Promo 1 000 F CFA · Gros 500 F dès 50',
       p3_t:'Verres trempés 9D HD',
-      p3_d:'Marques compatibles : Tecno, Infinix, Samsung, iPhone',
-      p3_pack:'Carton de 100 pcs',
-      p3_g1:'Gros revendeur : <b>750 F CFA</b> / pièce',
-      p3_d1:'1 500 F CFA / unité (Pose pro garantie offerte)',
+      p3_d:'Marques compatibles : Tecno, Infinix, Samsung, iPhone. Sous blister, à emporter.',
+      p3_pack:'Dès 50 pcs · 500 F CFA',
+      p3_tag:'Promo lancement 1 000 F CFA',
+      p3_g1:'Gros dès 50 pcs : <b>500 F CFA</b> / pièce',
+      p3_d1:'<s class="price-old">1 500 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 000 F CFA</b> / pièce',
       p3_px_gros:'Prix Gros / Revendeurs',
       p3_px_det:'Prix Détail Boutique',
       p3_why_t:'Pourquoi notre verre 9D est supérieur aux verres de rue ?',
-      p3_why_list:'<li><b>Verre trempé 9H renforcé :</b> Protection antichoc réelle, ne se raye pas avec les clés.</li><li><b>Bords profilés anti-ébréchure :</b> Finition incurvée qui ne s\'effrite pas aux coins.</li><li><b>Traitement Oléophobique :</b> Anti-traces de doigts, surface ultra-glissante et déperlante.</li><li><b>Colle Optique Intégrale (ESD) :</b> Adhésion totale sans bulles, résiste à la forte chaleur.</li><li><b>Pose Zéro Défaut :</b> Nettoyage méticuleux et pose offerte en boutique à Ouaga.</li>',
+      p3_why_list:'<li><b>Verre trempé 9H renforcé :</b> Protection antichoc réelle, ne se raye pas avec les clés.</li><li><b>Bords profilés anti-ébréchure :</b> Finition incurvée qui ne s\'effrite pas aux coins.</li><li><b>Traitement Oléophobique :</b> Anti-traces de doigts, surface ultra-glissante et déperlante.</li><li><b>Colle Optique Intégrale (ESD) :</b> Adhésion totale sans bulles, résiste à la forte chaleur.</li><li><b>Sous blister, à emporter :</b> Accessoire vendu en boîte d’origine, sans pose en boutique.</li>',
       p5_t:'Verre Trempé Anti-Espion',
-      p5_d:'Filtre de confidentialité 28°, verre trempé haute dureté 9H, anti-rayures, anti-traces. Tecno, Infinix, Samsung, iPhone.',
-      p5_pack:'Protection Confidentialité 28°',
+      p5_d:'Filtre de confidentialité 28°, verre trempé haute dureté 9H, anti-rayures, anti-traces. Tecno, Infinix, Samsung, iPhone. Sous blister, à emporter.',
+      p5_pack:'Promo lancement 1 500 F CFA',
+      p5_d1:'<s class="price-old">2 500 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 1 500 F CFA</b> / pièce',
+      p5_g1:'Gros dès 20 pcs : <b>1 000 F CFA</b> / pièce',
       p5_wa:'Valider la commande',
       p5_eye:'Fiche technique',
       p5_spec_t:'Verre Anti-Espion · Confidentialité 28°',
@@ -3127,7 +3135,7 @@ body.air31-open{overflow:hidden}
       fret_note:'Dédouanement inclus à l\'arrivée au Hub de Ouagadougou.',
       fret_local:'🛵 Livraison urbaine à Ouagadougou : Retrait gratuit à notre point relais (Toudoubwéogo / Polesgo). Pour une livraison par coursier à domicile ou en boutique, les frais sont fixés selon votre quartier et réglés directement à la réception avec Janvier.',
       demo_home_t:'Démonstration &amp; Qualité en direct',
-      demo_prod_t:'Test de résistance &amp; pose en atelier',
+      demo_prod_t:'Test de résistance en atelier',
       how_eye:'Fonctionnement logistique', how_title:'Quatre étapes, de l’usine à Ouagadougou.',
       how_sub:'Un processus d’importation transparent, sécurisé et maîtrisé de bout en bout.',
       s1_n:'ÉTAPE 01',
@@ -3264,7 +3272,7 @@ body.air31-open{overflow:hidden}
       mode_gros:'📦 WHOLESALE (Reseller cartons)',
       mode_gros_s:'Carton and workshop-box pricing',
       mode_detail:'🛍️ RETAIL (Ouagadougou shop)',
-      mode_detail_s:'Unit prices · fitting and pickup on site',
+      mode_detail_s:'Unit prices · original blister or box, takeaway',
       cta_tarif:'Ask for wholesale / retail pricing',
       offer_bar:'Wholesale factory cartons for resellers <b>&amp;</b> retail available in-store in Ouagadougou',
       h0_badge:'Top B2B seller / Factory cartons',
@@ -3284,13 +3292,13 @@ body.air31-open{overflow:hidden}
       shop_sub:'Choose a range to see wholesale / retail prices. Pay for the goods via Orange Money, or on pickup.',
       sc1_badge:'Screen protection', sc1_t:'Screen Protectors &amp; Tempered Glass',
       sc1_d:'9D HD glass, privacy anti-spy and protection films for Tecno, Infinix, Samsung and iPhone.',
-      sc1_px:'Retail: <b>1,500 F CFA</b> · Wholesale: <b>750 F CFA</b>',
+      sc1_px:'<b>9D HD</b> <s class="price-old">1,500 F</s> <b class="price-promo">1,000 F CFA</b> · wholesale 500 F from 50<br><b>Anti-spy</b> <s class="price-old">2,500 F</s> <b class="price-promo">1,500 F CFA</b> · wholesale 1,000 F from 20',
       sc2_badge:'Cases', sc2_t:'Shockproof Cases &amp; Covers',
       sc2_d:'Clear airbag, MagSafe, kickstand and soft-touch silicone for the brands on the market.',
-      sc2_px:'Retail: <b>3,000 F CFA</b> · Wholesale: <b>1,500 F CFA</b>',
+      sc2_px:'<s class="price-old">2,000 F</s> <b class="price-promo">LAUNCH PRICE: 1,000 F CFA</b> · Wholesale from 50: <b>600 F CFA</b>',
       sc3_badge:'Power', sc3_t:'Cables &amp; Fast Chargers',
       sc3_d:'Braided Type-C / Lightning cables and Fast Charge 20W / 35W blocks in factory cartons.',
-      sc3_px:'Retail: <b>4,500 F CFA</b> · Wholesale: <b>2,500 F CFA</b>',
+      sc3_px:'<b>Cables</b> <s class="price-old">2,000 F</s> <b class="price-promo">1,000 F CFA</b> · wholesale 500 F from 50<br><b>20W chargers</b> <s class="price-old">4,000 F</s> <b class="price-promo">2,500 F CFA</b> · wholesale 1,800 F from 10',
       sc4_badge:'Audio', sc4_t:'Air31 TWS Crystal LED earbuds',
       sc4_teaser:'Transparent design, LED display, Bluetooth 5.3, hi-fi stereo sound.',
       sc4_cta:'View product &amp; colors',
@@ -3299,9 +3307,9 @@ body.air31-open{overflow:hidden}
       sc4_batt:'Battery life: up to 5 hours of listening per charge, up to 20 hours with the case. USB charging. The LED screen shows the remaining level in real time.',
       sc_stock:'In stock / Incoming',
       sc4_colors:'Colors: Black, White, Green, Blue, Purple',
-      sc4_px:'Retail: <b>5,000 F CFA</b> each · Special offer: 2 for <b>9,000 F CFA</b><br>Wholesale: <b>3,500 F CFA</b> (from 10 units)',
-      sc4_d1:'Retail: <b>5,000 F CFA</b> (Special offer: 2 for <b>9,000 F CFA</b>)',
-      sc4_g1:'Wholesale: <b>3,500 F CFA</b> (from 10 units)',
+      sc4_px:'<s class="price-old">5,000 F</s> <b class="price-promo">LAUNCH PRICE: 3,500 F CFA</b><br>Duo: 2 for <b>6,500 F CFA</b> · Wholesale from 10: <b>2,500 F CFA</b>',
+      sc4_d1:'<s class="price-old">5,000 F</s> <b class="price-promo">LAUNCH PRICE: 3,500 F CFA</b> (Duo: 2 for <b>6,500 F CFA</b>)',
+      sc4_g1:'Wholesale from 10 units: <b>2,500 F CFA</b> each',
       sc4_wa:'Place order',
       air31_wa:'Place order',
       air31_pick:'📍 Shop pickup: Toudoubwéogo / Polesgo',
@@ -3309,7 +3317,7 @@ body.air31-open{overflow:hidden}
       air31_sheet_d:'Transparent Crystal design, digital LED case display. Bluetooth 5.3, hi-fi stereo, touch controls. Up to 5h per charge (20h with the case).',
       air31_px_det:'Ouaga retail price',
       air31_px_gros:'Wholesale reseller price',
-      air31_offer:'Offer: 2 for 9,000 F CFA',
+      air31_offer:'Duo: 2 for 6,500 F CFA',
       air31_from10:'(From 10 units)',
       air31_c_noir:'Black', air31_c_blanc:'White', air31_c_vert:'Green', air31_c_bleu:'Blue', air31_c_violet:'Purple',
       air31_bt_t:'Bluetooth',
@@ -3340,43 +3348,46 @@ body.air31-open{overflow:hidden}
       gros_sub:'Carton and workshop-box pricing for traders. Group orders: Switzerland HQ or Ouaga agency.',
       gros_cta:'Group order',
       det_eye:'Retail shop space',
-      det_title:'Unit prices · fitting on site · immediate pickup',
-      det_sub:'Ouagadougou shop: Orange Money (or pay on pickup), glass fitting included, free relay pickup or home delivery arranged with Janvier.',
+      det_title:'Unit prices · original blister or box, takeaway',
+      det_sub:'Ouagadougou shop: accessories in original blister or box, takeaway. Orange Money or pay on pickup.',
       det_coque:'Tecno, Infinix, Samsung and iPhone models. Immediate in-store pickup.',
       det_cable:'Type-C, Lightning, Micro-USB. Charge test guaranteed on site.',
-      det_verre:'Retail (Ouaga shop): 1,500 F CFA per unit (professional fitting guaranteed, included). Compatible brands: Tecno, Infinix, Samsung, iPhone.',
-      det_tag_coque:'3,000 F CFA per unit', det_tag_cable:'4,500 F CFA per unit', det_tag_verre:'Glass fitting included',
+      det_verre:'Launch price: <b>1,000 F CFA</b> each (regular price 1,500 F). Sold in blister, takeaway. Tecno, Infinix, Samsung, iPhone.',
+      det_tag_coque:'Launch price 1,000 F CFA', det_tag_cable:'Launch price 1,000 F CFA', det_tag_verre:'Launch price 1,000 F CFA',
       px_gros:'Wholesale / carton price', px_det:'Ouaga shop retail price',
-      p4_g1:'Standard Airbag case: <b>1,500 F CFA</b> per unit (wholesale)',
-      p4_g2:'MagSafe / Kickstand / Silicone cases: same rates (3,000 / 1,500 F CFA)',
-      p4_d1:'Standard Airbag case: <b>3,000 F CFA</b> retail', p4_d2:'Tecno, Infinix, Samsung, iPhone',
-      p4_d3:'MagSafe / Kickstand / Silicone cases: same rates (3,000 / 1,500 F CFA)',
-      p2_g1:'Wholesale: <b>2,500 F CFA</b> per unit',
-      p2_g2:'Cables &amp; fast chargers: same price grid',
-      p2_d1:'4,500 F CFA per unit', p2_d2:'Charge test guaranteed on site',
+      p4_g1:'Wholesale from 50 units: <b>600 F CFA</b> each',
+      p4_g2:'All finishes (Airbag, MagSafe, Kickstand, Silicone): same launch price',
+      p4_d1:'<s class="price-old">2,000 F</s> <b class="price-promo">LAUNCH PRICE: 1,000 F CFA</b> each', p4_d2:'Tecno, Infinix, Samsung, iPhone',
+      p4_d3:'All finishes (Airbag, MagSafe, Kickstand, Silicone): same launch price',
+      p2_g1:'Wholesale from 50 units: <b>500 F CFA</b> each',
+      p2_g2:'20W chargers use a separate price grid.',
+      p2_d1:'<s class="price-old">2,000 F</s> <b class="price-promo">LAUNCH PRICE: 1,000 F CFA</b> each', p2_d2:'Charge test guaranteed on site',
       shop_pin_t:'Ouagadougou shop',
       shop_pin_cap:'National Heroes and Martyrs Monument — Ouagadougou',
-      shop_pin_d:'Location and hours: contact Janvier on +226 07 55 47 90. Immediate pickup, glass fitting included, charge test on site.',
-      p1_t:'Fast Charge 20W / 40W chargers',
-      p1_d:'20W and 40W charger + braided cable kits for resellers, in factory cartons.',
-      p1_pack:'Factory cartons',
-      p1_g1:'Wholesale: <b>2,500 F CFA</b> per unit',
-      p1_d1:'Retail: <b>4,500 F CFA</b> per unit',
+      shop_pin_d:'Location and hours: contact Janvier on +226 07 55 47 90. Immediate pickup, accessories in blister, charge test on site.',
+      p1_t:'Fast Charge 20W chargers',
+      p1_d:'Complete boxed kits (20W charger + cable), takeaway.',
+      p1_pack:'20W kit · launch price 2,500 F',
+      p1_g1:'Wholesale from 10 units: <b>1,800 F CFA</b> per kit',
+      p1_d1:'<s class="price-old">4,000 F</s> <b class="price-promo">LAUNCH PRICE: 2,500 F CFA</b> per kit',
       p2_t:'Braided fast-charge cables',
       p2_d:'Type-C, Lightning and Micro-USB. Charge test guaranteed in-store.',
-      p2_pack:'Retail 4,500 F CFA · Wholesale 2,500 F CFA',
+      p2_pack:'Launch price 1,000 F CFA · Wholesale 500 F from 50',
       p3_t:'9D HD tempered glass',
-      p3_d:'Compatible brands: Tecno, Infinix, Samsung, iPhone',
-      p3_pack:'Carton of 100 pcs',
-      p3_g1:'Wholesale: <b>750 F CFA</b> per unit',
-      p3_d1:'1,500 F CFA per unit (professional fitting guaranteed, included)',
+      p3_d:'Compatible brands: Tecno, Infinix, Samsung, iPhone. Blister pack, takeaway.',
+      p3_pack:'From 50 pcs · 500 F CFA',
+      p3_tag:'Launch price 1,000 F CFA',
+      p3_g1:'Wholesale from 50 units: <b>500 F CFA</b> each',
+      p3_d1:'<s class="price-old">1,500 F</s> <b class="price-promo">LAUNCH PRICE: 1,000 F CFA</b> each',
       p3_px_gros:'Wholesale / reseller price',
       p3_px_det:'In-store retail price',
       p3_why_t:'Why is our 9D glass superior to street glass?',
-      p3_why_list:'<li><b>Reinforced 9H tempered glass:</b> Real shock protection, does not scratch from keys.</li><li><b>Anti-chip profiled edges:</b> Curved finish that does not crumble at the corners.</li><li><b>Oleophobic coating:</b> Fingerprint-resistant, ultra-smooth water-repellent surface.</li><li><b>Full optical ESD adhesive:</b> Bubble-free total adhesion, resists high heat.</li><li><b>Zero-defect fitting:</b> Meticulous cleaning and fitting included at the Ouaga shop.</li>',
+      p3_why_list:'<li><b>Reinforced 9H tempered glass:</b> Real shock protection, does not scratch from keys.</li><li><b>Anti-chip profiled edges:</b> Curved finish that does not crumble at the corners.</li><li><b>Oleophobic coating:</b> Fingerprint-resistant, ultra-smooth water-repellent surface.</li><li><b>Full optical ESD adhesive:</b> Bubble-free total adhesion, resists high heat.</li><li><b>Blister pack, takeaway:</b> Sold in the original box, with no in-store fitting.</li>',
       p5_t:'Anti-spy tempered glass',
-      p5_d:'28° privacy filter, 9H high-hardness tempered glass, scratch-resistant, anti-fingerprint. Tecno, Infinix, Samsung, iPhone.',
-      p5_pack:'28° Privacy Protection',
+      p5_d:'28° privacy filter, 9H high-hardness tempered glass, scratch-resistant, anti-fingerprint. Tecno, Infinix, Samsung, iPhone. Blister pack, takeaway.',
+      p5_pack:'Launch price 1,500 F CFA',
+      p5_d1:'<s class="price-old">2,500 F</s> <b class="price-promo">LAUNCH PRICE: 1,500 F CFA</b> each',
+      p5_g1:'Wholesale from 20 units: <b>1,000 F CFA</b> each',
       p5_wa:'Place order',
       p5_eye:'Technical sheet',
       p5_spec_t:'Anti-spy glass · 28° privacy',
@@ -3435,7 +3446,7 @@ body.air31-open{overflow:hidden}
       fret_note:'Customs clearance included on arrival at the Ouagadougou Hub.',
       fret_local:'🛵 Urban delivery in Ouagadougou: Free pickup at our relay point (Toudoubwéogo / Polesgo). For courier delivery to your home or shop, fees are set according to your neighborhood and paid on receipt with Janvier.',
       demo_home_t:'Live demonstration &amp; quality',
-      demo_prod_t:'Durability test &amp; workshop fitting',
+      demo_prod_t:'Durability test in the workshop',
       how_eye:'Logistics process', how_title:'Four steps, from factory to Ouagadougou.',
       how_sub:'A transparent, secure import process, controlled end to end.',
       s1_n:'STEP 01',
@@ -3667,49 +3678,50 @@ body.air31-open{overflow:hidden}
       pills:'brands',
       quoteVariants:[],
       tiers:[
-        { min:1, max:99, unit:1500, label:'Détail 1–99 pcs', note:'1 500 F CFA / pce · pose offerte Ouaga' },
-        { min:100, max:null, unit:750, label:'Gros 100+ pcs', note:'750 F CFA / pce · carton 100 = 75 000' }
+        { min:1, max:49, unit:1000, label:'Détail 1–49 pcs', note:'Prix normal 1 500 F · promo lancement 1 000 F CFA' },
+        { min:50, max:null, unit:500, label:'Gros 50+ pcs', note:'500 F CFA / pce · dès 50 pcs' }
       ]
     },
     'verre|privacy': {
       pills:'brands',
       quoteVariants:[],
       tiers:[
-        { min:1, max:99, unit:1500, label:'Détail 1–99 pcs', note:'1 500 F CFA / pce · pose offerte Ouaga' },
-        { min:100, max:null, unit:750, label:'Gros 100+ pcs', note:'750 F CFA / pce · carton 100 = 75 000' }
+        { min:1, max:19, unit:1500, label:'Détail 1–19 pcs', note:'Prix normal 2 500 F · promo lancement 1 500 F CFA' },
+        { min:20, max:null, unit:1000, label:'Gros 20+ pcs', note:'1 000 F CFA / pce · dès 20 pcs' }
       ]
     },
     'coque|airbag': {
       pills:'finish',
       quoteVariants:[],
       tiers:[
-        { min:1, max:99, unit:3000, label:'Détail 1–99 pcs', note:'3 000 F CFA / pce' },
-        { min:100, max:null, unit:1500, label:'Gros 100+ pcs', note:'1 500 F CFA / pce · carton 100 = 150 000' }
+        { min:1, max:49, unit:1000, label:'Détail 1–49 pcs', note:'Prix normal 2 000 F · promo lancement 1 000 F CFA' },
+        { min:50, max:null, unit:600, label:'Gros 50+ pcs', note:'600 F CFA / pce · dès 50 pcs' }
       ]
     },
     'cable|tresse': {
       pills:['Type-C','Lightning','Micro-USB'],
       quoteVariants:[],
       tiers:[
-        { min:1, max:99, unit:4500, label:'Détail 1–99 pcs', note:'4 500 F CFA / pce' },
-        { min:100, max:null, unit:2500, label:'Gros 100+ pcs', note:'2 500 F CFA / pce' }
+        { min:1, max:49, unit:1000, label:'Détail 1–49 pcs', note:'Prix normal 2 000 F · promo lancement 1 000 F CFA' },
+        { min:50, max:null, unit:500, label:'Gros 50+ pcs', note:'500 F CFA / pce · dès 50 pcs' }
       ]
     },
     'chargeur|fast': {
-      pills:['20W','40W'],
+      pills:['Kit 20W'],
       quoteVariants:[],
       tiers:[
-        { min:1, max:99, unit:4500, label:'Détail 1–99 pcs', note:'4 500 F CFA / pce' },
-        { min:100, max:null, unit:2500, label:'Gros 100+ pcs', note:'2 500 F CFA / pce' }
+        { min:1, max:9, unit:2500, label:'Détail 1–9 pcs', note:'Prix normal 4 000 F · promo lancement 2 500 F CFA' },
+        { min:10, max:null, unit:1800, label:'Gros 10+ pcs', note:'1 800 F CFA / kit · dès 10 pcs' }
       ]
     },
     'audio|air31': {
       pills:['Noir','Blanc','Vert','Bleu','Violet'],
       quoteVariants:[],
       tiers:[
-        { min:1, max:1, unit:5000, label:'1 pc', note:'5 000 F CFA / pce · détail Ouaga' },
-        { min:2, max:9, unit:4500, label:'2–9 pcs', note:'4 500 F CFA / pce · 2 pour 9 000' },
-        { min:10, max:null, unit:3500, label:'10+ pcs', note:'3 500 F CFA / pce · gros dès 10 pcs' }
+        { min:1, max:1, unit:3500, label:'Détail 1 pc', note:'Prix normal 5 000 F · promo lancement 3 500 F CFA' },
+        { min:2, max:2, unit:3250, label:'Duo 2 pcs', note:'Offre spéciale : 2 pour 6 500 F CFA' },
+        { min:3, max:9, unit:3500, label:'Détail 3–9 pcs', note:'3 500 F CFA / pce · promo lancement' },
+        { min:10, max:null, unit:2500, label:'Gros 10+ pcs', note:'2 500 F CFA / pce · revendeur dès 10' }
       ]
     }
   };
@@ -3799,7 +3811,7 @@ body.air31-open{overflow:hidden}
       variants:['Tecno','Infinix','Samsung','iPhone'],
       quoteVariants:[],
       tiers:[
-        { min:1, max:99, unit:1500, label:'1–99 pcs', note:'1 500 FCFA / pièce (boutique Ouaga, pose offerte)' },
+        { min:1, max:99, unit:1500, label:'1–99 pcs', note:'1 500 FCFA / pièce (blister, à emporter)' },
         { min:100, max:499, unit:350, label:'100–499 pcs', note:'350 FCFA / pièce (carton 100 = 35 000)' },
         { min:500, max:null, unit:350, label:'500+ pcs', note:'350 FCFA / pièce (volume, confirmation WhatsApp)' }
       ],
@@ -3811,7 +3823,7 @@ body.air31-open{overflow:hidden}
         ['Emballage','carton 100 pcs'],
         ['Pose offerte Ouaga','Oui']
       ],
-      desc:'<p>Verre trempé 9H, bords profilés anti-ébréchure, traitement oléophobique et colle optique intégrale. Pose professionnelle garantie offerte en boutique à Ouagadougou.</p>'
+      desc:'<p>Verre trempé 9H, bords profilés anti-ébréchure, traitement oléophobique et colle optique intégrale. Vendu sous blister, à emporter.</p>'
     },
     'verre|privacy': {
       title:'Verre Trempé Anti-Espion',
@@ -3821,7 +3833,7 @@ body.air31-open{overflow:hidden}
       variants:['Tecno','Infinix','Samsung','iPhone'],
       quoteVariants:[],
       tiers:[
-        { min:1, max:99, unit:1500, label:'1–99 pcs', note:'1 500 FCFA / pièce (boutique Ouaga, pose offerte)' },
+        { min:1, max:99, unit:1500, label:'1–99 pcs', note:'1 500 FCFA / pièce (blister, à emporter)' },
         { min:100, max:499, unit:350, label:'100–499 pcs', note:'350 FCFA / pièce (carton 100 = 35 000)' },
         { min:500, max:null, unit:350, label:'500+ pcs', note:'350 FCFA / pièce (volume, confirmation WhatsApp)' }
       ],
@@ -3833,7 +3845,7 @@ body.air31-open{overflow:hidden}
         ['Emballage','carton 100 pcs'],
         ['Pose offerte Ouaga','Oui']
       ],
-      desc:'<p>Filtre de confidentialité 28° : lisible de face, opaque sur les côtés. Verre trempé 9H anti-rayures. Pose professionnelle garantie offerte en boutique à Ouagadougou.</p>'
+      desc:'<p>Filtre de confidentialité 28° : lisible de face, opaque sur les côtés. Verre trempé 9H anti-rayures. Vendu sous blister, à emporter.</p>'
     },
     'coque|airbag': {
       title:'Coques Antichoc Airbag Silicone',
@@ -3877,7 +3889,7 @@ body.air31-open{overflow:hidden}
       desc:'<p>Câbles tressés de charge rapide. Test de charge garanti en boutique à Ouagadougou. Conditionnement paquet de 25 ou carton atelier de 50.</p>'
     },
     'chargeur|fast': {
-      title:'Chargeurs Fast Charge 20W / 40W',
+      title:'Chargeurs Fast Charge 20W',
       eyebrow:'Énergie · cartons usine',
       images:['bloc-charge.jpg','cable-charge.jpg'],
       videos:[],
@@ -4127,7 +4139,7 @@ body.air31-open{overflow:hidden}
     const totalTxt = st.quote ? quoteLabel : fmtFcfa(st.total || 0);
     return 'Bonjour Derra Global Trading, commande: ' + title +
       '. Modèle/couleur: ' + variant +
-      '. Quantité: ' + qty + ' pcs. Prix unitaire: ' + unitTxt +
+      '. Quantité: ' + qty + ' pcs. Prix unitaire promo lancement: ' + unitTxt +
       (st.quote ? '' : ' FCFA') + '. Montant estimé: ' + totalTxt +
       (st.quote ? '' : ' FCFA') + '. Ville: ' + city + '. Merci de confirmer.';
   }
@@ -4276,7 +4288,7 @@ body.air31-open{overflow:hidden}
     const st = card._buy || {};
     if(st.quote) return tI18n('pdp_quote', 'Sur devis');
     if(st.total != null) return fmtFcfa(st.total) + ' F CFA';
-    if(card.id === 'air31Modal' || card.id === 'cat-air31') return '5 000 F CFA';
+    if(card.id === 'air31Modal' || card.id === 'cat-air31') return '3 500 F CFA';
     return '—';
   }
   function payFields(panel){
@@ -4294,6 +4306,7 @@ body.air31-open{overflow:hidden}
       '\nArticle : ' + orderArticle(card) +
       '\nQuantité : ' + orderQty(card) +
       '\nMontant total : ' + orderAmount(card) +
+      '\nTarif : prix promo lancement' +
       '\nPaiement : ' + f.method +
       '\nContact : ' + f.phone +
       '\nStatut : ' + ORDER_STATUS;
@@ -4382,7 +4395,7 @@ body.air31-open{overflow:hidden}
       } else if(st.total != null){
         amountEl.innerHTML = tI18n('pay_amount', 'Montant marchandise (hors livraison)') + ' : <b>' + fmtFcfa(st.total) + ' F CFA</b>';
       } else if(card.id === 'cat-air31' || card.id === 'air31Modal'){
-        amountEl.innerHTML = tI18n('sc4_d1', 'Détail : <b>5 000 F CFA</b> / unité · Promo : 2 pour <b>9 000 F CFA</b>');
+        amountEl.innerHTML = tI18n('sc4_d1', '<s class="price-old">5 000 F</s> <b class="price-promo">PRIX PROMO LANCEMENT : 3 500 F CFA</b>');
       } else {
         amountEl.innerHTML = tI18n('pay_amount', 'Montant marchandise (hors livraison)') + ' : <b>—</b>';
       }
@@ -4695,7 +4708,7 @@ body.air31-open{overflow:hidden}
 
   const air31Modal = document.getElementById('air31Modal');
   if(air31Modal){
-    air31Modal._buy = { qty:1, tierIndex:0, variant:'Noir', quote:false, unit:5000, total:5000 };
+    air31Modal._buy = { qty:1, tierIndex:0, variant:'Noir', quote:false, unit:3500, total:3500 };
     mountPayUI(air31Modal);
     mountShareUI(air31Modal);
   }
@@ -4712,7 +4725,7 @@ body.air31-open{overflow:hidden}
   function updateAir31Wa(){
     const color = air31Color || 'Noir';
     if(air31Modal){
-      if(!air31Modal._buy) air31Modal._buy = { qty:1, tierIndex:0, variant:color, quote:false, unit:5000, total:5000 };
+      if(!air31Modal._buy) air31Modal._buy = { qty:1, tierIndex:0, variant:color, quote:false, unit:3500, total:3500 };
       air31Modal._buy.variant = color;
       updatePayPanel(air31Modal);
     }
