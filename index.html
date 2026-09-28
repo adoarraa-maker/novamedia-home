@@ -3224,8 +3224,8 @@ body.air31-open{overflow:hidden}
       pay_wave_d:'Envoyer le montant au +226 07 55 47 90',
       pay_name:'Nom et prénom',
       pay_name_ph:'Nom et prénom',
-      pay_phone:'Numéro WhatsApp',
-      pay_phone_ph:'Ex. +226 07 00 00 00',
+      pay_phone:'Numéro de téléphone / WhatsApp',
+      pay_phone_ph:'Ex. 07 00 00 00',
       pay_om_ref:'Référence de transaction Orange Money',
       pay_om_ref_ph:'Transaction ID / Réf SMS',
       pay_om_ref_err:'Indiquez la référence Orange Money (Transaction ID / Réf SMS).',
@@ -3532,8 +3532,8 @@ body.air31-open{overflow:hidden}
       pay_wave_d:'Send the amount to +226 07 55 47 90',
       pay_name:'First and last name',
       pay_name_ph:'First and last name',
-      pay_phone:'WhatsApp number',
-      pay_phone_ph:'e.g. +226 07 00 00 00',
+      pay_phone:'Phone / WhatsApp number',
+      pay_phone_ph:'e.g. 07 00 00 00',
       pay_om_ref:'Orange Money transaction reference',
       pay_om_ref_ph:'Transaction ID / SMS ref',
       pay_om_ref_err:'Enter the Orange Money reference (Transaction ID / SMS ref).',
@@ -4281,17 +4281,11 @@ body.air31-open{overflow:hidden}
   }
   function payFields(panel){
     const method = (panel && panel.dataset.method) || 'Orange Money';
-    const val = (sel) => {
-      const el = panel && panel.querySelector(sel);
-      return el ? el.value.trim() : '';
-    };
-    const omref = val('[name="omRef"]');
+    const phoneEl = panel && panel.querySelector('[name="clientPhone"]');
+    const phone = phoneEl ? phoneEl.value.trim() : '';
     return {
       method: method,
-      name: val('[name="clientName"]') || '—',
-      phone: val('[name="clientPhone"]') || '—',
-      payLine: method === 'Orange Money' ? (omref || '—') : 'Paiement au retrait',
-      area: val('[name="clientArea"]') || '—'
+      phone: phone || '—'
     };
   }
   function orderBody(card, panel, ref){
@@ -4301,10 +4295,7 @@ body.air31-open{overflow:hidden}
       '\nQuantité : ' + orderQty(card) +
       '\nMontant total : ' + orderAmount(card) +
       '\nPaiement : ' + f.method +
-      '\nNom du client : ' + f.name +
-      '\nContact WhatsApp : ' + f.phone +
-      '\nRéf Orange Money : ' + f.payLine +
-      '\nQuartier / livraison : ' + f.area +
+      '\nContact : ' + f.phone +
       '\nStatut : ' + ORDER_STATUS;
   }
   function messageJanvier(card, panel, ref){
@@ -4435,17 +4426,8 @@ body.air31-open{overflow:hidden}
           '<span class="pay-opt__d" data-i18n="pay_pickup_d">Régler la marchandise sur place au point relais.</span>' +
         '</button>' +
       '</div>' +
-      '<label class="pay-field"><span data-i18n="pay_name">Nom et prénom</span>' +
-        '<input name="clientName" type="text" required autocomplete="name" data-i18n-ph="pay_name_ph" placeholder="Nom et prénom">' +
-      '</label>' +
-      '<label class="pay-field"><span data-i18n="pay_phone">Numéro WhatsApp</span>' +
-        '<input name="clientPhone" type="tel" required autocomplete="tel" inputmode="tel" data-i18n-ph="pay_phone_ph" placeholder="Ex. +226 07 00 00 00">' +
-      '</label>' +
-      '<label class="pay-field pay-field--om"><span data-i18n="pay_om_ref">Référence de transaction Orange Money</span>' +
-        '<input name="omRef" type="text" required autocomplete="off" data-i18n-ph="pay_om_ref_ph" placeholder="Transaction ID / Réf SMS">' +
-      '</label>' +
-      '<label class="pay-field"><span data-i18n="pay_area">Quartier / Ville (Ouagadougou)</span>' +
-        '<input name="clientArea" type="text" required autocomplete="address-level2" data-i18n-ph="pay_area_ph" placeholder="Ex. Toudoubweogo, Ouagadougou">' +
+      '<label class="pay-field"><span data-i18n="pay_phone">Numéro de téléphone / WhatsApp</span>' +
+        '<input name="clientPhone" type="tel" required autocomplete="tel" inputmode="tel" data-i18n-ph="pay_phone_ph" placeholder="Ex. 07 00 00 00">' +
       '</label>' +
       '<button type="submit" class="btn btn--bf pay-wa" data-i18n="pay_confirm">Confirmer la commande</button>' +
       '<p class="pay-delivery" data-i18n="pay_delivery">Livraison locale à Ouagadougou : Le prix payé en ligne concerne uniquement la marchandise. Le retrait au point relais est gratuit. En cas de livraison à domicile, le tarif de transport dépend de votre zone/quartier et sera convenu directement avec notre responsable local (Janvier) puis réglé à la réception.</p>';
@@ -4460,15 +4442,8 @@ body.air31-open{overflow:hidden}
     panel.addEventListener('submit', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const om = panel.dataset.method === 'Orange Money';
-      const omRef = panel.querySelector('[name="omRef"]');
-      if(omRef){
-        if(om && !omRef.value.trim()){
-          omRef.setCustomValidity(tI18n('pay_om_ref_err', 'Indiquez la référence Orange Money (Transaction ID / Réf SMS).'));
-        } else {
-          omRef.setCustomValidity('');
-        }
-      }
+      const phone = panel.querySelector('[name="clientPhone"]');
+      if(phone) phone.setCustomValidity(phone.value.trim() ? '' : tI18n('pay_phone', 'Numéro de téléphone / WhatsApp'));
       if(!panel.checkValidity()){
         panel.reportValidity();
         return;
