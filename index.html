@@ -1181,6 +1181,13 @@ body.policy-open{overflow:hidden}
   border-radius:12px;border-left:3px solid #1F7A4D;font-weight:600;
 }
 .pay-wa{width:100%;text-align:center;white-space:normal}
+.pay-order{
+  margin:0;padding:8px 10px;border-radius:10px;
+  background:#0f172a;color:#fff;font-size:.82rem;line-height:1.45;
+}
+.pay-order b{color:#e3c86b}
+.pay-receipt{margin:0;font-size:.78rem;line-height:1.5;color:var(--navy)}
+.pay-receipt a{color:#128C7E;font-weight:800}
 .shop-card .pay-panel{margin-top:8px}
 .shop-card .btn--pay{align-self:stretch}
 body.air31-open{overflow:hidden}
@@ -3225,6 +3232,10 @@ body.air31-open{overflow:hidden}
       pay_area:'Quartier / Ville (Ouagadougou)',
       pay_area_ph:'Ex. Toudoubweogo, Ouagadougou',
       pay_form_t:'Validation de commande',
+      pay_order:'Numéro de commande',
+      pay_status:'En attente de validation Direction Genève',
+      pay_sent:'Commande envoyée à Janvier. Envoyez aussi la copie à la Direction Genève si la deuxième fenêtre ne s’ouvre pas.',
+      pay_geneve_retry:'Ouvrir la copie Direction Genève',
       pay_pickup:'Lieu de retrait : Boutique Derra Global Trading, Quartier Toudoubweogo (proximité CSPS De Polesgo / Paroisse Saint Jean), Ouagadougou.',
       pay_confirm:'Confirmer la commande',
       pay_delivery:'Livraison locale à Ouagadougou : Le prix payé en ligne concerne uniquement la marchandise. Le retrait au point relais est gratuit. En cas de livraison à domicile, le tarif de transport dépend de votre zone/quartier et sera convenu directement avec notre responsable local (Janvier) puis réglé à la réception.',
@@ -3529,6 +3540,10 @@ body.air31-open{overflow:hidden}
       pay_area:'Neighbourhood / City (Ouagadougou)',
       pay_area_ph:'e.g. Toudoubweogo, Ouagadougou',
       pay_form_t:'Order validation',
+      pay_order:'Order number',
+      pay_status:'Pending validation by Geneva HQ',
+      pay_sent:'Order sent to Janvier. Also send the copy to Geneva HQ if the second window does not open.',
+      pay_geneve_retry:'Open the Geneva HQ copy',
       pay_pickup:'Pickup: Derra Global Trading shop, Toudoubweogo district (near CSPS De Polesgo / Saint Jean Parish), Ouagadougou.',
       pay_confirm:'Confirm order',
       pay_delivery:'Local delivery in Ouagadougou: The amount paid online covers the goods only. Relay-point pickup is free. For home delivery, the transport fee depends on your area/neighbourhood and will be agreed directly with our local manager (Janvier), then paid on receipt.',
@@ -4232,33 +4247,128 @@ body.air31-open{overflow:hidden}
     }
     fillShareAnchor(a, card);
   }
-  function waPayText(card, panel){
+  const ORDER_STATUS = 'En attente de validation Direction Genève';
+  function newOrderCode(){
+    const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    const bytes = new Uint8Array(4);
+    if(window.crypto && crypto.getRandomValues) crypto.getRandomValues(bytes);
+    else {
+      for(let i = 0; i < 4; i++) bytes[i] = Math.floor(Math.random() * 256);
+    }
+    let code = '';
+    for(let i = 0; i < 4; i++) code += alphabet[bytes[i] % alphabet.length];
+    return '#CMD-' + code;
+  }
+  function ensureOrderRef(card){
+    if(!card._orderRef) card._orderRef = newOrderCode();
+    return card._orderRef;
+  }
+  function orderArticle(card){
     const st = card._buy || {};
-    const extra = st.variant ? ' · ' + st.variant : '';
-    const qty = st.qty || 1;
+    const title = productTitle(card);
+    const variant = st.variant || (card.dataset && (card.dataset.finish || card.dataset.brand || card.dataset.variant)) || '';
+    return variant ? title + ' · ' + variant : title;
+  }
+  function orderQty(card){
+    return (card._buy && card._buy.qty) || 1;
+  }
+  function orderAmount(card){
+    const st = card._buy || {};
+    if(st.quote) return tI18n('pdp_quote', 'Sur devis');
+    if(st.total != null) return fmtFcfa(st.total) + ' F CFA';
+    if(card.id === 'air31Modal' || card.id === 'cat-air31') return '5 000 F CFA';
+    return '—';
+  }
+  function payFields(panel){
     const method = (panel && panel.dataset.method) || 'Orange Money';
     const val = (sel) => {
       const el = panel && panel.querySelector(sel);
       return el ? el.value.trim() : '';
     };
-    const name = val('[name="clientName"]');
-    const phone = val('[name="clientPhone"]');
     const omref = val('[name="omRef"]');
-    const area = val('[name="clientArea"]');
-    const amount = st.quote
-      ? tI18n('pdp_quote', 'Sur devis')
-      : (st.total != null ? fmtFcfa(st.total) + ' F CFA' : '—');
-    const payLine = method === 'Orange Money'
-      ? (omref || '—')
-      : tI18n('pay_pickup_t', 'Paiement au retrait');
-    return 'Bonjour Derra Global Trading, nouvelle commande.' +
-      '\n\nRéférence / Produit : ' + productTitle(card) + extra + ' · ' + qty + ' pc' + (qty > 1 ? 's' : '') +
-      '\nMontant marchandise : ' + amount +
-      '\nPaiement : ' + method +
-      '\nNom du client : ' + (name || '—') +
-      '\nContact WhatsApp : ' + (phone || '—') +
-      '\nRéf Orange Money : ' + payLine +
-      '\nQuartier / livraison : ' + (area || '—');
+    return {
+      method: method,
+      name: val('[name="clientName"]') || '—',
+      phone: val('[name="clientPhone"]') || '—',
+      payLine: method === 'Orange Money' ? (omref || '—') : 'Paiement au retrait',
+      area: val('[name="clientArea"]') || '—'
+    };
+  }
+  function orderBody(card, panel, ref){
+    const f = payFields(panel);
+    return 'Numéro de commande : ' + ref +
+      '\nArticle : ' + orderArticle(card) +
+      '\nQuantité : ' + orderQty(card) +
+      '\nMontant total : ' + orderAmount(card) +
+      '\nPaiement : ' + f.method +
+      '\nNom du client : ' + f.name +
+      '\nContact WhatsApp : ' + f.phone +
+      '\nRéf Orange Money : ' + f.payLine +
+      '\nQuartier / livraison : ' + f.area +
+      '\nStatut : ' + ORDER_STATUS;
+  }
+  function messageJanvier(card, panel, ref){
+    return 'Bonjour Janvier, nouvelle commande Derra Global Trading (Agence Ouaga).\n\n' +
+      orderBody(card, panel, ref);
+  }
+  function messageGeneve(card, panel, ref){
+    return 'ALERTE COMMANDE — Direction Genève\n' +
+      'Copie immédiate d’une commande adressée à Janvier (+226 07 55 47 90).\n\n' +
+      orderBody(card, panel, ref);
+  }
+  function waHref(phone, text){
+    if(window.DerraWA && DerraWA.openUrl) return DerraWA.openUrl(phone, text);
+    return 'https://wa.me/' + phone + '?text=' + encodeURIComponent(text);
+  }
+  function openOrderChats(textBf, textCh){
+    window.open(waHref(WA_BF, textBf), '_blank', 'noopener,noreferrer');
+    window.open(waHref(WA_CH, textCh), '_blank', 'noopener,noreferrer');
+  }
+  function showOrderReceipt(panel, ref, textCh){
+    if(!panel) return;
+    let receipt = panel.querySelector('.pay-receipt');
+    if(!receipt){
+      receipt = document.createElement('p');
+      receipt.className = 'pay-receipt';
+      panel.appendChild(receipt);
+    }
+    receipt.textContent = '';
+    receipt.appendChild(document.createTextNode(ref + ' — ' + tI18n('pay_sent', 'Commande envoyée à Janvier. Envoyez aussi la copie à la Direction Genève si la deuxième fenêtre ne s’ouvre pas.') + ' '));
+    const retry = document.createElement('a');
+    retry.href = waHref(WA_CH, textCh);
+    retry.target = '_blank';
+    retry.rel = 'noopener noreferrer';
+    retry.textContent = tI18n('pay_geneve_retry', 'Ouvrir la copie Direction Genève');
+    receipt.appendChild(retry);
+  }
+  function placeOrder(card){
+    const panel = card.querySelector('.pay-panel');
+    const ref = ensureOrderRef(card);
+    const textBf = messageJanvier(card, panel, ref);
+    const textCh = messageGeneve(card, panel, ref);
+    openOrderChats(textBf, textCh);
+    if(panel){
+      panel.hidden = false;
+      showOrderReceipt(panel, ref, textCh);
+      fillPayPanel(panel, card);
+    }
+    return ref;
+  }
+  function bindJanvierOrderLinks(){
+    document.querySelectorAll('.range a.btn--bf, #air31Modal a.btn--bf').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      if(!/22607554790/.test(href)) return;
+      if(a.classList.contains('pay-wa') || a.classList.contains('share-fab')) return;
+      const card = a.closest('.range') || document.getElementById('air31Modal');
+      if(!card) return;
+      a.removeAttribute('href');
+      a.setAttribute('role', 'button');
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        placeOrder(card);
+      });
+    });
   }
   function syncPayMethod(panel){
     if(!panel) return;
@@ -4286,6 +4396,18 @@ body.air31-open{overflow:hidden}
         amountEl.innerHTML = tI18n('pay_amount', 'Montant marchandise (hors livraison)') + ' : <b>—</b>';
       }
     }
+    const orderEl = panel.querySelector('.pay-order');
+    if(orderEl){
+      if(card._orderRef){
+        orderEl.hidden = false;
+        orderEl.innerHTML = tI18n('pay_order', 'Numéro de commande') + ' : <b>' + card._orderRef + '</b><br>' +
+          orderArticle(card) + ' · ' + orderQty(card) + ' · ' + orderAmount(card) + '<br>' +
+          tI18n('pay_status', ORDER_STATUS);
+      } else {
+        orderEl.hidden = true;
+        orderEl.textContent = '';
+      }
+    }
     syncPayMethod(panel);
   }
   function updatePayPanel(card){
@@ -4300,6 +4422,7 @@ body.air31-open{overflow:hidden}
     panel.setAttribute('novalidate', '');
     panel.innerHTML =
       '<p class="pay-form-t" data-i18n="pay_form_t">Validation de commande</p>' +
+      '<p class="pay-order" hidden></p>' +
       '<p class="pay-amount"></p>' +
       '<p class="pay-goods" data-i18n="pay_goods">Le paiement en ligne concerne uniquement le prix du produit, pas le transport.</p>' +
       '<div class="pay-opts">' +
@@ -4350,12 +4473,7 @@ body.air31-open{overflow:hidden}
         panel.reportValidity();
         return;
       }
-      const text = waPayText(card, panel);
-      if(window.DerraWA && DerraWA.open){
-        DerraWA.open(WA_PAY, text);
-      } else {
-        window.open('https://wa.me/' + WA_PAY + '?text=' + encodeURIComponent(text), '_blank', 'noopener,noreferrer');
-      }
+      placeOrder(card);
     });
     fillPayPanel(panel, card);
     return panel;
@@ -4390,7 +4508,14 @@ body.air31-open{overflow:hidden}
       const open = panel.hidden;
       document.querySelectorAll('.pay-panel').forEach(p => { p.hidden = true; });
       panel.hidden = !open;
-      if(!panel.hidden) fillPayPanel(panel, card);
+      if(!panel.hidden){
+        ensureOrderRef(card);
+        fillPayPanel(panel, card);
+      } else {
+        card._orderRef = null;
+        const receipt = panel.querySelector('.pay-receipt');
+        if(receipt) receipt.remove();
+      }
     });
   }
   function updateCardWa(card){
@@ -4595,9 +4720,11 @@ body.air31-open{overflow:hidden}
 
   const air31Modal = document.getElementById('air31Modal');
   if(air31Modal){
+    air31Modal._buy = { qty:1, tierIndex:0, variant:'Noir', quote:false, unit:5000, total:5000 };
     mountPayUI(air31Modal);
     mountShareUI(air31Modal);
   }
+  bindJanvierOrderLinks();
   const air31Card = document.getElementById('cat-air31');
   const air31Main = document.getElementById('air31Main');
   const air31Thumbs = document.getElementById('air31Thumbs');
@@ -4609,6 +4736,11 @@ body.air31-open{overflow:hidden}
   }
   function updateAir31Wa(){
     const color = air31Color || 'Noir';
+    if(air31Modal){
+      if(!air31Modal._buy) air31Modal._buy = { qty:1, tierIndex:0, variant:color, quote:false, unit:5000, total:5000 };
+      air31Modal._buy.variant = color;
+      updatePayPanel(air31Modal);
+    }
     const text = 'Bonjour, je souhaite commander les Écouteurs Air31 TWS (Couleur choisie : ' + color + ').';
     const href = 'https://wa.me/' + WA_PAY + '?text=' + encodeURIComponent(text);
     const payWa = document.querySelector('#prod-ecouteurs .pay-wa');
