@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<ii!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -249,6 +249,7 @@ nav.main .wa-pair{display:none}
 .float-card--md{width:34%;height:38%;left:0;top:8%;z-index:3;animation-delay:-1.4s}
 .float-card--sm{width:30%;height:32%;left:8%;bottom:6%;z-index:4;animation-delay:-2.6s}
 .float-card--xs{width:26%;height:26%;right:0;bottom:10%;z-index:3;animation-delay:-.8s}
+.float-card--colors{width:42%;height:26%;left:29%;top:38%;z-index:5;animation-delay:-3.1s}
 .float-chip{
   position:absolute;z-index:5;left:18%;top:48%;
   background:rgba(11,23,48,.82);color:#fff;border:1px solid rgba(227,200,107,.4);
@@ -416,7 +417,7 @@ nav.main .wa-pair{display:none}
 .trust__i span{font-size:.82rem;color:var(--muted)}
 
 section{padding:88px 0}
-#catalogue,#catalogues,#telephonie,#espace-gros,#espace-detail,#categories,#prod-verre-hd,#prod-coque,#prod-cable,#prod-chargeur,#prod-air31,#prod-ecouteurs,#cat-air31{scroll-margin-top:96px}
+#catalogue,#catalogues,#telephonie,#espace-gros,#espace-detail,#categories,#prod-verre-hd,#prod-coque,#prod-cable,#prod-chargeur,#prod-air31,#prod-ecouteurs,#prod-briquet,#cat-air31{scroll-margin-top:96px}
 html.js-ready #catalogue:not(.is-open){display:none}
 .sec__hd{margin-bottom:40px}
 .sec__hd--c{text-align:center;margin-left:auto;margin-right:auto}
@@ -1334,6 +1335,111 @@ body.air31-open{overflow:hidden}
 @media (max-width:700px){
   .air31-px{grid-template-columns:1fr}
 }
+
+.briquet-sec{
+  padding:36px 0 64px;
+  background:
+    radial-gradient(900px 280px at 12% 0%, rgba(0,168,107,.16), transparent 60%),
+    linear-gradient(180deg,#fff 0%, var(--cream) 100%);
+  border-bottom:1px solid var(--line);
+}
+.briquet-sheet{
+  background:var(--navy);
+  color:#fff;
+  border:1px solid rgba(227,200,107,.32);
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 18px 50px rgba(11,23,48,.18);
+}
+.briquet__head{padding:26px 26px 4px}
+.briquet__badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#00a86b;color:#fff;
+  font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  padding:6px 12px;border-radius:999px;margin-bottom:12px;
+}
+.briquet__badge::before{
+  content:"";width:7px;height:7px;border-radius:50%;background:var(--gold-2);
+  box-shadow:0 0 0 4px rgba(227,200,107,.25);
+}
+.briquet__head h3{
+  color:#fff;font-size:clamp(1.4rem,2.5vw,2.05rem);max-width:24ch;line-height:1.15;
+}
+.briquet__lead{color:rgba(255,255,255,.78);max-width:62ch;margin-top:10px;font-size:1rem}
+.briquet__grid{
+  display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  gap:22px;padding:18px 22px 26px;align-items:start;
+}
+.briquet-player{
+  position:relative;border-radius:16px;overflow:hidden;
+  background:#06101f;border:1px solid rgba(227,200,107,.28);
+}
+.briquet-player video{
+  display:block;width:100%;height:auto;max-height:min(68vh,520px);
+  object-fit:contain;background:#06101f;
+}
+.briquet-player__btn{
+  position:absolute;right:12px;bottom:12px;z-index:3;
+  width:42px;height:42px;border-radius:50%;padding:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(11,23,48,.78);color:var(--gold-2);
+  border:1px solid rgba(227,200,107,.55);
+  box-shadow:0 8px 18px rgba(0,0,0,.28);
+}
+.briquet-player__btn:hover{background:var(--gold);color:var(--navy)}
+.briquet-player__btn svg{width:16px;height:16px;display:block}
+.briquet-player.is-playing .briquet-player__icon-play,
+.briquet-player:not(.is-playing) .briquet-player__icon-pause{display:none}
+.briquet-stage{position:relative;margin-top:12px}
+.briquet-stage .range-photo{
+  margin:0;border-radius:16px;overflow:hidden;background:#0e1d3a;cursor:zoom-in;
+}
+.briquet-stage .range-photo img{
+  width:100%;height:280px;object-fit:contain;background:#0e1d3a;
+  padding:8px;border-radius:0;
+}
+.briquet-nav{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:4;
+  width:36px;height:36px;border-radius:50%;padding:0;
+  background:rgba(11,23,48,.8);color:var(--gold-2);
+  border:1px solid rgba(227,200,107,.45);
+  font-size:1.45rem;line-height:1;
+}
+.briquet-nav:hover{background:var(--gold);color:var(--navy)}
+.briquet-nav--prev{left:10px}
+.briquet-nav--next{right:10px}
+.briquet-thumbs{
+  display:flex;gap:8px;padding:10px 0 0;background:transparent;
+  overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+.briquet-thumbs button{
+  flex:0 0 72px;width:72px;min-width:72px;max-width:72px;
+  padding:0;border:1.5px solid rgba(255,255,255,.18);border-radius:10px;
+  background:#0e1d3a;overflow:hidden;
+}
+.briquet-thumbs button.is-on{
+  border-color:var(--gold-2);
+  box-shadow:0 0 0 2px rgba(227,200,107,.35);
+}
+.briquet-thumbs img{
+  height:58px;width:100%;object-fit:cover;background:#0e1d3a;padding:0;display:block;
+}
+.briquet__panel{
+  background:#fff;color:var(--ink);border-radius:18px;
+  padding:16px 16px 18px;border:1px solid var(--line);
+}
+.briquet__panel .spec-sheet{margin-top:0}
+.briquet__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.briquet__cta .btn{white-space:normal;text-align:center;flex:1 1 220px}
+.briquet__note{margin-top:10px;font-size:.78rem;color:var(--muted);line-height:1.45}
+@media (max-width:900px){
+  .briquet-sec{padding:22px 0 48px}
+  .briquet__head{padding:20px 16px 2px}
+  .briquet__grid{grid-template-columns:1fr;gap:16px;padding:14px 14px 18px}
+  .briquet-stage .range-photo img{height:220px}
+  .briquet__cta .btn{flex:1 1 100%}
+}
 </style>
 <link rel="stylesheet" href="style.css">
 <script>document.documentElement.classList.add('js-ready');</script>
@@ -1366,6 +1472,7 @@ body.air31-open{overflow:hidden}
           <a href="#prod-coque" data-filter="coque" data-sub="airbag" data-i18n="mega_p2">📱 Coques Antichoc Airbag Silicone (Tecno, Infinix, Samsung, iPhone)</a>
           <a href="#prod-cable" data-filter="power" data-i18n="mega_p3">⚡ Câbles de Charge Rapide &amp; Blocs 20W/35W</a>
           <a href="#prod-air31" data-filter="audio" data-i18n="mega_p5">🎧 Écouteurs Air31 TWS Crystal LED</a>
+          <a href="#prod-briquet" data-i18n="mega_briquet">🔥 Mini Briquet Électrique Porte-Clés</a>
           <a href="#espace-gros" data-i18n="mega_p4">📦 Lots d'Atelier &amp; Cartons Revendeurs</a>
           <a href="#espace-gros" data-i18n="nav_gros">Espace Gros (Cartons)</a>
           <a href="#espace-detail" data-i18n="nav_detail">Boutique Détail (Ouaga)</a>
@@ -1423,6 +1530,7 @@ body.air31-open{overflow:hidden}
           <div class="float-card float-card--md"><img src="bloc-charge.jpg" alt=""></div>
           <div class="float-card float-card--sm"><img src="VIN1.png" alt="" onerror="this.src='VIN1.png'"></div>
           <div class="float-card float-card--xs"><img src="coque1.png" alt="" onerror="this.src='coque1.png'"></div>
+          <div class="float-card float-card--colors"><img src="hero-briquet-couleurs.jpg" alt=""></div>
           <div class="float-chip">Téléphonie · cartons Shenzhen</div>
         </div>
       </article>
@@ -1443,6 +1551,7 @@ body.air31-open{overflow:hidden}
           <div class="float-card float-card--md"><img src="coque1.png" alt="" onerror="this.src='coque1.png'"></div>
           <div class="float-card float-card--sm"><img src="VIN1.png" alt="" onerror="this.src='VIN1.png'"></div>
           <div class="float-card float-card--xs"><img src="coque1.png" alt="" onerror="this.src='coque1.png'"></div>
+          <div class="float-card float-card--colors"><img src="hero-briquet-couleurs.jpg" alt=""></div>
           <div class="float-chip">Tech · cartons usine</div>
         </div>
       </article>
@@ -1463,6 +1572,7 @@ body.air31-open{overflow:hidden}
           <div class="float-card float-card--md"><img src="bloc-charge.jpg" alt=""></div>
           <div class="float-card float-card--sm"><img src="VIN1.png" alt="" onerror="this.src='VIN1.png'"></div>
           <div class="float-card float-card--xs"><img src="coque1.png" alt="" onerror="this.src='coque1.png'"></div>
+          <div class="float-card float-card--colors"><img src="hero-briquet-couleurs.jpg" alt=""></div>
           <div class="float-chip">Accessoires · lots usine</div>
         </div>
       </article>
@@ -1483,6 +1593,7 @@ body.air31-open{overflow:hidden}
           <div class="float-card float-card--md"><img src="VIN1.png" alt="" onerror="this.src='VIN1.png'"></div>
           <div class="float-card float-card--sm"><img src="bloc-charge.jpg" alt=""></div>
           <div class="float-card float-card--xs"><img src="coque1.png" alt="" onerror="this.src='coque1.png'"></div>
+          <div class="float-card float-card--colors"><img src="hero-briquet-couleurs.jpg" alt=""></div>
           <div class="float-chip">Sneakers · mode</div>
         </div>
       </article>
@@ -1635,6 +1746,18 @@ body.air31-open{overflow:hidden}
       <p class="lead" data-i18n="shop_sub">Choisissez une gamme pour consulter les tarifs gros / détail. Paiement de la marchandise via Orange Money, ou au retrait.</p>
     </div>
     <div class="cat-grid">
+      <article class="shop-card" id="cat-briquet" href="#prod-briquet">
+        <figure class="shop-card__visual">
+          <span class="shop-card__badge" data-i18n="briquet_badge">Nouveau • Stock Limité</span>
+          <img src="briquet-coffret.jpg" alt="Mini briquet électrique dans son coffret rigide noir" style="width:100%;height:200px;object-fit:cover;background:#0B1730;padding:0;">
+        </figure>
+        <div class="shop-card__b">
+          <h3 data-i18n="briquet_card_t">Mini Briquet Électrique Smartphone Porte-Clés</h3>
+          <p data-i18n="briquet_card_d">Alliage de zinc, coffret rigide noir inclus. Sans batterie intégrée, allumage sans flamme, Type-C ou Lightning.</p>
+          <p class="shop-card__price" data-i18n-html="briquet_card_px">Détail <b>5 000 F CFA</b> · Gros dès 20 : <b>4 000 F CFA</b></p>
+          <span class="btn btn--gold btn--sm shop-card__cta" data-i18n="briquet_card_cta">Voir le produit</span>
+        </div>
+      </article>
       <article class="shop-card" href="#prod-verre-hd" data-filter="verre" data-kind="verre">
         <figure class="shop-card__visual">
           <span class="shop-card__badge" data-i18n="sc1_badge">Protection écran</span>
@@ -1685,6 +1808,90 @@ body.air31-open{overflow:hidden}
         </div>
       </article>
     </div>
+  </div>
+</section>
+
+<section class="briquet-sec" aria-labelledby="briquetTitle">
+  <div class="wrap">
+    <article class="briquet-sheet" id="prod-briquet">
+      <header class="briquet__head">
+        <span class="briquet__badge" data-i18n="briquet_badge">Nouveau • Stock Limité</span>
+        <h3 id="briquetTitle" data-i18n="briquet_t">Mini Briquet Électrique Smartphone Porte-Clés (Alliage de Zinc)</h3>
+        <p class="briquet__lead" data-i18n="briquet_lead">Format porte-clés luxe, livré dans son coffret rigide noir. Il s’allume sans flamme et s’alimente directement sur le téléphone.</p>
+      </header>
+      <div class="briquet__grid">
+        <div class="briquet__media">
+          <div class="briquet-player" id="briquetPlayer">
+            <video id="briquetVideo" src="Mini Briquet.mp4?v=3" poster="briquet-coffret.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Démonstration du mini briquet électrique"></video>
+            <button type="button" class="briquet-player__btn" id="briquetPlay" aria-label="Lecture ou pause">
+              <svg class="briquet-player__icon-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.14v13.72a1 1 0 0 0 1.53.85l11.04-6.86a1 1 0 0 0 0-1.7L9.53 4.29A1 1 0 0 0 8 5.14z"/></svg>
+              <svg class="briquet-player__icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 5h3.2v14H7zm6.8 0H17v14h-3.2z"/></svg>
+            </button>
+          </div>
+          <div class="briquet-stage" id="briquetStage">
+            <button type="button" class="briquet-nav briquet-nav--prev" id="briquetPrev" aria-label="Photo précédente">‹</button>
+            <figure class="range-photo">
+              <img id="briquetMain" src="briquet-coffret.jpg" alt="Mini briquet électrique dans son coffret rigide noir">
+            </figure>
+            <button type="button" class="briquet-nav briquet-nav--next" id="briquetNext" aria-label="Photo suivante">›</button>
+          </div>
+          <div class="briquet-thumbs" id="briquetThumbs" role="tablist" aria-label="Photos du mini briquet">
+            <button type="button" class="is-on" data-src="briquet-coffret.jpg" data-alt="Mini briquet électrique dans son coffret rigide noir" aria-label="Coffret rigide noir"><img src="briquet-coffret.jpg" alt=""></button>
+            <button type="button" data-src="briquet-portecles.jpg" data-alt="Mini briquet or rose avec anneau porte-clés" aria-label="Anneau porte-clés"><img src="briquet-portecles.jpg" alt=""></button>
+            <button type="button" data-src="briquet-couleurs.jpg" data-alt="Finitions du mini briquet : or brossé, argent, noir, violet et bleu" aria-label="Finitions et couleurs"><img src="briquet-couleurs.jpg" alt=""></button>
+            <button type="button" data-src="briquet-connecteur.jpg" data-alt="Connecteur Type-C et allumage par résistance du mini briquet" aria-label="Connecteur et allumage"><img src="briquet-connecteur.jpg" alt=""></button>
+            <button type="button" data-src="briquet-avion.jpg" data-alt="Mini briquet porte-clés compact, format voyage" aria-label="Format compact"><img src="briquet-avion.jpg" alt=""></button>
+          </div>
+        </div>
+        <div class="briquet__info">
+          <div class="briquet__panel">
+            <div class="spec-sheet">
+              <p class="spec-sheet__eye" data-i18n="briquet_spec_eye">Arguments clés</p>
+              <h4 data-i18n="briquet_spec_t">Spécifications</h4>
+              <dl>
+                <div class="spec-sheet__row">
+                  <dt data-i18n="briquet_s1_t">Format</dt>
+                  <dd data-i18n="briquet_s1_d">Porte-clés luxe, coffret rigide noir inclus</dd>
+                </div>
+                <div class="spec-sheet__row">
+                  <dt data-i18n="briquet_s2_t">Alimentation</dt>
+                  <dd data-i18n="briquet_s2_d">Zéro batterie intégrée : sécurisé, ne chauffe pas au repos, s’alimente directement sur le téléphone</dd>
+                </div>
+                <div class="spec-sheet__row">
+                  <dt data-i18n="briquet_s3_t">Connectique</dt>
+                  <dd data-i18n="briquet_s3_d">Double connectivité selon modèle : Type-C et Lightning (iPhone)</dd>
+                </div>
+                <div class="spec-sheet__row">
+                  <dt data-i18n="briquet_s4_t">Allumage</dt>
+                  <dd data-i18n="briquet_s4_d">Capteur / résistance sans flamme, coupe-vent</dd>
+                </div>
+                <div class="spec-sheet__row">
+                  <dt data-i18n="briquet_s5_t">Matière</dt>
+                  <dd data-i18n="briquet_s5_d">Ultra léger et compact, alliage de zinc résistant</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="prix-grid">
+              <div class="prix-box prix-box--detail">
+                <h4 data-i18n="briquet_det_h">Achat au détail (Ouagadougou)</h4>
+                <b>5 000 FCFA</b>
+                <span data-i18n="briquet_det_d">l’unité, coffret inclus</span>
+              </div>
+              <div class="prix-box prix-box--gros">
+                <h4 data-i18n="briquet_gros_h">Achat en gros / Revendeurs</h4>
+                <b>4 000 FCFA</b>
+                <span data-i18n="briquet_gros_d">à partir de 20 pièces · cartons usine sur devis</span>
+              </div>
+            </div>
+            <div class="briquet__cta">
+              <a class="btn btn--bf" href="https://wa.me/22607534730?text=Bonjour%2C%20je%20souhaite%20commander%20le%20Mini%20Briquet%20%C3%89lectrique%20pour%20smartphone%20en%20coffret%20cadeau." target="_blank" rel="noopener noreferrer" data-i18n="briquet_wa">Commander sur WhatsApp · Boutique Ouagadougou</a>
+              <a class="btn btn--gold" href="https://wa.me/22607534730?text=Bonjour%2C%20je%20souhaite%20un%20devis%20en%20gros%20(carton)%20pour%20le%20Mini%20Briquet%20%C3%89lectrique%20pour%20smartphone%20en%20coffret%20cadeau." target="_blank" rel="noopener noreferrer" data-i18n="briquet_quote">Demander un devis en gros (Carton)</a>
+            </div>
+            <p class="briquet__note" data-i18n="briquet_note">Boutique Ouagadougou · +226 07 53 47 30 · retrait sur place, coffret cadeau inclus.</p>
+          </div>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -2949,6 +3156,28 @@ body.air31-open{overflow:hidden}
       mega_p3:'⚡ Câbles de Charge Rapide &amp; Blocs 20W/35W',
       mega_p4:'📦 Lots d\'Atelier &amp; Cartons Revendeurs',
       mega_p5:'🎧 Écouteurs Air31 TWS Crystal LED',
+      mega_briquet:'🔥 Mini Briquet Électrique Porte-Clés',
+      briquet_badge:'Nouveau • Stock Limité',
+      briquet_card_t:'Mini Briquet Électrique Smartphone Porte-Clés',
+      briquet_card_d:'Alliage de zinc, coffret rigide noir inclus. Sans batterie intégrée, allumage sans flamme, Type-C ou Lightning.',
+      briquet_card_px:'Détail <b>5 000 F CFA</b> · Gros dès 20 : <b>4 000 F CFA</b>',
+      briquet_card_cta:'Voir le produit',
+      briquet_t:'Mini Briquet Électrique Smartphone Porte-Clés (Alliage de Zinc)',
+      briquet_lead:'Format porte-clés luxe, livré dans son coffret rigide noir. Il s’allume sans flamme et s’alimente directement sur le téléphone.',
+      briquet_spec_eye:'Arguments clés',
+      briquet_spec_t:'Spécifications',
+      briquet_s1_t:'Format', briquet_s1_d:'Porte-clés luxe, coffret rigide noir inclus',
+      briquet_s2_t:'Alimentation', briquet_s2_d:'Zéro batterie intégrée : sécurisé, ne chauffe pas au repos, s’alimente directement sur le téléphone',
+      briquet_s3_t:'Connectique', briquet_s3_d:'Double connectivité selon modèle : Type-C et Lightning (iPhone)',
+      briquet_s4_t:'Allumage', briquet_s4_d:'Capteur / résistance sans flamme, coupe-vent',
+      briquet_s5_t:'Matière', briquet_s5_d:'Ultra léger et compact, alliage de zinc résistant',
+      briquet_det_h:'Achat au détail (Ouagadougou)',
+      briquet_det_d:'l’unité, coffret inclus',
+      briquet_gros_h:'Achat en gros / Revendeurs',
+      briquet_gros_d:'à partir de 20 pièces · cartons usine sur devis',
+      briquet_wa:'Commander sur WhatsApp · Boutique Ouagadougou',
+      briquet_quote:'Demander un devis en gros (Carton)',
+      briquet_note:'Boutique Ouagadougou · +226 07 53 47 30 · retrait sur place, coffret cadeau inclus.',
       search_ph:'Rechercher un produit, une marque (ex: Tecno, verre 9D)...',
       filter_empty:'Aucun produit ne correspond à votre recherche.',
       mega_c1:'Verres Trempés &amp; Protections Écran', mega_c1a:'Verres HD 9D/11D', mega_c1b:'Verres Anti-Espion Privacy', mega_c1c:'Films de protection',
@@ -3260,6 +3489,28 @@ body.air31-open{overflow:hidden}
       mega_p3:'⚡ Fast-charge cables &amp; 20W/35W blocks',
       mega_p4:'📦 Workshop lots &amp; reseller cartons',
       mega_p5:'🎧 Air31 TWS Crystal LED earbuds',
+      mega_briquet:'🔥 Electric keychain mini lighter',
+      briquet_badge:'New • Limited stock',
+      briquet_card_t:'Electric smartphone keychain mini lighter',
+      briquet_card_d:'Zinc alloy, rigid black gift box included. No built-in battery, flameless ignition, Type-C or Lightning.',
+      briquet_card_px:'Retail <b>5,000 F CFA</b> · Wholesale from 20: <b>4,000 F CFA</b>',
+      briquet_card_cta:'View product',
+      briquet_t:'Electric Smartphone Keychain Mini Lighter (Zinc Alloy)',
+      briquet_lead:'Luxury keychain format, supplied in its rigid black gift box. Flameless ignition, powered directly from the phone.',
+      briquet_spec_eye:'Key points',
+      briquet_spec_t:'Specifications',
+      briquet_s1_t:'Format', briquet_s1_d:'Luxury keychain, rigid black gift box included',
+      briquet_s2_t:'Power', briquet_s2_d:'No built-in battery: safer, stays cool when idle, powered directly from the phone',
+      briquet_s3_t:'Connector', briquet_s3_d:'Dual connectivity depending on the model: Type-C and Lightning (iPhone)',
+      briquet_s4_t:'Ignition', briquet_s4_d:'Sensor / heating element, flameless and windproof',
+      briquet_s5_t:'Material', briquet_s5_d:'Ultra light and compact, durable zinc alloy',
+      briquet_det_h:'Retail (Ouagadougou)',
+      briquet_det_d:'per unit, gift box included',
+      briquet_gros_h:'Wholesale / Resellers',
+      briquet_gros_d:'from 20 units · factory cartons on quote',
+      briquet_wa:'Order on WhatsApp · Ouagadougou shop',
+      briquet_quote:'Request a wholesale quote (Carton)',
+      briquet_note:'Ouagadougou shop · +226 07 53 47 30 · in-store pickup, gift box included.',
       search_ph:'Search a product or brand (e.g. Tecno, 9D glass)...',
       filter_empty:'No product matches your search.',
       mega_c1:'Tempered glass &amp; screen protection', mega_c1a:'HD 9D/11D glass', mega_c1b:'Privacy anti-spy glass', mega_c1c:'Protection films',
@@ -3670,7 +3921,7 @@ body.air31-open{overflow:hidden}
   const WA_PAY = WA_BF;
   const BRANDS = ['Tecno', 'Infinix', 'Samsung', 'iPhone'];
   const DEST_CITIES = ['Ouagadougou','Accra','Niamey','Douala','Yaoundé','Abidjan','Bamako','Lomé','Cotonou','Autre'];
-  const KIND_FR = { coque:'coques', cable:'câbles', verre:'verres trempés', chargeur:'chargeurs', audio:'écouteurs Air31 TWS' };
+  const KIND_FR = { coque:'coques', cable:'câbles', verre:'verres trempés', chargeur:'chargeurs', audio:'écouteurs Air31 TWS', briquet:'Mini Briquet Électrique' };
   const KIND_FR_UNIT = { coque:'une coque', cable:'un câble', verre:'un verre trempé', chargeur:'un chargeur', audio:'des écouteurs Air31 TWS' };
 
   const BUY = {
@@ -4922,6 +5173,7 @@ body.air31-open{overflow:hidden}
   const catalogueEl = document.getElementById('catalogue');
 
   function isCatalogHash(hash){
+    if(hash === '#prod-briquet') return false;
     return /^(#catalogue|#telephonie|#espace-gros|#espace-detail|#prod-)/.test(hash || '');
   }
   function revealCatalogue(){
@@ -4953,7 +5205,8 @@ body.air31-open{overflow:hidden}
         coque:'coque', etui:'coque', airbag:'coque', magsafe:'coque',
         cable:'cable', câble:'cable', tress:'cable',
         chargeur:'chargeur', bloc:'chargeur', '20w':'chargeur', '35w':'chargeur',
-        tws:'audio', air31:'audio', ecouteur:'audio', écouteur:'audio', audio:'audio'
+        tws:'audio', air31:'audio', ecouteur:'audio', écouteur:'audio', audio:'audio',
+        briquet:'briquet', lighter:'briquet', 'porte-cle':'briquet', 'porte-clé':'briquet'
       };
       let hit = text.indexOf(q) !== -1;
       Object.keys(aliases).forEach(k => {
@@ -5008,6 +5261,13 @@ body.air31-open{overflow:hidden}
   document.querySelectorAll('#megaPanel a').forEach(a => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
+      if(a.getAttribute('href') === '#prod-briquet'){
+        closeMega();
+        nav.classList.remove('is-open');
+        const target = document.getElementById('prod-briquet');
+        if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+        return;
+      }
       gotoFilter({
         kind: a.dataset.filter === 'brand' ? '' : (a.dataset.filter || ''),
         sub: a.dataset.sub || '',
@@ -5084,9 +5344,101 @@ body.air31-open{overflow:hidden}
     }
   }
 
+  const briquetVideo = document.getElementById('briquetVideo');
+  const briquetPlayer = document.getElementById('briquetPlayer');
+  const briquetPlay = document.getElementById('briquetPlay');
+  const briquetMain = document.getElementById('briquetMain');
+  const briquetThumbs = document.getElementById('briquetThumbs');
+  const briquetSheet = document.getElementById('prod-briquet');
+  const briquetBtns = briquetThumbs ? [...briquetThumbs.querySelectorAll('button[data-src]')] : [];
+  let briquetIndex = 0;
+  function briquetShow(i){
+    if(!briquetMain || !briquetBtns.length) return;
+    briquetIndex = (i + briquetBtns.length) % briquetBtns.length;
+    const btn = briquetBtns[briquetIndex];
+    const src = btn.getAttribute('data-src');
+    const alt = btn.getAttribute('data-alt') || btn.getAttribute('aria-label') || '';
+    if(src) briquetMain.src = src;
+    briquetMain.alt = alt;
+    briquetBtns.forEach((b, n) => {
+      const on = n === briquetIndex;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+  function syncBriquetPlay(){
+    if(!briquetVideo || !briquetPlayer || !briquetPlay) return;
+    const playing = !briquetVideo.paused;
+    briquetPlayer.classList.toggle('is-playing', playing);
+    briquetPlay.setAttribute('aria-label', lang === 'en'
+      ? (playing ? 'Pause video' : 'Play video')
+      : (playing ? 'Mettre en pause' : 'Lire la vidéo'));
+  }
+  if(briquetBtns.length){
+    briquetBtns.forEach((btn, i) => {
+      btn.setAttribute('role', 'tab');
+      btn.addEventListener('click', () => briquetShow(i));
+    });
+    briquetShow(0);
+  }
+  document.getElementById('briquetPrev')?.addEventListener('click', () => briquetShow(briquetIndex - 1));
+  document.getElementById('briquetNext')?.addEventListener('click', () => briquetShow(briquetIndex + 1));
+  if(briquetMain){
+    briquetMain.addEventListener('click', () => {
+      const list = briquetBtns.map(b => b.getAttribute('data-src')).filter(Boolean);
+      openLb(briquetMain.getAttribute('src'), briquetMain.alt, list);
+    });
+  }
+  const briquetStage = document.getElementById('briquetStage');
+  if(briquetStage){
+    let touchX = 0;
+    briquetStage.addEventListener('touchstart', (e) => {
+      touchX = e.changedTouches[0].clientX;
+    }, { passive:true });
+    briquetStage.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchX;
+      if(Math.abs(dx) < 40) return;
+      briquetShow(briquetIndex + (dx < 0 ? 1 : -1));
+    }, { passive:true });
+  }
+  if(briquetVideo && briquetPlay){
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    briquetVideo.muted = true;
+    briquetPlay.addEventListener('click', () => {
+      if(briquetVideo.paused) briquetVideo.play().catch(() => {});
+      else briquetVideo.pause();
+    });
+    briquetVideo.addEventListener('click', () => briquetPlay.click());
+    briquetVideo.addEventListener('play', syncBriquetPlay);
+    briquetVideo.addEventListener('pause', syncBriquetPlay);
+    if(!reduceMotion) briquetVideo.play().then(syncBriquetPlay).catch(() => syncBriquetPlay());
+    else syncBriquetPlay();
+  }
+  if(briquetSheet) mountShareUI(briquetSheet);
+  const catBriquet = document.getElementById('cat-briquet');
+  if(catBriquet){
+    catBriquet.setAttribute('tabindex', '0');
+    catBriquet.setAttribute('role', 'link');
+    const openBriquet = () => {
+      const target = document.getElementById('prod-briquet');
+      if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+    };
+    catBriquet.addEventListener('click', (e) => {
+      if(e.target.closest('.share-fab')) return;
+      openBriquet();
+    });
+    catBriquet.addEventListener('keydown', (e) => {
+      if(e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      openBriquet();
+    });
+  }
+
   const _apply = applyI18n;
   applyI18n = function(){
     _apply();
+    syncBriquetPlay();
+    if(briquetSheet) mountShareUI(briquetSheet);
     document.querySelectorAll('#telephonie .range').forEach(card => {
       if(card.dataset.brand) setBadge(card, card.dataset.brand);
       if(card._buy){
