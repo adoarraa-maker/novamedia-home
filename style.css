@@ -57,9 +57,26 @@
   background:#fffdf4;
   box-shadow:0 0 0 3px rgba(201,162,39,.18);
 }
-.buy-tier b{display:block;font-size:.82rem;color:var(--navy)}
-.buy-tier span{display:block;font-size:.88rem;font-weight:800;color:var(--navy);margin-top:2px}
-.buy-tier small{display:block;font-size:.72rem;color:var(--muted);margin-top:3px}
+.buy-tier b{display:block;font-size:.92rem;color:var(--navy);line-height:1.3}
+.buy-tier span{display:block;font-size:1.02rem;font-weight:800;color:var(--navy);margin-top:4px}
+.buy-tier small{display:block;font-size:.72rem;color:var(--muted);margin-top:3px;font-weight:600}
+.buy-tier__kicker{
+  display:block;margin:0 0 3px;
+  font-size:.68rem;font-weight:800;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--gold,#C9A227);
+}
+.buy-qty--step .buy-step{
+  display:flex;align-items:center;gap:8px;
+}
+.buy-step__btn{
+  width:42px;height:42px;flex:none;border-radius:12px;cursor:pointer;
+  border:1.5px solid var(--line);background:#fff;color:var(--navy);
+  font-size:1.35rem;font-weight:700;line-height:1;
+}
+.buy-step__btn:hover{border-color:var(--gold,#C9A227)}
+.buy-qty.buy-qty--step .buy-qty-input{
+  width:72px;height:42px;text-align:center;padding:0;flex:none;
+}
 .buy-qty{
   display:flex;flex-direction:column;gap:6px;
   font-size:.78rem;font-weight:800;color:var(--navy);margin:8px 0 10px;
@@ -601,22 +618,23 @@ body{
   line-height:1.45;
   font-weight:700;
 }
-.commerce-pay-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
 .commerce-pay{
-  min-height:46px;
+  width:100%;
+  min-height:54px;
   border:0;
   border-radius:14px;
-  padding:10px 12px;
+  padding:14px 16px;
   color:#fff;
   cursor:pointer;
   font-weight:900;
+  font-size:1rem;
+  line-height:1.3;
 }
-.commerce-pay--orange{background:#ff7900}
-.commerce-pay--moov{background:#0067b1}
+.commerce-pay--wa{
+  background:#25D366;
+  box-shadow:0 8px 22px rgba(37,211,102,.34);
+}
+.commerce-pay--wa:hover{filter:brightness(1.06)}
 .commerce-checkout.is-loading{
   opacity:.72;
   pointer-events:none;
@@ -719,7 +737,6 @@ body{
   .commerce-cart{padding:16px}
   .commerce-item{grid-template-columns:54px minmax(0,1fr) 58px 28px}
   .commerce-item b{grid-column:2 / 4}
-  .commerce-pay-row{grid-template-columns:1fr}
   .commerce-receipt dl div{display:block}
   .commerce-receipt dd{text-align:left;margin-top:3px}
 }
