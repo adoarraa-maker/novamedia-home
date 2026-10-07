@@ -423,6 +423,12 @@ body{
   font-size:.82rem;
   font-weight:750;
 }
+.commerce-stock--out{
+  background:#fef2f2;
+  color:#991b1b;
+  border:1px solid #fecaca;
+  font-weight:800;
+}
 .commerce-qty{
   display:flex;
   flex-direction:column;

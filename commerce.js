@@ -85,7 +85,7 @@
       product_key: 'briquet-electric',
       name: 'Mini Briquet Électrique Smartphone Porte-Clés',
       image_url: 'briquet-coffret.jpg',
-      stock_quantity: null,
+      stock_quantity: 0,
       variants: ['Type-C', 'Lightning'],
       price_tiers: [
         { min: 1, max: 19, unit: 5000, label: 'Détail 1-19 pcs' },
@@ -94,7 +94,16 @@
     }
   };
 
-  var cart = loadCart();
+  function isSoldOutKey(key) {
+    var product = PRODUCTS[key];
+    return !!(product && typeof product.stock_quantity === 'number' && product.stock_quantity <= 0);
+  }
+
+  var storedCart = loadCart();
+  var cart = storedCart.filter(function (item) { return !isSoldOutKey(item.product_key); });
+  if (cart.length !== storedCart.length) {
+    localStorage.setItem(CONFIG.storageKey, JSON.stringify(cart));
+  }
   var ui = {};
   var productsReady = fetchProducts();
 
@@ -179,6 +188,10 @@
   }
 
   function upsertCartItem(next) {
+    if (isSoldOutKey(next.product_key)) {
+      setNotice('Épuisé pour le moment — Bientôt de retour', true);
+      return;
+    }
     var found = cart.find(function (item) {
       return item.product_key === next.product_key && item.variant === next.variant;
     });
@@ -219,6 +232,11 @@
 
   function updateItem(index, quantity) {
     if (!cart[index]) return;
+    if (isSoldOutKey(cart[index].product_key)) {
+      removeItem(index);
+      setNotice('Épuisé pour le moment — Bientôt de retour', true);
+      return;
+    }
     var product = PRODUCTS[cart[index].product_key];
     var stock = product && product.stock_quantity;
     var nextQty = Math.max(1, parseInt(quantity, 10) || 1);
@@ -266,10 +284,12 @@
     if (briquet && !briquet.querySelector('.commerce-add')) {
       var cta = briquet.querySelector('.briquet__cta');
       if (cta) {
-        var stockLine = document.createElement('p');
-        stockLine.className = 'commerce-stock';
-        stockLine.setAttribute('data-commerce-stock', 'briquet-electric');
-        cta.insertAdjacentElement('beforebegin', stockLine);
+        if (!briquet.querySelector('[data-commerce-stock="briquet-electric"]')) {
+          var stockLine = document.createElement('p');
+          stockLine.className = 'commerce-stock';
+          stockLine.setAttribute('data-commerce-stock', 'briquet-electric');
+          cta.insertAdjacentElement('beforebegin', stockLine);
+        }
         var qty = document.createElement('label');
         qty.className = 'commerce-qty';
         qty.innerHTML = '<span>Quantité</span><input type="number" min="1" step="1" value="1" class="buy-qty-input">';
@@ -291,19 +311,50 @@
       var key = el.getAttribute('data-commerce-stock');
       var product = PRODUCTS[key];
       if (!product) return;
-      if (typeof product.stock_quantity === 'number') {
+      var soldOut = typeof product.stock_quantity === 'number' && product.stock_quantity <= 0;
+      if (soldOut && key === 'briquet-electric') {
+        el.textContent = 'Épuisé pour le moment — Bientôt de retour';
+        el.classList.add('commerce-stock--out');
+      } else if (typeof product.stock_quantity === 'number') {
+        el.classList.remove('commerce-stock--out');
         el.innerHTML = product.stock_quantity > 0
           ? 'Stock restant : <b>' + product.stock_quantity + '</b>'
           : '<b>Rupture de stock</b>';
       } else {
+        el.classList.remove('commerce-stock--out');
         el.textContent = 'Disponible en boutique Ouaga';
       }
       var host = el.closest('.range, .briquet-sheet, .air31-modal');
       var add = host && host.querySelector('.commerce-add');
       if (add && typeof product.stock_quantity === 'number') {
-        add.disabled = product.stock_quantity <= 0;
+        add.disabled = soldOut;
+      }
+      if (soldOut && key === 'briquet-electric' && host) {
+        lockSoldOutControl(add, 'Rupture de stock temporaire');
+        lockSoldOutControl(host.querySelector('[data-i18n="briquet_wa"]'));
+        var qtyInput = host.querySelector('.buy-qty-input');
+        if (qtyInput) qtyInput.disabled = true;
       }
     });
+  }
+
+  function lockSoldOutControl(el, label) {
+    if (!el) return;
+    el.disabled = true;
+    el.setAttribute('disabled', 'disabled');
+    el.setAttribute('aria-disabled', 'true');
+    el.style.opacity = '0.6';
+    el.style.pointerEvents = 'none';
+    el.style.cursor = 'not-allowed';
+    el.style.backgroundColor = '#9ca3af';
+    if (label) el.textContent = label;
+    if (el.tagName === 'A') {
+      el.removeAttribute('href');
+      el.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      });
+    }
   }
 
   function mountCartUi() {
@@ -421,6 +472,12 @@
   }
 
   function orderViaWhatsApp() {
+    if (cart.some(function (item) { return isSoldOutKey(item.product_key); })) {
+      cart = cart.filter(function (item) { return !isSoldOutKey(item.product_key); });
+      saveCart();
+      setNotice('Épuisé pour le moment — Bientôt de retour. Cet article a été retiré de la commande.', true);
+      return;
+    }
     if (!cart.length) {
       setNotice('Ajoutez au moins un produit au panier.', true);
       return;
@@ -453,7 +510,7 @@
     refreshProducts: fetchProducts,
     addProduct: function (productKey, quantity, variant) {
       var product = PRODUCTS[productKey];
-      if (!product) return;
+      if (!product || isSoldOutKey(productKey)) return;
       upsertCartItem({
         product_key: productKey,
         name: product.name,
