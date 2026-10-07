@@ -1268,6 +1268,10 @@ body.air31-open{overflow:hidden}
 }
 .air31-pay p{margin:0;font-size:.82rem;line-height:1.45;color:var(--navy)}
 .air31-pay small{color:var(--muted);font-size:.76rem}
+#prod-ecouteurs .prix-grid,
+#air31Modal .prix-grid,
+#prod-ecouteurs .dest-select{display:none !important}
+.air31-modal .buy-tiers{margin-top:4px}
 .air31-modal .btn--bf{width:100%;text-align:center;white-space:normal}
 @media (max-width:820px){
   .air31-modal__grid{grid-template-columns:1fr}
@@ -1442,14 +1446,6 @@ body.air31-open{overflow:hidden}
 }
 </style>
 <link rel="stylesheet" href="style.css">
-<script>
-window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
-  supabaseUrl: '',
-  supabaseAnonKey: '',
-  functionsUrl: '',
-  cinetpayMode: 'PRODUCTION'
-};
-</script>
 <script>document.documentElement.classList.add('js-ready');</script>
 </head>
 <body>
@@ -2263,16 +2259,21 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
             <aside class="range-col range-col--buy">
             <span class="pack-tag" data-i18n="sc_stock">En stock / Arrivage</span>
             <h3 data-i18n="sc4_t">Écouteurs Air31 TWS Crystal LED</h3>
-            <div class="buy-tiers"></div>
-            <label class="buy-qty"><span data-i18n="pdp_qty">Quantité</span>
-              <input class="buy-qty-input" type="number" min="1" step="1" value="1">
-            </label>
+            <div class="buy-tiers" role="group" aria-label="Choix du pack"></div>
+            <div class="buy-qty buy-qty--step">
+              <span>Nombre de packs</span>
+              <div class="buy-step">
+                <button type="button" class="buy-step__btn" data-step="-1" aria-label="Retirer un pack">−</button>
+                <input class="buy-qty-input" type="number" min="1" step="1" value="1" aria-label="Nombre de packs">
+                <button type="button" class="buy-step__btn" data-step="1" aria-label="Ajouter un pack">+</button>
+              </div>
+            </div>
             <p class="buy-total"></p>
             <div class="range__act">
               <span class="cta-label" data-i18n="gros_cta">Commande groupée</span>
               <div class="wa-pair">
                 <a class="btn btn--sm btn--ch" href="https://wa.me/41765761672?text=Bonjour%20Derra%20Global%20Trading%2C%20commande%20gros%20%C3%A9couteurs%20Air31%20TWS." target="_blank" rel="noopener noreferrer" data-i18n="pdp_wa_ch">Direction Suisse</a>
-                <a class="btn btn--sm btn--bf" id="air31SheetWa" href="https://wa.me/22607554790?text=Bonjour%2C%20je%20souhaite%20commander%20les%20%C3%89couteurs%20Air31%20TWS" target="_blank" rel="noopener noreferrer" data-i18n="pdp_wa">Commander sur WhatsApp</a>
+                <a class="btn btn--sm btn--bf" id="air31SheetWa" href="https://wa.me/22607554790?text=Bonjour%2C%20je%20commande%20%3A%201%20%C3%89couteurs%20Air31%20TWS%20(Noir).%20Total%20%3A%203%20500%20F%20CFA.%20Paiement%20par%20Orange%20Money%20%2F%20Moov%20Money." target="_blank" rel="noopener noreferrer" data-i18n="pdp_wa">Valider la commande</a>
               </div>
             </div>
             </aside>
@@ -3145,7 +3146,17 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
           <small data-i18n="pay_pickup_d">Vous pouvez aussi régler la marchandise sur place.</small>
           <small data-i18n="air31_pick">Retrait : Boutique Toudoubweogo / Polesgo.</small>
         </div>
-        <a class="btn btn--bf" id="air31Wa" href="https://wa.me/22607554790?text=Bonjour%2C%20je%20souhaite%20commander%20les%20%C3%89couteurs%20Air31%20TWS" target="_blank" rel="noopener noreferrer" data-i18n="air31_wa">Valider la commande</a>
+        <div class="buy-tiers" role="group" aria-label="Choix du pack"></div>
+        <div class="buy-qty buy-qty--step">
+          <span>Nombre de packs</span>
+          <div class="buy-step">
+            <button type="button" class="buy-step__btn" data-step="-1" aria-label="Retirer un pack">−</button>
+            <input class="buy-qty-input" type="number" min="1" step="1" value="1" aria-label="Nombre de packs">
+            <button type="button" class="buy-step__btn" data-step="1" aria-label="Ajouter un pack">+</button>
+          </div>
+        </div>
+        <p class="buy-total" id="air31Total"></p>
+        <a class="btn btn--bf" id="air31Wa" href="https://wa.me/22607554790?text=Bonjour%2C%20je%20commande%20%3A%201%20%C3%89couteurs%20Air31%20TWS%20(Noir).%20Total%20%3A%203%20500%20F%20CFA.%20Paiement%20par%20Orange%20Money%20%2F%20Moov%20Money." target="_blank" rel="noopener noreferrer" data-i18n="air31_wa">Valider la commande</a>
       </div>
     </div>
   </div>
@@ -3976,11 +3987,12 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
     'audio|air31': {
       pills:['Noir','Blanc','Vert','Bleu','Violet'],
       quoteVariants:[],
+      packs:true,
       tiers:[
-        { min:1, max:1, unit:3500, label:'Détail 1 pc', note:'Prix normal 5 000 F · promo lancement 3 500 F CFA' },
-        { min:2, max:2, unit:3250, label:'Duo 2 pcs', note:'Offre spéciale : 2 pour 6 500 F CFA' },
-        { min:3, max:9, unit:3500, label:'Détail 3–9 pcs', note:'3 500 F CFA / pce · promo lancement' },
-        { min:10, max:null, unit:2500, label:'Gros 10+ pcs', note:'2 500 F CFA / pce · revendeur dès 10' }
+        { pieces:1, total:3500, unit:3500, kicker:'1 Pièce', title:'1 Écouteur Air31 TWS', note:'Prix promo de lancement' },
+        { pieces:2, total:6500, unit:6500, kicker:'Pack Duo (2 Pièces)', title:'Offre Duo - 2 Écouteurs', note:'Économisez 500 F CFA (au lieu de 7 000 F)' },
+        { pieces:3, total:9500, unit:9500, kicker:'Pack 3 Pièces', title:'Pack Famille - 3 Écouteurs', note:'Économisez 1 000 F CFA (au lieu de 10 500 F)' },
+        { pieces:10, total:25000, unit:25000, kicker:'Lot Grossiste (10 Pièces)', title:'Carton Revendeur - 10 Écouteurs', note:'Tarif grossiste (2 500 F CFA / pièce)' }
       ]
     }
   };
@@ -4011,9 +4023,54 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
     const i = spec.tiers.findIndex(t => qty >= t.min && (t.max == null || qty <= t.max));
     return i >= 0 ? i : 0;
   }
+  function applyAir31Pack(card, mirrored){
+    const spec = buySpec(card);
+    const st = card._buy;
+    if(!spec || !st) return;
+    const tiers = spec.tiers;
+    let idx = parseInt(st.tierIndex, 10) || 0;
+    if(idx < 0 || idx >= tiers.length) idx = 0;
+    const tier = tiers[idx];
+    const qty = Math.max(1, parseInt(st.qty, 10) || 1);
+    st.tierIndex = idx;
+    st.qty = qty;
+    st.quote = false;
+    st.unit = tier.total;
+    st.packPrice = tier.total;
+    st.packPieces = tier.pieces;
+    st.packTitle = tier.title;
+    st.total = tier.total * qty;
+    if(typeof air31Color !== 'undefined' && air31Color) st.variant = air31Color;
+    const qtyInput = card.querySelector('.buy-qty-input');
+    if(qtyInput && document.activeElement !== qtyInput) qtyInput.value = String(qty);
+    const totalEl = card.querySelector('.buy-total');
+    if(totalEl){
+      totalEl.innerHTML = tI18n('pdp_total', 'Montant estimé') + ' : <b>' + fmtFcfa(st.total) + ' FCFA</b>';
+    }
+    card.querySelectorAll('.buy-tier').forEach((btn, i) => {
+      const on = i === idx;
+      btn.classList.toggle('is-on', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    if(mirrored) return;
+    const other = document.getElementById(card.id === 'air31Modal' ? 'prod-ecouteurs' : 'air31Modal');
+    if(other && other._buy){
+      other._buy.tierIndex = idx;
+      other._buy.qty = qty;
+      other._buy.variant = st.variant;
+      applyAir31Pack(other, true);
+    }
+    updateCardWa(card);
+    updatePayPanel(card);
+    updateAir31Wa();
+  }
   function syncBuyBox(card){
     const spec = buySpec(card);
     if(!spec) return;
+    if(spec.packs){
+      applyAir31Pack(card, false);
+      return;
+    }
     const st = card._buy;
     const qty = Math.max(1, parseInt(st.qty, 10) || 1);
     st.qty = qty;
@@ -4044,6 +4101,23 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
     const box = card.querySelector('.buy-tiers');
     if(!spec || !box) return;
     box.innerHTML = '';
+    if(spec.packs){
+      box.classList.add('buy-tiers--packs');
+      spec.tiers.forEach((tier, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'buy-tier' + (i === card._buy.tierIndex ? ' is-on' : '');
+        btn.setAttribute('aria-pressed', i === card._buy.tierIndex ? 'true' : 'false');
+        btn.innerHTML = '<small class="buy-tier__kicker">' + tier.kicker + '</small><b>' + tier.title + '</b><span>' + fmtFcfa(tier.total) + ' F CFA</span><small>' + tier.note + '</small>';
+        btn.addEventListener('click', () => {
+          card._buy.tierIndex = i;
+          syncBuyBox(card);
+        });
+        box.appendChild(btn);
+      });
+      return;
+    }
+    box.classList.remove('buy-tiers--packs');
     spec.tiers.forEach((tier, i) => {
       const btn = document.createElement('button');
       btn.type = 'button';
@@ -4058,6 +4132,28 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
         syncBuyBox(card);
       });
       box.appendChild(btn);
+    });
+  }
+  function bindPackStepper(card){
+    if(!card || !card._buy) return;
+    const qtyInput = card.querySelector('.buy-qty-input');
+    if(qtyInput && !qtyInput.dataset.bound){
+      qtyInput.dataset.bound = '1';
+      const onQty = () => {
+        card._buy.qty = Math.max(1, parseInt(qtyInput.value, 10) || 1);
+        syncBuyBox(card);
+      };
+      qtyInput.addEventListener('input', onQty);
+      qtyInput.addEventListener('change', onQty);
+    }
+    card.querySelectorAll('.buy-step__btn').forEach(btn => {
+      if(btn.dataset.bound) return;
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', () => {
+        const dir = Number(btn.getAttribute('data-step')) || 0;
+        card._buy.qty = Math.max(1, (parseInt(card._buy.qty, 10) || 1) + dir);
+        syncBuyBox(card);
+      });
     });
   }
 
@@ -4621,6 +4717,7 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
     document.querySelectorAll('.range a.btn--bf, #air31Modal a.btn--bf').forEach(a => {
       const href = a.getAttribute('href') || '';
       if(!/22607554790/.test(href)) return;
+      if(a.id === 'air31Wa' || a.id === 'air31SheetWa') return;
       if(a.classList.contains('pay-wa') || a.classList.contains('share-fab')) return;
       const card = a.closest('.range') || document.getElementById('air31Modal');
       if(!card) return;
@@ -4727,6 +4824,7 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
   }
   function mountPayUI(card){
     if(!card || card.querySelector('.pay-panel')) return;
+    if(card.id === 'air31Modal' || card.id === 'prod-ecouteurs') return;
     const act = card.querySelector('.range__act')
       || (card.classList.contains('shop-card') ? card.querySelector('.shop-card__b') : null)
       || card.querySelector('.air31-modal__info');
@@ -4774,7 +4872,7 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
       stampWaAnchor(ch);
     }
     const bf = card.querySelector('.range__act a.btn--bf:not(.pay-wa)');
-    if(bf){
+    if(bf && bf.id !== 'air31SheetWa'){
       bf.href = 'https://wa.me/' + WA_BF + '?text=' + enc;
       stampWaAnchor(bf);
     }
@@ -4940,15 +5038,7 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
     if(insertAfter) insertAfter.insertAdjacentElement('afterend', dest);
     else body.prepend(dest);
 
-    const qtyInput = card.querySelector('.buy-qty-input');
-    if(qtyInput){
-      const onQty = () => {
-        card._buy.qty = Math.max(1, parseInt(qtyInput.value, 10) || 1);
-        syncBuyBox(card);
-      };
-      qtyInput.addEventListener('input', onQty);
-      qtyInput.addEventListener('change', onQty);
-    }
+    bindPackStepper(card);
     renderBuyTiers(card);
     syncBuyBox(card);
     mountPayUI(card);
@@ -4967,8 +5057,10 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
 
   const air31Modal = document.getElementById('air31Modal');
   if(air31Modal){
-    air31Modal._buy = { qty:1, tierIndex:0, variant:'Noir', quote:false, unit:3500, total:3500 };
-    mountPayUI(air31Modal);
+    air31Modal._buy = { qty:1, tierIndex:0, variant:'Noir', quote:false, unit:3500, total:3500, packPrice:3500, packTitle:'1 Écouteur Air31 TWS' };
+    renderBuyTiers(air31Modal);
+    bindPackStepper(air31Modal);
+    syncBuyBox(air31Modal);
     mountShareUI(air31Modal);
   }
   bindJanvierOrderLinks();
@@ -4983,24 +5075,26 @@ window.DERRA_COMMERCE_CONFIG = window.DERRA_COMMERCE_CONFIG || {
   }
   function updateAir31Wa(){
     const color = air31Color || 'Noir';
-    if(air31Modal){
-      if(!air31Modal._buy) air31Modal._buy = { qty:1, tierIndex:0, variant:color, quote:false, unit:3500, total:3500 };
-      air31Modal._buy.variant = color;
-      updatePayPanel(air31Modal);
-    }
-    const text = 'Bonjour, je souhaite commander les Écouteurs Air31 TWS (Couleur choisie : ' + color + ').';
-    const href = 'https://wa.me/' + WA_PAY + '?text=' + encodeURIComponent(text);
-    const payWa = document.querySelector('#prod-ecouteurs .pay-wa');
-    [air31Wa, document.getElementById('air31SheetWa'), payWa].forEach(a => {
+    const sheet = document.getElementById('prod-ecouteurs');
+    const modal = document.getElementById('air31Modal');
+    const st = (sheet && sheet._buy) || (modal && modal._buy) || {};
+    const spec = BUY['audio|air31'];
+    const tier = (spec && spec.tiers[st.tierIndex]) || (spec && spec.tiers[0]) || { title:'1 Écouteur Air31 TWS', total:3500 };
+    const packs = Math.max(1, parseInt(st.qty, 10) || 1);
+    const total = (tier.total || 0) * packs;
+    const packName = tier.title || 'Écouteurs Air31 TWS';
+    const qtyLabel = packs > 1 ? (packs + ' × ' + packName) : packName;
+    const text = 'Bonjour, je commande : ' + qtyLabel + ' (' + color + '). Total : ' + fmtFcfa(total) + ' F CFA. Paiement par Orange Money / Moov Money.';
+    const href = 'https://wa.me/22607554790?text=' + encodeURIComponent(text);
+    [document.getElementById('air31Wa'), document.getElementById('air31SheetWa')].forEach(a => {
       if(!a) return;
-      if(a.classList.contains('pay-wa')) return;
       a.href = href;
       stampWaAnchor(a);
     });
-    if(air31Modal) updateShareUI(air31Modal);
-    const air31Sheet = document.getElementById('prod-ecouteurs');
-    if(air31Sheet) updateShareUI(air31Sheet);
-    if(air31Card) updateShareUI(air31Card);
+    if(modal) updateShareUI(modal);
+    if(sheet) updateShareUI(sheet);
+    const shareCard = document.getElementById('cat-air31');
+    if(shareCard) updateShareUI(shareCard);
   }
   function selectAir31Color(btn){
     if(!btn || !air31Main) return;

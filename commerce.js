@@ -2,11 +2,6 @@
   'use strict';
 
   var CONFIG = Object.assign({
-    supabaseUrl: '',
-    supabaseAnonKey: '',
-    functionsUrl: '',
-    cinetpayMode: 'PRODUCTION',
-    currency: 'XOF',
     storageKey: 'derra-commerce-cart-v1',
     janvierPhone: '22607554790'
   }, window.DERRA_COMMERCE_CONFIG || {});
@@ -83,10 +78,7 @@
       stock_quantity: null,
       variants: ['Noir', 'Blanc', 'Vert', 'Bleu', 'Violet'],
       price_tiers: [
-        { min: 1, max: 1, unit: 3500, label: 'Détail 1 pc' },
-        { min: 2, max: 2, unit: 3250, label: 'Duo 2 pcs' },
-        { min: 3, max: 9, unit: 3500, label: 'Détail 3-9 pcs' },
-        { min: 10, max: null, unit: 2500, label: 'Gros 10+ pcs' }
+        { min: 1, max: null, unit: 3500, label: '1 Pièce' }
       ]
     },
     'briquet-electric': {
@@ -114,62 +106,8 @@
     return Object.keys(PRODUCTS).map(function (key) { return PRODUCTS[key]; });
   }
 
-  function configReady() {
-    return Boolean(CONFIG.supabaseUrl && CONFIG.supabaseAnonKey);
-  }
-
-  function functionsBaseUrl() {
-    if (CONFIG.functionsUrl) return CONFIG.functionsUrl.replace(/\/+$/, '');
-    return CONFIG.supabaseUrl.replace(/\/+$/, '') + '/functions/v1';
-  }
-
-  function edgeFetch(path, options) {
-    var headers = Object.assign({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + CONFIG.supabaseAnonKey
-    }, (options && options.headers) || {});
-    return fetch(functionsBaseUrl() + path, Object.assign({}, options || {}, { headers: headers }))
-      .then(function (res) {
-        return res.json().catch(function () { return {}; }).then(function (body) {
-          if (!res.ok) throw new Error(body.error || body.message || 'Erreur Supabase');
-          return body;
-        });
-      });
-  }
-
   function fetchProducts() {
-    if (!configReady()) return Promise.resolve(productList());
-    var url = CONFIG.supabaseUrl.replace(/\/+$/, '') +
-      '/rest/v1/ecommerce_products?select=product_key,name,image_url,stock_quantity,price_tiers,metadata,is_active&is_active=eq.true&order=sort_order.asc';
-    return fetch(url, {
-      headers: {
-        apikey: CONFIG.supabaseAnonKey,
-        Authorization: 'Bearer ' + CONFIG.supabaseAnonKey
-      }
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error('Impossible de charger les produits Supabase');
-        return res.json();
-      })
-      .then(function (rows) {
-        rows.forEach(function (row) {
-          var local = PRODUCTS[row.product_key] || { product_key: row.product_key };
-          PRODUCTS[row.product_key] = Object.assign(local, {
-            name: row.name || local.name,
-            image_url: row.image_url || local.image_url,
-            stock_quantity: typeof row.stock_quantity === 'number' ? row.stock_quantity : local.stock_quantity,
-            price_tiers: Array.isArray(row.price_tiers) && row.price_tiers.length ? row.price_tiers : local.price_tiers,
-            variants: row.metadata && Array.isArray(row.metadata.variants) ? row.metadata.variants : local.variants
-          });
-        });
-        syncStockUi();
-        renderCart();
-        return rows;
-      })
-      .catch(function (err) {
-        console.warn(err.message || err);
-        return productList();
-      });
+    return Promise.resolve(productList());
   }
 
   function loadCart() {
@@ -194,10 +132,14 @@
     }) || tiers[0] || { unit: 0, label: '' };
   }
 
-  function itemTotal(item) {
+  function itemUnit(item) {
+    if (item && item.pack_price != null) return Number(item.pack_price) || 0;
     var product = PRODUCTS[item.product_key];
-    var tier = getTier(product, item.quantity);
-    return Number(tier.unit || 0) * Number(item.quantity || 1);
+    return Number(getTier(product, item.quantity).unit || 0);
+  }
+
+  function itemTotal(item) {
+    return itemUnit(item) * Number(item.quantity || 1);
   }
 
   function cartTotal() {
@@ -219,6 +161,7 @@
     if (!card) return (product.variants || [])[0] || '';
     var selected = card.querySelector('.brand-btn.is-on') ||
       card.querySelector('.range-thumbs button.is-on[data-color]') ||
+      card.querySelector('.air31-thumbs button.is-on[data-color]') ||
       card.querySelector('.briquet-thumbs button.is-on');
     if (selected) {
       return selected.getAttribute('data-color') ||
@@ -240,8 +183,10 @@
       return item.product_key === next.product_key && item.variant === next.variant;
     });
     var stock = PRODUCTS[next.product_key] && PRODUCTS[next.product_key].stock_quantity;
-    if (found) found.quantity += next.quantity;
-    else cart.push(next);
+    if (found) {
+      found.quantity += next.quantity;
+      if (next.pack_price != null) found.pack_price = next.pack_price;
+    } else cart.push(next);
     if (typeof stock === 'number') {
       var item = found || next;
       item.quantity = Math.min(item.quantity, Math.max(stock, 0));
@@ -258,13 +203,18 @@
       setNotice('Ce produit est en rupture de stock.', true);
       return;
     }
-    upsertCartItem({
+    var color = selectedVariant(card, product);
+    var packTitle = card._buy && card._buy.packTitle;
+    var variant = packTitle ? (color + ' · ' + packTitle) : color;
+    var item = {
       product_key: key,
       name: product.name,
       image_url: product.image_url,
-      variant: selectedVariant(card, product),
+      variant: variant,
       quantity: selectedQuantity(card)
-    });
+    };
+    if (card._buy && card._buy.packPrice != null) item.pack_price = card._buy.packPrice;
+    upsertCartItem(item);
   }
 
   function updateItem(index, quantity) {
@@ -290,24 +240,27 @@
     return button;
   }
 
-  function mountProductButtons() {
-    document.querySelectorAll('#telephonie .range[data-kind][data-sub]').forEach(function (card) {
-      var key = productKeyFromCard(card);
-      if (!key || card.querySelector('.commerce-add')) return;
-      var target = card.querySelector('.range-col--buy .buy-total') || card.querySelector('.range__act');
-      if (!target) return;
-      var stock = document.createElement('p');
-      stock.className = 'commerce-stock';
-      stock.setAttribute('data-commerce-stock', key);
-      target.insertAdjacentElement('afterend', stock);
-      var button = makeButton('Ajouter au panier', 'btn btn--gold commerce-add');
-      button.addEventListener('click', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        addSelection(card);
-      });
-      stock.insertAdjacentElement('afterend', button);
+  function mountAddButton(card) {
+    var key = productKeyFromCard(card);
+    if (!card || !key || card.querySelector('.commerce-add')) return;
+    var target = card.querySelector('.buy-total') || card.querySelector('.range__act');
+    if (!target) return;
+    var stock = document.createElement('p');
+    stock.className = 'commerce-stock';
+    stock.setAttribute('data-commerce-stock', key);
+    target.insertAdjacentElement('afterend', stock);
+    var button = makeButton('Ajouter au panier', 'btn btn--gold commerce-add');
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      addSelection(card);
     });
+    stock.insertAdjacentElement('afterend', button);
+  }
+
+  function mountProductButtons() {
+    document.querySelectorAll('#telephonie .range[data-kind][data-sub]').forEach(mountAddButton);
+    mountAddButton(document.getElementById('air31Modal'));
 
     var briquet = document.getElementById('prod-briquet');
     if (briquet && !briquet.querySelector('.commerce-add')) {
@@ -343,9 +296,9 @@
           ? 'Stock restant : <b>' + product.stock_quantity + '</b>'
           : '<b>Rupture de stock</b>';
       } else {
-        el.textContent = 'Stock vérifié au paiement';
+        el.textContent = 'Disponible en boutique Ouaga';
       }
-      var host = el.closest('.range, .briquet-sheet');
+      var host = el.closest('.range, .briquet-sheet, .air31-modal');
       var add = host && host.querySelector('.commerce-add');
       if (add && typeof product.stock_quantity === 'number') {
         add.disabled = product.stock_quantity <= 0;
@@ -367,47 +320,26 @@
     drawer.setAttribute('aria-label', 'Panier d’achat');
     drawer.innerHTML =
       '<div class="commerce-cart__head">' +
-        '<div><p>Panier d’achat</p><strong>Paiement CinetPay sécurisé</strong></div>' +
+        '<div><p>Panier d’achat</p><strong>Boutique Ouagadougou</strong></div>' +
         '<button type="button" class="commerce-cart__close" aria-label="Fermer">×</button>' +
       '</div>' +
       '<div class="commerce-cart__items"></div>' +
-      '<form class="commerce-checkout">' +
-        '<label>Nom et prénom<input name="name" required autocomplete="name" placeholder="Votre nom"></label>' +
-        '<label>Téléphone Orange/Moov<input name="phone" required autocomplete="tel" inputmode="tel" placeholder="Ex. 07 00 00 00"></label>' +
-        '<label>Quartier / ville<input name="area" autocomplete="address-level2" placeholder="Ouagadougou, Toudoubwéogo..."></label>' +
-        '<p class="commerce-checkout__note">Aucun compte client à créer : choisissez Orange Money ou Moov Money Burkina Faso et validez dans CinetPay.</p>' +
-        '<div class="commerce-pay-row">' +
-          '<button type="submit" data-operator="ORANGE_MONEY_BF" class="commerce-pay commerce-pay--orange">Payer Orange Money</button>' +
-          '<button type="submit" data-operator="MOOV_MONEY_BF" class="commerce-pay commerce-pay--moov">Payer Moov Money</button>' +
-        '</div>' +
-      '</form>' +
+      '<div class="commerce-checkout">' +
+        '<button type="button" class="commerce-pay commerce-pay--wa">Commander via WhatsApp (Orange Money / Moov Money)</button>' +
+      '</div>' +
       '<p class="commerce-notice" role="status"></p>';
-
-    var receipt = document.createElement('section');
-    receipt.id = 'commerceReceipt';
-    receipt.className = 'commerce-receipt';
-    receipt.hidden = true;
-    receipt.setAttribute('role', 'dialog');
-    receipt.setAttribute('aria-modal', 'true');
-    receipt.setAttribute('aria-label', 'Reçu de paiement validé');
 
     document.body.appendChild(button);
     document.body.appendChild(drawer);
-    document.body.appendChild(receipt);
 
     ui.button = button;
     ui.drawer = drawer;
     ui.items = drawer.querySelector('.commerce-cart__items');
     ui.form = drawer.querySelector('.commerce-checkout');
     ui.notice = drawer.querySelector('.commerce-notice');
-    ui.receipt = receipt;
 
     drawer.querySelector('.commerce-cart__close').addEventListener('click', closeCart);
-    ui.form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      var submitter = event.submitter || document.activeElement;
-      startCheckout(submitter && submitter.getAttribute('data-operator') || 'ORANGE_MONEY_BF');
-    });
+    ui.form.querySelector('.commerce-pay--wa').addEventListener('click', orderViaWhatsApp);
     renderCart();
   }
 
@@ -439,14 +371,14 @@
     if (ui.form) ui.form.hidden = false;
     ui.items.innerHTML = cart.map(function (item, index) {
       var product = PRODUCTS[item.product_key] || item;
-      var tier = getTier(product, item.quantity);
       var stock = typeof product.stock_quantity === 'number' ? product.stock_quantity : null;
+      var unitWord = item.pack_price != null ? ' / pack' : ' / unité';
       return '<article class="commerce-item">' +
         '<img src="' + (product.image_url || item.image_url || '') + '" alt="">' +
         '<div>' +
           '<strong>' + escapeHtml(product.name || item.name) + '</strong>' +
           '<span>' + escapeHtml(item.variant || 'Standard') + '</span>' +
-          '<small>' + formatFcfa(tier.unit || 0) + ' F CFA / unité' + (stock !== null ? ' · stock ' + stock : '') + '</small>' +
+          '<small>' + formatFcfa(itemUnit(item)) + ' F CFA' + unitWord + (stock !== null ? ' · stock ' + stock : '') + '</small>' +
         '</div>' +
         '<label>Qté<input data-cart-qty="' + index + '" type="number" min="1" value="' + item.quantity + '"></label>' +
         '<b>' + formatFcfa(itemTotal(item)) + ' F</b>' +
@@ -468,208 +400,22 @@
     });
   }
 
-  function checkoutPayload(operator) {
-    var data = new FormData(ui.form);
-    return {
-      operator: operator,
-      customer: {
-        name: String(data.get('name') || '').trim(),
-        phone: String(data.get('phone') || '').trim(),
-        area: String(data.get('area') || '').trim() || 'Ouagadougou'
-      },
-      items: cart.map(function (item) {
-        return {
-          product_key: item.product_key,
-          quantity: Number(item.quantity || 1),
-          variant: item.variant || ''
-        };
-      })
-    };
-  }
-
-  function validateCheckout() {
-    if (!cart.length) throw new Error('Ajoutez au moins un produit au panier.');
-    if (!ui.form.checkValidity()) {
-      ui.form.reportValidity();
-      throw new Error('');
-    }
-    if (!configReady()) {
-      throw new Error('Configuration Supabase manquante : renseignez DERRA_COMMERCE_CONFIG avant de payer.');
-    }
-  }
-
-  function setPaying(paying) {
-    if (!ui.form) return;
-    ui.form.querySelectorAll('button, input').forEach(function (el) { el.disabled = paying; });
-    ui.form.classList.toggle('is-loading', paying);
-  }
-
-  function startCheckout(operator) {
-    var payload;
-    try {
-      validateCheckout();
-      payload = checkoutPayload(operator);
-    } catch (err) {
-      if (err.message) setNotice(err.message, true);
+  function orderViaWhatsApp() {
+    if (!cart.length) {
+      setNotice('Ajoutez au moins un produit au panier.', true);
       return;
     }
-    setNotice('Préparation du paiement CinetPay...', false);
-    setPaying(true);
-    productsReady
-      .then(function () {
-        return edgeFetch('/create-checkout', {
-          method: 'POST',
-          body: JSON.stringify(payload)
-        });
-      })
-      .then(function (checkout) {
-        return openCinetPay(checkout, payload.customer, operator);
-      })
-      .catch(function (err) {
-        setNotice(err.message || 'Paiement impossible pour le moment.', true);
-        setPaying(false);
-      });
-  }
-
-  function loadCinetPaySdk() {
-    if (window.CinetPay) return Promise.resolve();
-    return new Promise(function (resolve, reject) {
-      var existing = document.querySelector('script[data-cinetpay-sdk]');
-      if (existing) {
-        existing.addEventListener('load', resolve, { once: true });
-        existing.addEventListener('error', reject, { once: true });
-        return;
-      }
-      var script = document.createElement('script');
-      script.src = 'https://checkout.cinetpay.com/seamless/main.js';
-      script.async = true;
-      script.setAttribute('data-cinetpay-sdk', '1');
-      script.onload = resolve;
-      script.onerror = function () { reject(new Error('Le SDK CinetPay ne répond pas.')); };
-      document.head.appendChild(script);
-    });
-  }
-
-  function splitName(fullName) {
-    var parts = String(fullName || 'Client Derra').trim().split(/\s+/);
-    return {
-      first: parts.shift() || 'Client',
-      last: parts.join(' ') || 'Derra'
-    };
-  }
-
-  function cleanPhone(phone) {
-    return String(phone || '').replace(/[^\d+]/g, '');
-  }
-
-  function openCinetPay(checkout, customer, operator) {
-    return loadCinetPaySdk().then(function () {
-      if (!window.CinetPay) throw new Error('SDK CinetPay indisponible.');
-      var cinetpay = checkout.cinetpay || {};
-      var order = checkout.order || {};
-      var names = splitName(customer.name);
-      window.CinetPay.setConfig({
-        apikey: cinetpay.apiKey,
-        site_id: cinetpay.siteId,
-        notify_url: cinetpay.notifyUrl,
-        mode: cinetpay.mode || CONFIG.cinetpayMode
-      });
-      window.CinetPay.getCheckout({
-        transaction_id: order.transaction_id,
-        amount: order.amount,
-        currency: order.currency || CONFIG.currency,
-        channels: 'MOBILE_MONEY',
-        description: 'Commande Derra Global Trading - ' + operatorLabel(operator),
-        customer_name: names.first,
-        customer_surname: names.last,
-        customer_email: 'client+' + order.transaction_id + '@derra.local',
-        customer_phone_number: cleanPhone(customer.phone),
-        customer_address: customer.area || 'Ouagadougou',
-        customer_city: 'Ouagadougou',
-        customer_country: 'BF',
-        customer_state: 'BF',
-        customer_zip_code: '0000',
-        metadata: JSON.stringify({ order_id: order.id, operator: operator })
-      });
-      window.CinetPay.waitResponse(function (response) {
-        if (isAccepted(response && response.status)) {
-          confirmPayment(checkout, response, customer, operator);
-        } else {
-          setPaying(false);
-          setNotice('Paiement non validé : ' + ((response && response.message) || 'transaction annulée ou refusée.'), true);
-        }
-      });
-      window.CinetPay.onError(function (error) {
-        setPaying(false);
-        setNotice((error && error.message) || 'Erreur CinetPay.', true);
-      });
-    });
-  }
-
-  function isAccepted(status) {
-    return String(status || '').toUpperCase() === 'ACCEPTED';
-  }
-
-  function operatorLabel(operator) {
-    return operator === 'MOOV_MONEY_BF' ? 'Moov Money Burkina Faso' : 'Orange Money Burkina Faso';
-  }
-
-  function confirmPayment(checkout, response, customer, operator) {
-    setNotice('Paiement reçu, vérification CinetPay et mise à jour du stock...', false);
-    return edgeFetch('/confirm-payment', {
-      method: 'POST',
-      body: JSON.stringify({
-        order_id: checkout.order.id,
-        transaction_id: checkout.order.transaction_id,
-        cinetpay_response: response
-      })
-    })
-      .then(function (result) {
-        if (!result.ok) {
-          throw new Error(result.message || 'Paiement en attente de confirmation CinetPay.');
-        }
-        setPaying(false);
-        showReceipt(result.order || checkout.order, response, customer, operator);
-        cart = [];
-        saveCart();
-        return fetchProducts();
-      })
-      .catch(function (err) {
-        setPaying(false);
-        setNotice(err.message || 'Paiement reçu, mais validation serveur en attente.', true);
-      });
-  }
-
-  function showReceipt(order, response, customer, operator) {
-    if (!ui.receipt) return;
-    var items = (order.items || cart).map(function (item) {
+    var lines = cart.map(function (item) {
       var product = PRODUCTS[item.product_key] || item;
-      return '<li>' + escapeHtml(product.name || item.name) + ' · ' +
-        escapeHtml(item.variant || 'Standard') + ' × ' + (item.quantity || 1) + '</li>';
-    }).join('');
-    ui.receipt.innerHTML =
-      '<div class="commerce-receipt__card">' +
-        '<p class="commerce-receipt__ok">Paiement validé</p>' +
-        '<h2>Reçu à présenter à Janvier</h2>' +
-        '<dl>' +
-          '<div><dt>Commande</dt><dd>' + escapeHtml(order.order_code || order.id || '') + '</dd></div>' +
-          '<div><dt>Transaction CinetPay</dt><dd>' + escapeHtml(order.transaction_id || (response && response.transaction_id) || '') + '</dd></div>' +
-          '<div><dt>Client</dt><dd>' + escapeHtml(customer.name) + ' · ' + escapeHtml(customer.phone) + '</dd></div>' +
-          '<div><dt>Paiement</dt><dd>' + operatorLabel(operator) + '</dd></div>' +
-          '<div><dt>Montant</dt><dd>' + formatFcfa(order.amount || cartTotal()) + ' F CFA</dd></div>' +
-        '</dl>' +
-        '<ul>' + items + '</ul>' +
-        '<strong class="commerce-receipt__show">Montrez cet écran vert à Janvier pour récupérer la commande.</strong>' +
-        '<div class="commerce-receipt__actions">' +
-          '<button type="button" onclick="window.print()">Imprimer</button>' +
-          '<button type="button" data-receipt-close>Fermer</button>' +
-        '</div>' +
-      '</div>';
-    ui.receipt.hidden = false;
-    closeCart();
-    ui.receipt.querySelector('[data-receipt-close]').addEventListener('click', function () {
-      ui.receipt.hidden = true;
+      var name = product.name || item.name || 'Article';
+      var variant = item.variant ? ' (' + item.variant + ')' : '';
+      return '- ' + name + variant + ' × ' + item.quantity;
     });
+    var text = 'Bonjour, je souhaite régler cette commande par Orange Money / Moov Money au numéro +226 07 55 47 90.\n\n' +
+      lines.join('\n') +
+      '\n\nTotal : ' + formatFcfa(cartTotal()) + ' FCFA';
+    var url = 'https://wa.me/' + CONFIG.janvierPhone + '?text=' + encodeURIComponent(text);
+    window.open(url, '_blank', 'noopener,noreferrer');
   }
 
   document.addEventListener('DOMContentLoaded', function () {
