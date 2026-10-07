@@ -325,6 +325,17 @@
       '</div>' +
       '<div class="commerce-cart__items"></div>' +
       '<div class="commerce-checkout">' +
+        '<fieldset class="commerce-pay-choice">' +
+          '<legend>Mode de paiement</legend>' +
+          '<label class="commerce-pay-option">' +
+            '<input type="radio" name="commercePay" value="Orange Money" checked>' +
+            '<span>Orange Money <small>+226 07 55 47 90</small></span>' +
+          '</label>' +
+          '<label class="commerce-pay-option">' +
+            '<input type="radio" name="commercePay" value="Moov Money">' +
+            '<span>Moov Money <small>+226 07 55 47 90</small></span>' +
+          '</label>' +
+        '</fieldset>' +
         '<button type="button" class="commerce-pay commerce-pay--wa">Commander via WhatsApp (Orange Money / Moov Money)</button>' +
       '</div>' +
       '<p class="commerce-notice" role="status"></p>';
@@ -339,7 +350,11 @@
     ui.notice = drawer.querySelector('.commerce-notice');
 
     drawer.querySelector('.commerce-cart__close').addEventListener('click', closeCart);
-    ui.form.querySelector('.commerce-pay--wa').addEventListener('click', orderViaWhatsApp);
+    ui.form.querySelector('.commerce-pay--wa').addEventListener('click', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      orderViaWhatsApp();
+    });
     renderCart();
   }
 
@@ -400,22 +415,30 @@
     });
   }
 
+  function selectedPayment() {
+    var picked = ui.form && ui.form.querySelector('input[name="commercePay"]:checked');
+    return (picked && picked.value) || 'Orange Money';
+  }
+
   function orderViaWhatsApp() {
     if (!cart.length) {
       setNotice('Ajoutez au moins un produit au panier.', true);
       return;
     }
-    var lines = cart.map(function (item) {
+    var articles = cart.map(function (item) {
       var product = PRODUCTS[item.product_key] || item;
       var name = product.name || item.name || 'Article';
       var variant = item.variant ? ' (' + item.variant + ')' : '';
-      return '- ' + name + variant + ' × ' + item.quantity;
-    });
-    var text = 'Bonjour, je souhaite régler cette commande par Orange Money / Moov Money au numéro +226 07 55 47 90.\n\n' +
-      lines.join('\n') +
-      '\n\nTotal : ' + formatFcfa(cartTotal()) + ' FCFA';
-    var url = 'https://wa.me/' + CONFIG.janvierPhone + '?text=' + encodeURIComponent(text);
-    window.open(url, '_blank', 'noopener,noreferrer');
+      return name + variant + ' × ' + item.quantity + ' — ' + formatFcfa(itemUnit(item)) + ' FCFA';
+    }).join('\n  ');
+    var text = 'Bonjour Janvier, voici ma commande depuis le site :\n' +
+      '- Articles :\n  ' + articles + '\n' +
+      '- Total : ' + formatFcfa(cartTotal()) + ' FCFA\n' +
+      '- Mode de paiement choisi : ' + selectedPayment() + '\n' +
+      'Merci de me confirmer la réception.';
+    var url = 'https://wa.me/22607554790?text=' + encodeURIComponent(text);
+    var opened = window.open(url, '_blank');
+    if (!opened) window.location.href = url;
   }
 
   document.addEventListener('DOMContentLoaded', function () {
