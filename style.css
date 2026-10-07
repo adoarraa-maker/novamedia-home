@@ -423,6 +423,12 @@ body{
   font-size:.82rem;
   font-weight:750;
 }
+.commerce-stock--out{
+  background:#fef2f2;
+  color:#991b1b;
+  border:1px solid #fecaca;
+  font-weight:800;
+}
 .commerce-qty{
   display:flex;
   flex-direction:column;
@@ -606,6 +612,54 @@ body{
   border-radius:12px;
   padding:0 12px;
   background:#fff;
+}
+.commerce-pay-choice{
+  display:grid;
+  gap:8px;
+  margin:0;
+  padding:0;
+  border:0;
+}
+.commerce-pay-choice legend{
+  margin:0 0 2px;
+  color:#0B1730;
+  font-size:.78rem;
+  font-weight:800;
+}
+.commerce-checkout label.commerce-pay-option{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  gap:12px;
+  min-height:54px;
+  margin:0;
+  padding:12px 14px;
+  border:2px solid #E4DCCB;
+  border-radius:14px;
+  background:#fff;
+  cursor:pointer;
+  font-size:.95rem;
+  font-weight:800;
+}
+.commerce-checkout label.commerce-pay-option:has(input:checked){
+  border-color:#25D366;
+  background:#f3fbf6;
+  box-shadow:0 0 0 3px rgba(37,211,102,.18);
+}
+.commerce-checkout label.commerce-pay-option input{
+  width:22px;
+  height:22px;
+  margin:0;
+  padding:0;
+  flex:none;
+  accent-color:#ff7900;
+}
+.commerce-pay-option small{
+  display:block;
+  margin-top:2px;
+  color:#5E6573;
+  font-size:.78rem;
+  font-weight:700;
 }
 .commerce-checkout__note{
   margin:0;
